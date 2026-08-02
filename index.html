@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghid rapid – Mixer Behringer X32</title>
+<meta name="description" content="Ghid rapid pentru operarea mixerului Behringer X32: schema sistemului de sunet, lanțul semnalului și cele 10 acțiuni esențiale.">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --ink: #1c2430;
+    --muted: #5a6675;
+    --accent: #1f6fd0;
+    --accent-soft: #e8f0fb;
+    --line: #dde3ea;
+    --warn-bg: #fff6e5;
+    --warn-line: #f0c069;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 2rem 1rem 1.6rem;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 .3rem; font-size: 1.7rem; }
+  header p { margin: 0; opacity: .92; }
+  main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  section { margin-top: 2.2rem; }
+  h2 {
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: .4rem;
+    margin-bottom: 1rem;
+  }
+  figure { margin: 0; }
+  figure img {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  figcaption { color: var(--muted); font-size: .9rem; margin-top: .5rem; text-align: center; }
+
+  .chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .chain .step {
+    background: var(--accent-soft);
+    border: 1px solid #c3d8f2;
+    border-radius: 999px;
+    padding: .3rem .8rem;
+    font-weight: 600;
+    font-size: .9rem;
+    white-space: nowrap;
+  }
+  .chain .step small { color: var(--accent); font-weight: 700; }
+  .chain .arrow { color: var(--muted); font-weight: 700; }
+  .chain .step.out { background: #e6f4ea; border-color: #b6ddc2; }
+
+  ol.actions { list-style: none; counter-reset: act; margin: 0; padding: 0; }
+  ol.actions > li {
+    counter-increment: act;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1rem 1.1rem 1rem 3.4rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  ol.actions > li::before {
+    content: counter(act);
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .95rem;
+  }
+  ol.actions h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+  .label { font-weight: 700; color: var(--accent); }
+  ol.actions p { margin: .35rem 0; }
+  kbd {
+    background: #eef1f5;
+    border: 1px solid var(--line);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    padding: 0 .35rem;
+    font-family: inherit;
+    font-size: .88em;
+    font-weight: 600;
+  }
+  .tip {
+    background: var(--warn-bg);
+    border-left: 4px solid var(--warn-line);
+    border-radius: 6px;
+    padding: .6rem .8rem;
+    margin: .6rem 0 0;
+    font-size: .95rem;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: .9rem;
+    padding: 1.5rem 1rem 2.5rem;
+  }
+  @media (max-width: 520px) {
+    header h1 { font-size: 1.35rem; }
+    .chain .step { font-size: .82rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ghid rapid – Mixer Behringer X32</h1>
+  <p>Pentru operatorii de sunet, începători și avansați</p>
+</header>
+
+<main>
+  <section id="sistem">
+    <h2>1. Sistemul de sunet</h2>
+    <figure>
+      <img src="assets/diagrama-sistem-sunet.png"
+           alt="Schema sistemului de sunet: microfoane, instrumente și sunet PC intră în mixer, iar de la mixer semnalul merge spre boxele din sală, monitorul de scenă și transmisia live.">
+      <figcaption>Sistemul de sunet (aproximativ): intrările merg în mixer, iar mixerul trimite semnalul spre boxele din sală, monitorul de scenă și transmisia live.</figcaption>
+    </figure>
+  </section>
+
+  <section id="lant">
+    <h2>2. Lanțul semnalului pe un canal</h2>
+    <p>Semnalul unui canal trece, în această ordine, prin următoarele etape. Dacă ceva nu sună bine, verifică etapele de la stânga la dreapta.</p>
+    <div class="chain">
+      <span class="step"><small>1</small> INPUT</span><span class="arrow">→</span>
+      <span class="step"><small>2</small> GAIN</span><span class="arrow">→</span>
+      <span class="step"><small>3</small> LOW CUT</span><span class="arrow">→</span>
+      <span class="step"><small>4</small> COMP</span><span class="arrow">→</span>
+      <span class="step"><small>5</small> EQ</span><span class="arrow">→</span>
+      <span class="step"><small>6</small> MUTE</span><span class="arrow">→</span>
+      <span class="step"><small>7</small> BUS</span><span class="arrow">→</span>
+      <span class="step"><small>8</small> FADER</span><span class="arrow">→</span>
+      <span class="step out">MAIN OUT</span>
+    </div>
+  </section>
+
+  <section id="actiuni">
+    <h2>3. Cele 10 acțiuni esențiale</h2>
+    <ol class="actions">
+
+      <li>
+        <h3>Pornire / Oprire mixer</h3>
+        <p><span class="label">Ce înseamnă:</span> pornirea și oprirea mixerului de la butonul de alimentare din spatele acestuia.</p>
+        <p><span class="label">De ce:</span> ordinea corectă de pornire/oprire previne pocnetele puternice în boxe, care pot deteriora echipamentul.</p>
+        <p><span class="label">Cum:</span> la început pornește mixerul, apoi sistemul audio (amplificatoare/boxe). La finalul programului oprește întâi sistemul audio, apoi mixerul.</p>
+      </li>
+
+      <li>
+        <h3>Comutare între bănci de canale (LAYER)</h3>
+        <p><span class="label">Ce înseamnă:</span> cele 16 faderuri fizice pot controla mai multe grupuri de canale, comutate din butoanele <kbd>LAYER</kbd>.</p>
+        <p><span class="label">De ce:</span> ca să ajungi rapid la orice canal în timpul programului, chiar dacă mixerul are mai multe canale decât faderuri.</p>
+        <p><span class="label">Cum:</span> apasă <kbd>CH 1-16</kbd>, <kbd>CH 17-32</kbd>, <kbd>AUX</kbd> sau <kbd>FX</kbd>. La fel se comută și băncile pentru ieșiri (BUS / MAIN).</p>
+      </li>
+
+      <li>
+        <h3>Reglare gain și verificarea nivelului de semnal</h3>
+        <p><span class="label">Ce înseamnă:</span> GAIN reglează cât de tare intră semnalul în mixer (etapa 2 din lanț), înainte de orice altă prelucrare.</p>
+        <p><span class="label">De ce:</span> un gain prea mic dă semnal slab și zgomotos, iar unul prea mare distorsionează sunetul pe tot lanțul. Se reglează o singură dată, corect, la începutul programului.</p>
+        <p><span class="label">Cum:</span> apasă <kbd>SELECT</kbd> pe canalul dorit, apoi rotește encoderul <kbd>GAIN</kbd> din secțiunea <kbd>CONFIG/PREAMP</kbd>. Urmărește LED-urile canalului și ecranul LCD: ideal, semnalul atinge galbenul în vârfuri și nu rămâne în roșu.</p>
+        <p class="tip"><strong>Recomandare:</strong> în timpul programului ajustează volumul din <strong>FADER</strong>, nu din GAIN.</p>
+      </li>
+
+      <li>
+        <h3>Filtru LOW CUT (HPF – High Pass Filter)</h3>
+        <p><span class="label">Ce înseamnă:</span> taie frecvențele joase de sub o anumită limită și lasă să treacă restul (etapa 3 din lanț).</p>
+        <p><span class="label">De ce:</span> elimină zgomotul de fundal, vibrațiile din podea, zgomotul de manipulare a microfonului și „noroiul” din mix.</p>
+        <p><span class="label">Cum:</span> <kbd>SELECT</kbd> pe canal, activează <kbd>LOW CUT</kbd> și setează frecvența de tăiere în funcție de sursă (ex.: în jur de 80–100 Hz pentru voce). Atenție: nu se aplică la bass sau la toba mare.</p>
+      </li>
+
+      <li>
+        <h3>Compresie (COMP)</h3>
+        <p><span class="label">Ce înseamnă:</span> reduce automat vârfurile de volum, uniformizând semnalul (etapa 4 din lanț).</p>
+        <p><span class="label">De ce:</span> vocile care variază mult (când cineva vorbește șoptit, apoi strigă) rămân audibile fără să fie nevoie să miști permanent faderul.</p>
+        <p><span class="label">Cum:</span> <kbd>SELECT</kbd> pe canal, intră în secțiunea <kbd>COMP</kbd> (dynamics) și activeaz-o. Folosește o compresie moderată; dacă sunetul devine „strivit”, redu efectul.</p>
+      </li>
+
+      <li>
+        <h3>Ajustare EQ (ex.: nivel bass)</h3>
+        <p><span class="label">Ce înseamnă:</span> egalizarea – accentuezi sau reduci anumite zone de frecvență ale canalului (etapa 5 din lanț).</p>
+        <p><span class="label">De ce:</span> corectezi un sunet prea „gros”, prea „ascuțit” sau neclar și îl potrivești în mixul general.</p>
+        <p><span class="label">Cum:</span> <kbd>SELECT</kbd> pe canal, intră în meniul <kbd>EQ</kbd> și folosește encoderele. Pentru bass, reglează zona joasă (aprox. 300 Hz – <kbd>LOW GAIN</kbd>). Fă ajustări mici și ascultă rezultatul.</p>
+      </li>
+
+      <li>
+        <h3>Mute / Unmute canal</h3>
+        <p><span class="label">Ce înseamnă:</span> oprește complet semnalul canalului (etapa 6 din lanț).</p>
+        <p><span class="label">De ce:</span> elimină zgomotele de la microfoanele nefolosite și evită intrările nedorite în timpul programului.</p>
+        <p><span class="label">Cum:</span> apasă butonul <kbd>MUTE</kbd> de pe canalul dorit. LED-ul roșu aprins indică faptul că acel canal este mutat.</p>
+      </li>
+
+      <li>
+        <h3>Control trimiteri către ieșiri (BUS SENDS)</h3>
+        <p><span class="label">Ce înseamnă:</span> pe lângă mixul principal, fiecare canal poate fi trimis și către alte ieșiri – monitorul de scenă, transmisia live etc. (etapa 7 din lanț).</p>
+        <p><span class="label">De ce:</span> ca fiecare ieșire să primească doar ce are nevoie. Exemplu: corul nu trebuie să se audă în monitorul de scenă, altfel apare microfonie sau derutare pentru cei de pe scenă.</p>
+        <p><span class="label">Cum:</span> apasă <kbd>SELECT</kbd> pe canalul corului, apoi <kbd>SENDS ON FADER</kbd>. Verifică ce BUS-uri sunt active (ex.: BUS 1–16). Dacă monitorul de scenă este pe BUS 1, adu faderul de trimitere către BUS 1 la zero. La final ieși din modul <kbd>SENDS ON FADER</kbd>, ca faderele să revină la mixul principal.</p>
+      </li>
+
+      <li>
+        <h3>Reglare fader</h3>
+        <p><span class="label">Ce înseamnă:</span> volumul cu care canalul intră în mixul principal (etapa 8 din lanț).</p>
+        <p><span class="label">De ce:</span> este reglajul principal, folosit permanent în timpul programului, pentru echilibrul între voci și instrumente.</p>
+        <p><span class="label">Cum:</span> mișcă faderul fizic al canalului în sus sau în jos. Nu este necesar să apeși <kbd>SELECT</kbd> pentru această acțiune.</p>
+      </li>
+
+      <li>
+        <h3>Ascultare canal individual (SOLO)</h3>
+        <p><span class="label">Ce înseamnă:</span> trimite un singur canal în căști, fără să afecteze sunetul din sală.</p>
+        <p><span class="label">De ce:</span> pentru a identifica sursa unui zgomot sau pentru a verifica un microfon înainte de a-l deschide în mix.</p>
+        <p><span class="label">Cum:</span> apasă <kbd>SOLO</kbd> pe canalul dorit și ascultă în căști. Dezactivează toate canalele solo cu butonul <kbd>CLEAR SOLO</kbd>.</p>
+      </li>
+
+    </ol>
+  </section>
+</main>
+
+<footer>
+  Ghid intern pentru echipa de sunet · Behringer X32
+</footer>
+</body>
+</html>
