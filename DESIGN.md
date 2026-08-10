@@ -4,7 +4,7 @@ description: A wayfinding sign system for a church sound team operating a Behrin
 colors:
   sign-yellow: "#FFCC00"
   sign-black: "#0B0B0B"
-  prohibition-red: "#E8402A"
+  prohibition-red: "#D93A25"
   safe-green: "#17A05B"
   night-ground: "#0E0E0D"
   night-panel: "#171716"
@@ -12,14 +12,14 @@ colors:
   night-rule: "#34342F"
   night-ink: "#F2F1EC"
   night-ink-muted: "#9E9D95"
-  night-ink-faint: "#6C6B64"
+  night-ink-faint: "#8B8981"
   day-ground: "#E6E6E6"
   day-panel: "#FFFFFF"
   day-panel-raised: "#F4F4F2"
   day-rule: "#C6C6C1"
   day-ink: "#0B0B0B"
   day-ink-muted: "#55544F"
-  day-ink-faint: "#7E7D77"
+  day-ink-faint: "#63625C"
 typography:
   display:
     fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
@@ -187,7 +187,7 @@ accent) — the generic AI-default look the client rejected by name.
 |---|---|---|---|
 | Wayfinding | `sign-yellow` | `#FFCC00` | Sign panels, the board, area bands, the active route station, the index button. **Never body copy, never a border for emphasis, never a hover tint.** |
 | Sign ground | `sign-black` | `#0B0B0B` | Pictogram inset squares, type on yellow, step numerals. |
-| Prohibition | `prohibition-red` | `#E8402A` | Only for "this will hurt the service": the emergency route (07), STOP notices, the emergency shortcut in the gantry. |
+| Prohibition | `prohibition-red` | `#D93A25` | Only for "this will hurt the service": the emergency route (07), STOP notices, the emergency shortcut in the gantry. |
 | Safe | `safe-green` | `#17A05B` | Completed checklist items and GO notices. Nothing else. |
 | Ground / panel / ink | `night-*`, `day-*` | see frontmatter | Every neutral resolves through `--ground`, `--panel`, `--panel-raised`, `--rule`, `--ink`, `--ink-muted`, `--ink-faint`. |
 
@@ -197,8 +197,21 @@ component override — with one deliberate exception: elements that are
 *intentionally* colored signage (`.notice.stop`, `.dest.is-alarm`, `.area-band`)
 opt out of the day surface swap via `:not(.stop)` so red stays red.
 
-Contrast floor is WCAG AA at body size in both modes; yellow-on-black and
-black-on-yellow both clear AAA.
+Contrast floor is WCAG AA in both modes, verified by measurement rather than by
+eye. Three token values are set by that floor, not by taste:
+
+- `prohibition-red` is `#D93A25` because white body text on it must clear 4.5:1
+  (it lands at 4.58). A lighter red looked better and failed.
+- `night-ink-faint` `#8B8981` and `day-ink-faint` `#63625C` are the lightest and
+  darkest values that keep 11px uppercase micro-copy legible on `--ground`.
+  `--ink-faint` is a *text* tier, so it may never be dimmed further.
+
+Yellow-on-black and black-on-yellow both clear AAA.
+
+`@media print` re-declares the neutral tokens on
+`html, html[data-mode="night"], html[data-mode="day"]`, not on `:root` — the
+mode selectors outrank `:root`, so a `:root` print override silently loses and
+night ink ends up on white paper.
 
 ## Typography
 
