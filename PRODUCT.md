@@ -12,11 +12,12 @@ It replaces "ask the person who knows" with a guide that maps the *whole* signal
 
 **Primary reader:** a church sound volunteer, beginner to intermediate, not a trained audio engineer. Often young. Romanian speaker.
 
-**The real scene (this drives every decision):** standing at the mixing desk at the back of a dim church hall, **phone in one hand**, minutes before or *during* the service. Something is wrong, or they are about to do something they are unsure of, and other people are waiting. A bright white phone screen at the back of a dark hall is itself a problem.
+**The real scene (this drives every decision):** sitting at the mixing desk, **phone in one hand**, minutes before or *during* the service. Something is wrong, or they are about to do something they are unsure of, and other people are waiting. The room is **never dark** — it has plenty of daylight, and when it doesn't, plenty of artificial light. The phone screen is competing with a lit room, not lighting up a dark one.
 
 Consequences:
 - Mobile-first is literal, not a slogan. Desktop is the secondary case (learning at home, rehearsal).
-- Dark by default is a functional requirement, not a style preference.
+- Light by default is a functional requirement, not a style preference: a dark screen in a bright room is the harder read, and it picks up every reflection. The OS `prefers-color-scheme` is deliberately **not** followed, because a phone set to system dark would otherwise hand the volunteer the worse screen.
+- Night mode stays available as a secondary option, but nothing is designed around it.
 - Reaching an answer must take seconds and one thumb, not reading.
 - Every instruction must name the physical control by the label printed on the console.
 

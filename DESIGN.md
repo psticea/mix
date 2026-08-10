@@ -6,8 +6,7 @@ colors:
   sign-black: "#0B0B0B"
   prohibition-red: "#D93A25"
   safe-green: "#17A05B"
-  night-sign-yellow: "#E8BC2E"
-  night-prohibition-red: "#C93E28"
+  night-sign-yellow: "#E3B300"
   night-ground: "#1A1917"
   night-panel: "#232220"
   night-panel-raised: "#2A2925"
@@ -119,13 +118,12 @@ components:
     rounded: "{rounded.none}"
     padding: "14px 16px"
   area-band:
-    backgroundColor: "transparent"
-    textColor: "{colors.night-ink}"
-    accentColor: "{colors.sign-yellow}"
-    borderBottom: "2px solid {colors.sign-yellow}"
+    backgroundColor: "{colors.sign-yellow}"
+    textColor: "{colors.sign-black}"
     typography: "{typography.headline}"
     rounded: "{rounded.none}"
-    padding: "2px 0 10px"
+    padding: "12px 16px"
+    nightVariant: "transparent face, 2px {colors.sign-yellow} bottom rule, numeral in {colors.night-sign-yellow}"
   gantry-index:
     backgroundColor: "{colors.sign-yellow}"
     textColor: "{colors.sign-black}"
@@ -161,29 +159,29 @@ components:
 
 ## Overview
 
-**North star: an international airport sign system, seen at night.**
+**North star: an international airport sign system, in a lit terminal.**
 
-This is not a documentation site. The reader is a volunteer standing at a mixing
-desk in a dim hall, on a phone, minutes before a service starts. They are not
-reading — they are navigating a building under time pressure. So the surface
-behaves like terminal signage: a junction board of numbered destinations, a
-gantry sign that always tells you where you are, monumental numerals visible from
-a distance, pictograms instead of decoration, and one route drawn as a transit
-line.
+This is not a documentation site. The reader is a volunteer sitting at a mixing
+desk, on a phone, minutes before a service starts. They are not reading — they
+are navigating a building under time pressure. So the surface behaves like
+terminal signage: a junction board of numbered destinations, a gantry sign that
+always tells you where you are, monumental numerals visible from a distance,
+pictograms instead of decoration, and one route drawn as a transit line.
 
 Three rules follow from that and govern everything else:
 
 1. **Yellow is wayfinding, and nothing else.** It marks where to go and where you
    are. The moment yellow decorates a paragraph, the sign system stops working.
-   It is also *rationed*: the landing board is the one place a full yellow sign
-   face earns its area. Repeating that slab at every section turned the page
-   into a wall and made night mode unreadable, so section headers get the
-   numeral and a single rule instead.
+   It is also *rationed by mode*: in daylight a full yellow sign face is exactly
+   right and the section bands wear it. At night seven full slabs became seven
+   glowing walls, so there the band keeps only its numeral and a lit rule.
 2. **Everything is a panel, not a card.** Hard rectangles, hairline frames, zero
    decorative radius, no shadows, no gradients. Depth comes from ground/panel
    value separation, never from blur.
-3. **Night is the default.** The room the guide is used in is dark. Day mode
-   exists for daylight and print, and is a token swap, not a second design.
+3. **Day is the default.** The room is never dark — it has daylight, or it has
+   the lights on. A dark screen there is the harder read and catches every
+   reflection, so light leads and the system preference is not followed. Night
+   mode exists for the person reading at home in the evening.
 
 The visual world is deliberately the opposite of the site it replaced (gradient
 blobs, gradient headlines, pill tabs, badge rows, rounded cards, blue/purple
@@ -193,26 +191,28 @@ accent) — the generic AI-default look the client rejected by name.
 
 | Role | Token | Value | Use |
 |---|---|---|---|
-| Wayfinding | `sign-yellow` | `#FFCC00` day / `#E8BC2E` night | Sign panels, the board, section numerals and rules, the active route station, the index button. **Never body copy, never a border for emphasis, never a hover tint.** |
+| Wayfinding | `sign-yellow` | `#FFCC00` day / `#E3B300` night | Sign panels, the board, section numerals and rules, the active route station, the index button. **Never body copy, never a border for emphasis, never a hover tint.** |
 | Sign ground | `sign-black` | `#0B0B0B` | Pictogram inset squares, type on yellow, step numerals. |
-| Prohibition | `prohibition-red` | `#D93A25` day / `#C93E28` night | Only for "this will hurt the service": the emergency route (07), STOP notices, the emergency shortcut in the gantry. |
+| Prohibition | `prohibition-red` | `#D93A25` (both modes) | Only for "this will hurt the service": the emergency route (07), STOP notices, the emergency shortcut in the gantry. |
 | Safe | `safe-green` | `#17A05B` | Completed checklist items and GO notices. Nothing else. |
 | Ground / panel / ink | `night-*`, `day-*` | see frontmatter | Every neutral resolves through `--ground`, `--panel`, `--panel-raised`, `--rule`, `--ink`, `--ink-muted`, `--ink-faint`. |
 
 Both modes are declared as token blocks on `html[data-mode="night"|"day"]`.
 Component CSS references the semantic token only, so a mode never needs a
-component override — with two deliberate exceptions. Elements that are
-*intentionally* colored signage (`.notice.stop`, `.dest.is-alarm`) opt out of
-the day surface swap via `:not(.stop)` so red stays red. And yellow numerals
-set on the page ground (`.area-band .b-num`, `.next-n`, `.gantry-now .g-num`)
-switch to `--ink` in day mode: yellow type cannot carry contrast on a light
-surface, so on light the rule carries the colour and the numeral goes black.
+component override — with two deliberate exceptions. `.area-band` changes
+treatment between modes (lit face by day, lit edge at night), because a sign
+genuinely does look different depending on how much light is on it. And yellow
+numerals set on the page ground (`.next-n`, `.gantry-now .g-num`) switch to
+`--ink` in day mode: yellow type cannot carry contrast on a light surface, so
+on light the colour lives in the rule and the numeral goes black.
 
-Night is not "day with the lights off". It is the same sign system under
-dimmed light: the ground lifts off pure black to a warm charcoal, and the
-yellow and red sign faces read one step deeper (`#E8BC2E`, `#C93E28`). Full
-chroma on near-black is glare on a phone in a dark hall, which is the exact
-situation this page was built for.
+Night is not "day with the lights off". It is the same sign system dimmed: the
+ground lifts off pure black to a warm charcoal, and the yellow drops in
+*lightness only* — `#FFCC00` is `hsl(48,100%,50%)`, the night face is
+`hsl(47,100%,45%)`. Hue and chroma are untouched on purpose. Desaturating a
+signage yellow to calm it down produces mustard, which reads as dirty rather
+than dimmed. Red is identical in both modes: it was never the glare source, and
+one red keeps "stop" unambiguous.
 
 Contrast floor is WCAG AA in both modes, verified by measurement rather than by
 eye. Three token values are set by that floor, not by taste:
@@ -347,7 +347,7 @@ under `prefers-reduced-motion`.
   the mode.
 - Keep new content as static HTML — the reader may be searching the page, and the
   page must work with JS off.
-- Check every change on a 390px viewport in night mode first. That is the real
+- Check every change on a 390px viewport in day mode first. That is the real
   device.
 
 **Don't**

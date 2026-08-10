@@ -131,9 +131,9 @@
       "name": "Area Band",
       "kind": "custom",
       "refersTo": "area-band",
-      "description": "Opens every section. A mid-page arrival always lands on a sign that names where it is. Quieter than the board on purpose: the numeral carries the colour and a single lit rule carries the edge, so seven sections do not become seven yellow walls. Red variant marks the emergency section.",
+      "description": "Opens every section so a mid-page arrival still knows where it is. In daylight it is a fully lit yellow sign face. At night only its numeral and bottom rule stay lit, because seven full slabs on a dark ground become seven glowing walls. Red variant marks the emergency section.",
       "html": "<div class=\"ds-band\"><span class=\"ds-band-num\">03</span><h2>Înainte de program</h2></div>",
-      "css": ".ds-band{display:flex;align-items:baseline;gap:14px;color:#E9E7DE;border-bottom:2px solid #E8BC2E;padding:2px 0 10px;font-family:'Fira Sans',sans-serif}.ds-band-num{color:#E8BC2E;font-weight:800;font-size:clamp(1.9rem,6vw,2.6rem);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.ds-band h2{margin:0;font-size:clamp(1.35rem,1.05rem + 1.5vw,2.05rem);font-weight:700;letter-spacing:-.015em;line-height:1.1}"
+      "css": ".ds-band{display:flex;align-items:center;gap:14px;background:#FFCC00;color:#0B0B0B;padding:12px 16px;font-family:'Fira Sans',sans-serif}.ds-band-num{font-weight:800;font-size:clamp(1.9rem,6vw,2.6rem);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.ds-band h2{margin:0;font-size:clamp(1.35rem,1.05rem + 1.5vw,2.05rem);font-weight:700;letter-spacing:-.015em;line-height:1.1}"
     },
     {
       "name": "Notice Panel",

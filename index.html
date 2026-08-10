@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="ro" data-mode="night">
+<html lang="ro" data-mode="day">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ghid X32 — echipa de sunet</title>
 <script>try{var m=localStorage.getItem("x32.mode");if(m==="day"||m==="night")document.documentElement.setAttribute("data-mode",m);}catch(e){}</script>
 <meta name="description" content="Ghid de operare pentru mixerul Behringer X32: traseul semnalului, checklist înainte de program, reglaje și ce faci când ceva nu merge.">
-<meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#0E0E0D">
+<!-- Light by default on purpose: the desk sits in a bright room, and the
+     phone is competing with daylight. Night mode stays available, but the
+     system preference is deliberately not followed — a phone set to dark
+     would otherwise hand the volunteer the harder screen to read. -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#E6E6E6">
 
 <!--
   DIRECTION CONTRACT
@@ -16,12 +20,13 @@
   building with minutes to spare. This surface is wayfinding, not documentation. It
   refuses the category default: the sidebar docs site with cards and a hero.
 
-  OWN-WORLD: International airport sign system, night concourse. Matte black ground,
-  internally-lit Schiphol-yellow sign panels with pure black type, white pictograms in
-  black inset squares, arrows locked to the panel edge they point past, monumental
-  numerals. Yellow is reserved for wayfinding and nothing else; red is prohibition;
-  green is safe. Hard rectangular panels, hairline frames, zero decorative radius.
-  One humanist family (Fira Sans) carries every voice through weight.
+  OWN-WORLD: International airport sign system, daylight concourse. Internally-lit
+  Schiphol-yellow sign panels with pure black type, white pictograms in black inset
+  squares, arrows locked to the panel edge they point past, monumental numerals.
+  Yellow is reserved for wayfinding and nothing else; red is prohibition; green is
+  safe. Hard rectangular panels, hairline frames, zero decorative radius. One
+  humanist family (Fira Sans) carries every voice through weight. A night rendition
+  exists as a secondary mode, but the desk is in a lit room, so light leads.
 
   STORY: The reader arrives at a junction board, picks a destination, and every screen
   after that re-signs itself so they always know where they are and what is next.
@@ -91,11 +96,12 @@
   --scrim:rgba(0,0,0,.3);
 }
 html[data-mode="night"]{
-  /* The night concourse is lit, not blacked out. Ground lifts off pure black,
-     and the sign faces read as deeper amber under dimmed light — the same
-     signage, at 2 a.m. rather than in direct sun. */
-  --yellow:#E8BC2E;
-  --red:#C93E28;
+  /* The night sign is dimmed, not faded. Hue and chroma are untouched — only
+     lightness drops (#FFCC00 hsl(48,100%,50%) -> hsl(47,100%,45%)). Lowering
+     saturation instead is what turns signage yellow into mustard.
+     Red is left alone: it was never the glare source, and one red in both
+     modes keeps it unambiguously "stop". */
+  --yellow:#E3B300;
   --ground:#1A1917;
   --panel:#232220;
   --panel-2:#2A2925;
@@ -323,26 +329,35 @@ html[data-mode="day"] .gantry-now .g-num{color:#0B0B0B}
 .area{scroll-margin-top:calc(var(--gantry-h) + 14px);padding:0 0 clamp(30px,6vw,60px)}
 @media (max-width:899px){.area{scroll-margin-top:14px}}
 
-/* The board is the one place a full yellow sign face earns its area.
-   Section headers are the quieter gantry sign: dark, with the numeral in
-   yellow and a single lit rule under it. */
+/* Daylight is the default: the sign face is fully lit, which is what survives
+   a bright room on a small screen. At night only its edge and numeral are lit,
+   so seven sections do not become seven glowing walls. */
 .area-band{
-  display:flex;align-items:baseline;gap:14px;
-  color:var(--ink);
-  border-bottom:2px solid var(--yellow);
-  padding:2px 0 10px;
+  display:flex;align-items:center;gap:14px;
+  background-color:var(--yellow);
+  background-image:var(--lit-face);
+  color:var(--sign-black);
+  border-top:1px solid rgba(255,255,255,.5);
+  padding:12px 16px;
   margin:0 0 clamp(18px,3.5vw,30px);
 }
 .area-band .b-num{
-  color:var(--yellow);
   font-weight:800;font-size:var(--t-band);line-height:.9;
   letter-spacing:-.04em;font-variant-numeric:tabular-nums;
 }
 .area-band h2{margin:0;font-size:var(--t-dest);font-weight:700;letter-spacing:-.015em;line-height:1.1}
-.area-band.is-alarm{border-bottom-color:var(--red)}
-.area-band.is-alarm .b-num{color:var(--red)}
-html[data-mode="day"] .area-band .b-num{color:#0B0B0B}
-html[data-mode="day"] .area-band.is-alarm .b-num{color:var(--red)}
+.area-band.is-alarm{background-color:var(--red);color:#fff}
+
+html[data-mode="night"] .area-band{
+  align-items:baseline;
+  background-color:transparent;background-image:none;
+  color:var(--ink);
+  border-top:0;border-bottom:2px solid var(--yellow);
+  padding:2px 0 10px;
+}
+html[data-mode="night"] .area-band .b-num{color:var(--yellow)}
+html[data-mode="night"] .area-band.is-alarm{background-color:transparent;border-bottom-color:var(--red)}
+html[data-mode="night"] .area-band.is-alarm .b-num{color:var(--red)}
 
 .lead{font-size:var(--t-lead);line-height:1.5;color:var(--ink);margin:0 0 22px;font-weight:400}
 .lead b{font-weight:700}
@@ -637,7 +652,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   .map svg,.route-svg,.plan svg{max-width:100%;height:auto}
   .route,.map,.plan,.legend{page-break-inside:avoid}
   .area{page-break-inside:avoid}
-  .area-band{background:none!important;color:#0B0B0B!important;border-bottom:2px solid #0B0B0B;padding-left:0}
+  .area-band{background:none!important;color:#0B0B0B!important;border-top:0!important;border-bottom:2px solid #0B0B0B;padding:2px 0 10px!important}
   .area-band .b-num,.area-band.is-alarm .b-num{color:#0B0B0B!important}
   .row{border-color:#999}
   .row>summary{padding-left:0}
@@ -1507,8 +1522,8 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
       <div>
         <p>Afișare</p>
         <div class="foot-mode" role="group" aria-label="Mod de afișare">
-          <button type="button" data-set-mode="night" aria-pressed="true">Noapte</button>
-          <button type="button" data-set-mode="day" aria-pressed="false">Zi</button>
+          <button type="button" data-set-mode="day" aria-pressed="true">Zi</button>
+          <button type="button" data-set-mode="night" aria-pressed="false">Noapte</button>
         </div>
       </div>
     </div>
@@ -1560,6 +1575,8 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   function setMode(m){
     document.documentElement.setAttribute("data-mode", m);
     try { localStorage.setItem("x32.mode", m); } catch(e){}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute("content", m === "night" ? "#1A1917" : "#E6E6E6");
     for (var i=0;i<modeBtns.length;i++){
       modeBtns[i].setAttribute("aria-pressed", String(modeBtns[i].getAttribute("data-set-mode") === m));
     }
