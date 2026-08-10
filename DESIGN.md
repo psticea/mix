@@ -6,13 +6,15 @@ colors:
   sign-black: "#0B0B0B"
   prohibition-red: "#D93A25"
   safe-green: "#17A05B"
-  night-ground: "#0E0E0D"
-  night-panel: "#171716"
-  night-panel-raised: "#1E1E1C"
-  night-rule: "#34342F"
-  night-ink: "#F2F1EC"
+  night-sign-yellow: "#E8BC2E"
+  night-prohibition-red: "#C93E28"
+  night-ground: "#1A1917"
+  night-panel: "#232220"
+  night-panel-raised: "#2A2925"
+  night-rule: "#3D3C36"
+  night-ink: "#E9E7DE"
   night-ink-muted: "#9E9D95"
-  night-ink-faint: "#8B8981"
+  night-ink-faint: "#96948B"
   day-ground: "#E6E6E6"
   day-panel: "#FFFFFF"
   day-panel-raised: "#F4F4F2"
@@ -117,11 +119,13 @@ components:
     rounded: "{rounded.none}"
     padding: "14px 16px"
   area-band:
-    backgroundColor: "{colors.sign-yellow}"
-    textColor: "{colors.sign-black}"
+    backgroundColor: "transparent"
+    textColor: "{colors.night-ink}"
+    accentColor: "{colors.sign-yellow}"
+    borderBottom: "2px solid {colors.sign-yellow}"
     typography: "{typography.headline}"
     rounded: "{rounded.none}"
-    padding: "12px 16px"
+    padding: "2px 0 10px"
   gantry-index:
     backgroundColor: "{colors.sign-yellow}"
     textColor: "{colors.sign-black}"
@@ -171,6 +175,10 @@ Three rules follow from that and govern everything else:
 
 1. **Yellow is wayfinding, and nothing else.** It marks where to go and where you
    are. The moment yellow decorates a paragraph, the sign system stops working.
+   It is also *rationed*: the landing board is the one place a full yellow sign
+   face earns its area. Repeating that slab at every section turned the page
+   into a wall and made night mode unreadable, so section headers get the
+   numeral and a single rule instead.
 2. **Everything is a panel, not a card.** Hard rectangles, hairline frames, zero
    decorative radius, no shadows, no gradients. Depth comes from ground/panel
    value separation, never from blur.
@@ -185,24 +193,33 @@ accent) — the generic AI-default look the client rejected by name.
 
 | Role | Token | Value | Use |
 |---|---|---|---|
-| Wayfinding | `sign-yellow` | `#FFCC00` | Sign panels, the board, area bands, the active route station, the index button. **Never body copy, never a border for emphasis, never a hover tint.** |
+| Wayfinding | `sign-yellow` | `#FFCC00` day / `#E8BC2E` night | Sign panels, the board, section numerals and rules, the active route station, the index button. **Never body copy, never a border for emphasis, never a hover tint.** |
 | Sign ground | `sign-black` | `#0B0B0B` | Pictogram inset squares, type on yellow, step numerals. |
-| Prohibition | `prohibition-red` | `#D93A25` | Only for "this will hurt the service": the emergency route (07), STOP notices, the emergency shortcut in the gantry. |
+| Prohibition | `prohibition-red` | `#D93A25` day / `#C93E28` night | Only for "this will hurt the service": the emergency route (07), STOP notices, the emergency shortcut in the gantry. |
 | Safe | `safe-green` | `#17A05B` | Completed checklist items and GO notices. Nothing else. |
 | Ground / panel / ink | `night-*`, `day-*` | see frontmatter | Every neutral resolves through `--ground`, `--panel`, `--panel-raised`, `--rule`, `--ink`, `--ink-muted`, `--ink-faint`. |
 
 Both modes are declared as token blocks on `html[data-mode="night"|"day"]`.
 Component CSS references the semantic token only, so a mode never needs a
-component override — with one deliberate exception: elements that are
-*intentionally* colored signage (`.notice.stop`, `.dest.is-alarm`, `.area-band`)
-opt out of the day surface swap via `:not(.stop)` so red stays red.
+component override — with two deliberate exceptions. Elements that are
+*intentionally* colored signage (`.notice.stop`, `.dest.is-alarm`) opt out of
+the day surface swap via `:not(.stop)` so red stays red. And yellow numerals
+set on the page ground (`.area-band .b-num`, `.next-n`, `.gantry-now .g-num`)
+switch to `--ink` in day mode: yellow type cannot carry contrast on a light
+surface, so on light the rule carries the colour and the numeral goes black.
+
+Night is not "day with the lights off". It is the same sign system under
+dimmed light: the ground lifts off pure black to a warm charcoal, and the
+yellow and red sign faces read one step deeper (`#E8BC2E`, `#C93E28`). Full
+chroma on near-black is glare on a phone in a dark hall, which is the exact
+situation this page was built for.
 
 Contrast floor is WCAG AA in both modes, verified by measurement rather than by
 eye. Three token values are set by that floor, not by taste:
 
 - `prohibition-red` is `#D93A25` because white body text on it must clear 4.5:1
   (it lands at 4.58). A lighter red looked better and failed.
-- `night-ink-faint` `#8B8981` and `day-ink-faint` `#63625C` are the lightest and
+- `night-ink-faint` `#96948B` and `day-ink-faint` `#63625C` are the lightest and
   darkest values that keep 11px uppercase micro-copy legible on `--ground`.
   `--ink-faint` is a *text* tier, so it may never be dimmed further.
 
@@ -302,8 +319,9 @@ under `prefers-reduced-motion`.
   shortcut.
 - **Board overlay** — the full destination list as a full-screen yellow board.
   Traps focus, closes on Escape, restores focus to the opener.
-- **Area band** — every section opens with a yellow band carrying its number and
-  name, so a mid-page arrival still knows where it is. Red for 07.
+- **Area band** — every section opens with its number in yellow over a single
+  lit rule, so a mid-page arrival still knows where it is without another
+  full-bleed slab. Red numeral and rule for 07.
 - **Entry row** — native `<details name="...">` so only one is open at a time,
   with a JS fallback. Content is real HTML, so browser find-in-page works.
 - **Notice** — framed panel with a pictogram inset square. Three intents only:

@@ -4,29 +4,118 @@
   "title": "Design System: Ghid X32",
   "extensions": {
     "colorMeta": {
-      "sign-yellow": { "role": "primary", "displayName": "Sign Yellow", "tonalRamp": ["#FFF3C2", "#FFE070", "#FFCC00", "#D9AD00", "#8A6F00"] },
-      "sign-black": { "role": "neutral", "displayName": "Sign Black", "tonalRamp": ["#3A3A38", "#1E1E1C", "#0B0B0B"] },
-      "prohibition-red": { "role": "secondary", "displayName": "Prohibition Red", "tonalRamp": ["#FBD9D3", "#F08A79", "#D93A25", "#C32B18", "#7E1B0F"] },
-      "safe-green": { "role": "tertiary", "displayName": "Safe Green", "tonalRamp": ["#C9EEDA", "#4FC98C", "#17A05B", "#0F7A42", "#0A4E2A"] },
-      "night-ground": { "role": "neutral", "displayName": "Concourse Night", "tonalRamp": ["#0E0E0D", "#171716", "#1E1E1C", "#34342F"] },
-      "day-ground": { "role": "neutral", "displayName": "Concourse Day", "tonalRamp": ["#E6E6E6", "#F4F4F2", "#FFFFFF", "#C6C6C1"] }
+      "sign-yellow": {
+        "role": "primary",
+        "displayName": "Sign Yellow",
+        "tonalRamp": [
+          "#FFF3C2",
+          "#FFE070",
+          "#FFCC00",
+          "#D9AD00",
+          "#8A6F00"
+        ]
+      },
+      "sign-black": {
+        "role": "neutral",
+        "displayName": "Sign Black",
+        "tonalRamp": [
+          "#3A3A38",
+          "#2A2925",
+          "#0B0B0B"
+        ]
+      },
+      "prohibition-red": {
+        "role": "secondary",
+        "displayName": "Prohibition Red",
+        "tonalRamp": [
+          "#FBD9D3",
+          "#F08A79",
+          "#D93A25",
+          "#C32B18",
+          "#7E1B0F"
+        ]
+      },
+      "safe-green": {
+        "role": "tertiary",
+        "displayName": "Safe Green",
+        "tonalRamp": [
+          "#C9EEDA",
+          "#4FC98C",
+          "#17A05B",
+          "#0F7A42",
+          "#0A4E2A"
+        ]
+      },
+      "night-ground": {
+        "role": "neutral",
+        "displayName": "Concourse Night",
+        "tonalRamp": [
+          "#1A1917",
+          "#232220",
+          "#2A2925",
+          "#3D3C36"
+        ]
+      },
+      "day-ground": {
+        "role": "neutral",
+        "displayName": "Concourse Day",
+        "tonalRamp": [
+          "#E6E6E6",
+          "#F4F4F2",
+          "#FFFFFF",
+          "#C6C6C1"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Destination Numeral", "purpose": "Monumental board numerals only. Tabular figures, read at arm's length in a dark room." },
-      "headline": { "displayName": "Destination Name", "purpose": "Destination and area titles on yellow sign panels." },
-      "title": { "displayName": "Entry Title", "purpose": "Expandable instruction rows." },
-      "body": { "displayName": "Body", "purpose": "All instruction copy. 66ch measure." },
-      "label": { "displayName": "Signage Label", "purpose": "Uppercase micro-copy on signage. The only role permitted uppercase." }
+      "display": {
+        "displayName": "Destination Numeral",
+        "purpose": "Monumental board numerals only. Tabular figures, read at arm's length in a dark room."
+      },
+      "headline": {
+        "displayName": "Destination Name",
+        "purpose": "Destination and area titles on yellow sign panels."
+      },
+      "title": {
+        "displayName": "Entry Title",
+        "purpose": "Expandable instruction rows."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All instruction copy. 66ch measure."
+      },
+      "label": {
+        "displayName": "Signage Label",
+        "purpose": "Uppercase micro-copy on signage. The only role permitted uppercase."
+      }
     },
     "shadows": [],
     "motion": [
-      { "name": "flap", "value": "0.26s cubic-bezier(0.2, 0.7, 0.3, 1)", "purpose": "Split-flap character reveal on the gantry destination readout, staggered per character. The only expressive motion in the system." },
-      { "name": "chevron", "value": "transform 0.18s ease", "purpose": "Entry row disclosure chevron rotation." },
-      { "name": "legend-sync", "value": "background 0.15s ease, color 0.15s ease", "purpose": "Route station to legend highlight." }
+      {
+        "name": "flap",
+        "value": "0.26s cubic-bezier(0.2, 0.7, 0.3, 1)",
+        "purpose": "Split-flap character reveal on the gantry destination readout, staggered per character. The only expressive motion in the system."
+      },
+      {
+        "name": "chevron",
+        "value": "transform 0.18s ease",
+        "purpose": "Entry row disclosure chevron rotation."
+      },
+      {
+        "name": "legend-sync",
+        "value": "background 0.15s ease, color 0.15s ease",
+        "purpose": "Route station to legend highlight."
+      }
     ],
     "breakpoints": [
-      { "name": "diagram", "value": "760px" },
-      { "name": "gantry-overhead", "value": "900px" }
+      {
+        "name": "diagram",
+        "value": "760px"
+      },
+      {
+        "name": "gantry-overhead",
+        "value": "900px"
+      }
     ]
   },
   "components": [
@@ -42,9 +131,9 @@
       "name": "Area Band",
       "kind": "custom",
       "refersTo": "area-band",
-      "description": "Opens every section. A mid-page arrival always lands on a sign that names where it is. Red variant marks the emergency section.",
+      "description": "Opens every section. A mid-page arrival always lands on a sign that names where it is. Quieter than the board on purpose: the numeral carries the colour and a single lit rule carries the edge, so seven sections do not become seven yellow walls. Red variant marks the emergency section.",
       "html": "<div class=\"ds-band\"><span class=\"ds-band-num\">03</span><h2>Înainte de program</h2></div>",
-      "css": ".ds-band{display:flex;align-items:center;gap:14px;background:#FFCC00;color:#0B0B0B;padding:12px 16px;font-family:'Fira Sans',sans-serif}.ds-band-num{font-weight:800;font-size:clamp(1.9rem,6vw,2.6rem);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.ds-band h2{margin:0;font-size:clamp(1.35rem,1.05rem + 1.5vw,2.05rem);font-weight:700;letter-spacing:-.015em;line-height:1.1}"
+      "css": ".ds-band{display:flex;align-items:baseline;gap:14px;color:#E9E7DE;border-bottom:2px solid #E8BC2E;padding:2px 0 10px;font-family:'Fira Sans',sans-serif}.ds-band-num{color:#E8BC2E;font-weight:800;font-size:clamp(1.9rem,6vw,2.6rem);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.ds-band h2{margin:0;font-size:clamp(1.35rem,1.05rem + 1.5vw,2.05rem);font-weight:700;letter-spacing:-.015em;line-height:1.1}"
     },
     {
       "name": "Notice Panel",
@@ -52,15 +141,15 @@
       "refersTo": "notice-stop",
       "description": "Framed signage panel with a pictogram inset square. Three intents only: neutral, stop (solid red prohibition), go (green pictogram). Never more than one per instruction row.",
       "html": "<div class=\"ds-notice\"><span class=\"ds-nico\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 2 1.2 21.4h21.6L12 2Zm-1.3 6.4h2.6v7h-2.6v-7Zm0 8.9h2.6v2.6h-2.6v-2.6Z\"/></svg></span><p>Ordinea contează. Pornește consola prima și oprește-o ultima.</p></div><div class=\"ds-notice ds-notice--stop\"><span class=\"ds-nico\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 2 1.2 21.4h21.6L12 2Zm-1.3 6.4h2.6v7h-2.6v-7Zm0 8.9h2.6v2.6h-2.6v-2.6Z\"/></svg></span><p>Nu urca niciodată faderul ca să acoperi un microfon de departe. Vei avea Larsen.</p></div>",
-      "css": ".ds-notice{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;margin:16px 0 0;background:#171716;border:1px solid #34342F;color:#F2F1EC;font-family:'Fira Sans',sans-serif;font-size:.97rem;line-height:1.55}.ds-notice p{margin:0}.ds-nico{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;background:#0B0B0B}.ds-nico svg{width:19px;height:19px;fill:#fff}.ds-notice--stop{background:#D93A25;border-color:#D93A25;color:#fff}.ds-notice--stop .ds-nico{background:rgba(0,0,0,.3)}"
+      "css": ".ds-notice{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;margin:16px 0 0;background:#232220;border:1px solid #3D3C36;color:#E9E7DE;font-family:'Fira Sans',sans-serif;font-size:.97rem;line-height:1.55}.ds-notice p{margin:0}.ds-nico{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;background:#0B0B0B}.ds-nico svg{width:19px;height:19px;fill:#fff}.ds-notice--stop{background:#D93A25;border-color:#D93A25;color:#fff}.ds-notice--stop .ds-nico{background:rgba(0,0,0,.3)}"
     },
     {
       "name": "Keycap",
       "kind": "chip",
       "refersTo": "keycap",
       "description": "A physical console button referenced in copy. Engraved chip in the body face — this is what keeps yellow reserved for wayfinding instead of being spent on inline emphasis.",
-      "html": "<p style=\"font-family:'Fira Sans',sans-serif;color:#F2F1EC\">Ține apăsat <kbd class=\"ds-kbd\">Sends on Faders</kbd> mai mult de o secundă ca să rămână activ.</p>",
-      "css": ".ds-kbd{font-family:'Fira Sans',sans-serif;font-size:.82em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid #34342F;background:#1E1E1C;color:#F2F1EC;padding:.08em .42em;white-space:nowrap}"
+      "html": "<p style=\"font-family:'Fira Sans',sans-serif;color:#E9E7DE\">Ține apăsat <kbd class=\"ds-kbd\">Sends on Faders</kbd> mai mult de o secundă ca să rămână activ.</p>",
+      "css": ".ds-kbd{font-family:'Fira Sans',sans-serif;font-size:.82em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid #3D3C36;background:#2A2925;color:#E9E7DE;padding:.08em .42em;white-space:nowrap}"
     },
     {
       "name": "Gantry",
@@ -68,7 +157,7 @@
       "refersTo": "gantry-index",
       "description": "The sign that always hangs above. Bottom-fixed on phones (thumb zone), top-fixed overhead at 900px+. Carries the current destination as a split-flap readout, the index button, and the emergency shortcut.",
       "html": "<nav class=\"ds-gantry\"><button class=\"ds-g-now\"><span class=\"ds-g-num\">03</span><span class=\"ds-g-txt\"><span class=\"ds-g-k\">Ești la</span><span class=\"ds-g-v\">Înainte de program</span></span></button><button class=\"ds-g-all\">Cuprins</button><a class=\"ds-g-help\" href=\"#a7\">Ceva nu merge</a></nav>",
-      "css": ".ds-gantry{display:flex;align-items:stretch;gap:1px;height:60px;background:#171716;border-top:1px solid #34342F;font-family:'Fira Sans',sans-serif}.ds-g-now{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px;padding:0 4px 0 16px;background:none;border:0;color:#F2F1EC;font:inherit;text-align:left;cursor:pointer}.ds-g-num{font-weight:800;font-size:1.5rem;line-height:1;color:#FFCC00;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.ds-g-k{display:block;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B8981;line-height:1}.ds-g-v{display:block;font-weight:700;font-size:1.02rem;line-height:1.25;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ds-g-all{flex:0 0 auto;display:flex;align-items:center;padding:0 16px;background:#FFCC00;color:#0B0B0B;border:0;font:inherit;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.78rem;cursor:pointer}.ds-g-help{flex:0 0 auto;display:flex;align-items:center;padding:0 14px;background:#D93A25;color:#fff;font:inherit;font-weight:800;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none}"
+      "css": ".ds-gantry{display:flex;align-items:stretch;gap:1px;height:60px;background:#232220;border-top:1px solid #3D3C36;font-family:'Fira Sans',sans-serif}.ds-g-now{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px;padding:0 4px 0 16px;background:none;border:0;color:#E9E7DE;font:inherit;text-align:left;cursor:pointer}.ds-g-num{font-weight:800;font-size:1.5rem;line-height:1;color:#FFCC00;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.ds-g-k{display:block;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#96948B;line-height:1}.ds-g-v{display:block;font-weight:700;font-size:1.02rem;line-height:1.25;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ds-g-all{flex:0 0 auto;display:flex;align-items:center;padding:0 16px;background:#FFCC00;color:#0B0B0B;border:0;font:inherit;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.78rem;cursor:pointer}.ds-g-help{flex:0 0 auto;display:flex;align-items:center;padding:0 14px;background:#D93A25;color:#fff;font:inherit;font-weight:800;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none}"
     }
   ],
   "narrative": {
@@ -83,11 +172,31 @@
       "Content is static HTML so find-in-page works and the page survives JS being off"
     ],
     "rules": [
-      { "name": "The Yellow Budget", "body": "#FFCC00 marks where to go and where you are. It never becomes body copy, an emphasis border, a hover tint, or a decorative fill. Console button names get an engraved keycap precisely so they never need yellow.", "section": "colors" },
-      { "name": "Three Signals, No More", "body": "Yellow wayfinding, red prohibition, green safe. Any fourth semantic color dilutes all three. Every colored state also carries a pictogram, a label, or a position so color is never the only carrier.", "section": "colors" },
-      { "name": "Panels, Not Cards", "body": "Hard rectangles, 1px hairline frames, black pictogram inset squares. Depth comes from ground/panel/panel-raised value separation. No shadow appears anywhere in the system.", "section": "elevation" },
-      { "name": "The Thumb Zone", "body": "The gantry sits at the bottom of the screen on phones because the reader is holding the device one-handed at a desk, and moves overhead at 900px where terminal signage belongs. Any change is checked at 390px in night mode first.", "section": "layout" },
-      { "name": "One Voice, Four Weights", "body": "Fira Sans only. No second family, no monospace, no italics. Hierarchy is weight and scale, never color. Uppercase is reserved for the signage label role.", "section": "typography" }
+      {
+        "name": "The Yellow Budget",
+        "body": "#FFCC00 marks where to go and where you are. It never becomes body copy, an emphasis border, a hover tint, or a decorative fill. Console button names get an engraved keycap precisely so they never need yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "Three Signals, No More",
+        "body": "Yellow wayfinding, red prohibition, green safe. Any fourth semantic color dilutes all three. Every colored state also carries a pictogram, a label, or a position so color is never the only carrier.",
+        "section": "colors"
+      },
+      {
+        "name": "Panels, Not Cards",
+        "body": "Hard rectangles, 1px hairline frames, black pictogram inset squares. Depth comes from ground/panel/panel-raised value separation. No shadow appears anywhere in the system.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Thumb Zone",
+        "body": "The gantry sits at the bottom of the screen on phones because the reader is holding the device one-handed at a desk, and moves overhead at 900px where terminal signage belongs. Any change is checked at 390px in night mode first.",
+        "section": "layout"
+      },
+      {
+        "name": "One Voice, Four Weights",
+        "body": "Fira Sans only. No second family, no monospace, no italics. Hierarchy is weight and scale, never color. Uppercase is reserved for the signage label role.",
+        "section": "typography"
+      }
     ],
     "dos": [
       "Do reserve yellow for wayfinding, red for danger, green for safe",

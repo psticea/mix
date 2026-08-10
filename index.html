@@ -91,13 +91,18 @@
   --scrim:rgba(0,0,0,.3);
 }
 html[data-mode="night"]{
-  --ground:#0E0E0D;
-  --panel:#171716;
-  --panel-2:#1E1E1C;
-  --rule:#34342F;
-  --ink:#F2F1EC;
+  /* The night concourse is lit, not blacked out. Ground lifts off pure black,
+     and the sign faces read as deeper amber under dimmed light — the same
+     signage, at 2 a.m. rather than in direct sun. */
+  --yellow:#E8BC2E;
+  --red:#C93E28;
+  --ground:#1A1917;
+  --panel:#232220;
+  --panel-2:#2A2925;
+  --rule:#3D3C36;
+  --ink:#E9E7DE;
   --ink-2:#9E9D95;
-  --ink-3:#8B8981;
+  --ink-3:#96948B;
 }
 html[data-mode="day"]{
   --ground:#E6E6E6;
@@ -318,21 +323,26 @@ html[data-mode="day"] .gantry-now .g-num{color:#0B0B0B}
 .area{scroll-margin-top:calc(var(--gantry-h) + 14px);padding:0 0 clamp(30px,6vw,60px)}
 @media (max-width:899px){.area{scroll-margin-top:14px}}
 
+/* The board is the one place a full yellow sign face earns its area.
+   Section headers are the quieter gantry sign: dark, with the numeral in
+   yellow and a single lit rule under it. */
 .area-band{
-  display:flex;align-items:center;gap:14px;
-  background-color:var(--yellow);
-  background-image:var(--lit-face);
-  color:var(--sign-black);
-  border-top:1px solid rgba(255,255,255,.5);
-  padding:12px 16px;
+  display:flex;align-items:baseline;gap:14px;
+  color:var(--ink);
+  border-bottom:2px solid var(--yellow);
+  padding:2px 0 10px;
   margin:0 0 clamp(18px,3.5vw,30px);
 }
 .area-band .b-num{
+  color:var(--yellow);
   font-weight:800;font-size:var(--t-band);line-height:.9;
   letter-spacing:-.04em;font-variant-numeric:tabular-nums;
 }
 .area-band h2{margin:0;font-size:var(--t-dest);font-weight:700;letter-spacing:-.015em;line-height:1.1}
-.area-band.is-alarm{background:var(--red);color:#fff}
+.area-band.is-alarm{border-bottom-color:var(--red)}
+.area-band.is-alarm .b-num{color:var(--red)}
+html[data-mode="day"] .area-band .b-num{color:#0B0B0B}
+html[data-mode="day"] .area-band.is-alarm .b-num{color:var(--red)}
 
 .lead{font-size:var(--t-lead);line-height:1.5;color:var(--ink);margin:0 0 22px;font-weight:400}
 .lead b{font-weight:700}
@@ -628,6 +638,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   .route,.map,.plan,.legend{page-break-inside:avoid}
   .area{page-break-inside:avoid}
   .area-band{background:none!important;color:#0B0B0B!important;border-bottom:2px solid #0B0B0B;padding-left:0}
+  .area-band .b-num,.area-band.is-alarm .b-num{color:#0B0B0B!important}
   .row{border-color:#999}
   .row>summary{padding-left:0}
   .row-body{display:block!important}
@@ -645,7 +656,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   .route-svg .g-stn.on .stn-core{fill:#fff}
   .route-svg .g-stn.on .stn-lab{fill:#0B0B0B}
   .lg.on{background:none!important;color:#0B0B0B!important}
-  .lg.on .lg-n,.lg.on p{color:#333!important}
+  .lg.on .lg-n,.lg.on p{color:var(--ink-2)!important}
   /* browsers drop backgrounds when printing, which would turn a white-on-red
      safety warning into white on white: re-ink notices as bordered boxes */
   .notice{border:1px solid #0B0B0B!important;background:none!important}
