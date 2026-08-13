@@ -6,153 +6,176 @@ colors:
   sign-black: "#0B0B0B"
   prohibition-red: "#D93A25"
   safe-green: "#17A05B"
-  night-sign-yellow: "#E3B300"
-  night-ground: "#1A1917"
-  night-panel: "#232220"
-  night-panel-raised: "#2A2925"
-  night-rule: "#3D3C36"
-  night-ink: "#E9E7DE"
-  night-ink-muted: "#9E9D95"
-  night-ink-faint: "#96948B"
-  day-ground: "#E6E6E6"
+  night-sign-yellow: "#FFCC00"
+  night-ground: "#151412"
+  night-panel: "#1D1C1A"
+  night-panel-raised: "#252420"
+  night-rule: "#393831"
+  night-ink: "#EDEBE4"
+  night-ink-muted: "#A3A199"
+  night-ink-faint: "#8B8981"
+  day-ground: "#F5F4F1"
   day-panel: "#FFFFFF"
-  day-panel-raised: "#F4F4F2"
-  day-rule: "#C6C6C1"
-  day-ink: "#0B0B0B"
+  day-panel-raised: "#EFEDE8"
+  day-rule: "#D8D5CC"
+  day-ink: "#1A1917"
   day-ink-muted: "#55544F"
   day-ink-faint: "#63625C"
+  rule-soft-day: "#E7E4DD"
+  rule-soft-night: "#2C2B27"
+  red-ink-day: "#C0301C"
+  red-ink-night: "#FF8A75"
+  print-rule: "#999999"
 typography:
   display:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "clamp(2.6rem, 1.6rem + 5vw, 4.6rem)"
     fontWeight: 800
     lineHeight: 0.9
     letterSpacing: "-0.045em"
     fontFeature: "tabular-nums"
   headline:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "clamp(1.35rem, 1.05rem + 1.5vw, 2.05rem)"
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "-0.015em"
   title:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "1.08rem"
     fontWeight: 700
     lineHeight: 1.3
     letterSpacing: "-0.01em"
   body:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "clamp(1.02rem, 0.97rem + 0.28vw, 1.12rem)"
     fontWeight: 400
     lineHeight: 1.62
     letterSpacing: "normal"
   dense:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "0.99rem"
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: "normal"
   secondary:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "0.93rem"
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: "normal"
   caption:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "0.86rem"
     fontWeight: 400
     lineHeight: 1.45
     letterSpacing: "normal"
   control:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "0.76rem"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.1em"
   micro:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "0.68rem"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.14em"
   numeral:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "1.45rem"
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.03em"
     fontFeature: "tabular-nums"
   label:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "clamp(0.68rem, 0.65rem + 0.12vw, 0.75rem)"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.14em"
   diagram:
-    fontFamily: "Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Mona Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
     fontSize: "15px"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.02em"
 rounded:
-  none: "0"
+  xs: "6px"
+  sm: "8px"
+  md: "12px"
+  lg: "16px"
 spacing:
-  hair: "4px"
-  xs: "8px"
-  sm: "13px"
-  md: "16px"
-  lg: "22px"
-  xl: "30px"
+  s1: "4px"
+  s2: "8px"
+  s3: "12px"
+  s4: "16px"
+  s6: "24px"
+  s8: "32px"
+  s12: "48px"
+shadows:
+  resting: "0 0 0 1px rgba(26,25,23,.06), 0 1px 2px rgba(26,25,23,.05)"
+  raised: "0 0 0 1px rgba(26,25,23,.06), 0 1px 2px rgba(26,25,23,.04), 0 6px 16px -6px rgba(26,25,23,.10)"
+  floating: "0 0 0 1px rgba(26,25,23,.06), 0 8px 24px -8px rgba(26,25,23,.12), 0 18px 48px -24px rgba(26,25,23,.10)"
 components:
+  index-card:
+    backgroundColor: "{colors.day-panel}"
+    rounded: "{rounded.lg}"
+    shadow: "{shadows.resting}"
+    note: "Holds the seven destination rows. The only card on the landing view."
   destination-row:
-    backgroundColor: "{colors.sign-yellow}"
-    textColor: "{colors.sign-black}"
+    backgroundColor: "transparent"
+    textColor: "{colors.day-ink}"
     typography: "{typography.headline}"
-    rounded: "{rounded.none}"
-    padding: "14px 16px"
-  destination-row-alarm:
-    backgroundColor: "{colors.prohibition-red}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.none}"
-    padding: "14px 16px"
-  area-band:
-    backgroundColor: "{colors.sign-yellow}"
-    textColor: "{colors.sign-black}"
-    typography: "{typography.headline}"
-    rounded: "{rounded.none}"
+    rounded: "0"
     padding: "12px 16px"
-    nightVariant: "transparent face, 2px {colors.sign-yellow} bottom rule, numeral in {colors.night-sign-yellow}"
-  gantry-index:
-    backgroundColor: "{colors.sign-yellow}"
-    textColor: "{colors.sign-black}"
-    typography: "{typography.label}"
-    rounded: "{rounded.none}"
-    padding: "0 16px"
-    height: "60px"
-  gantry-emergency:
-    backgroundColor: "{colors.prohibition-red}"
-    textColor: "#FFFFFF"
-    typography: "{typography.label}"
-    rounded: "{rounded.none}"
-    padding: "0 14px"
-    height: "60px"
-  notice-stop:
-    backgroundColor: "{colors.prohibition-red}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.none}"
-    padding: "13px 15px"
+    separator: "1px {colors.rule-soft-day} top border"
+    accentRail: "3px {colors.sign-yellow}, revealed on hover/focus only"
+  destination-row-alarm:
+    numeralColor: "{colors.red-ink-day}"
+    accentRail: "3px {colors.prohibition-red}"
+    note: "07 is marked by its numeral and rail, never by a red field."
+  area-band:
+    backgroundColor: "transparent"
+    textColor: "{colors.day-ink}"
+    typography: "{typography.headline}"
+    borderBottom: "1px {colors.day-rule}"
+    chip: "{colors.sign-yellow} at {rounded.xs}, dark numeral, ~2.4em wide"
+  entry-row:
+    backgroundColor: "{colors.day-panel}"
+    rounded: "{rounded.md}"
+    shadow: "{shadows.resting}"
+    openShadow: "{shadows.raised}"
+    accentRail: "3px {colors.sign-yellow}, shown only while open"
+    padding: "12px 16px"
+  status-bar:
+    backgroundColor: "{colors.day-panel}"
+    shadow: "{shadows.floating}"
+    height: "64px"
+    chip: "{colors.sign-yellow} at {rounded.xs}"
+    note: "The only floating element on the page; bottom on phones, top at 900px."
+  notice:
+    backgroundColor: "{colors.day-panel}"
+    rounded: "{rounded.md}"
+    shadow: "{shadows.resting}"
+    intentStripe: "3px left — rule (neutral), prohibition-red (stop), safe-green (go)"
+    padding: "12px 16px"
+  checklist:
+    backgroundColor: "{colors.day-panel}"
+    rounded: "{rounded.md}"
+    shadow: "{shadows.resting}"
+    checkbox: "24px, {rounded.xs}, 1.5px rule border; checked fills safe-green"
   pictogram:
-    backgroundColor: "{colors.sign-black}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.none}"
-    size: "38px"
+    backgroundColor: "{colors.day-panel-raised}"
+    textColor: "{colors.day-ink-muted}"
+    rounded: "{rounded.sm}"
+    size: "36px"
   keycap:
-    backgroundColor: "{colors.night-panel-raised}"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.none}"
-    padding: "0.08em 0.42em"
+    backgroundColor: "{colors.day-panel-raised}"
+    textColor: "{colors.day-ink}"
+    rounded: "{rounded.xs}"
+    padding: "0.12em 0.45em"
 ---
 
 # Ghid X32 — Design System
@@ -232,7 +255,7 @@ night ink ends up on white paper.
 
 ## Typography
 
-**Fira Sans, one family, three weights (400/700/800).** A humanist grotesque
+**Mona Sans, one family, three weights (400/700/800).** A humanist grotesque
 in the Frutiger lineage — the tradition airport signage actually comes from —
 with complete Romanian diacritic coverage (ă â î ș ț). Self-hosted as woff2
 (latin + latin-ext), so the page makes zero third-party requests. There is no
@@ -267,14 +290,14 @@ one-off literals:
 
 ## Layout
 
-- Container `1160px`, gutters `16px`, reading measure `66ch` inside rows.
+- Container `1100px`, gutters `16px`, reading measure `66ch` inside rows.
 - Single column at every width. Two columns appear in exactly one place: the
   landing board at ≥900px, where destinations pair up and the emergency row spans
   both.
 - **Breakpoints: 760px** (diagrams switch from the narrow drawing to the wide
   drawing; footer splits) and **900px** (the gantry moves from the bottom of the
-  screen to the top).
-- The gantry is fixed at **60px** and reserves its own space via body padding, so
+  screen to the top; the bar's "Cuprins" label collapses to its icon under 430px so the section name never truncates).
+- The status bar is fixed at **64px** and reserves its own space via body padding, so
   nothing is ever hidden under it. On phones it sits at the bottom — inside the
   thumb zone, because the reader is holding the phone one-handed at a desk. On
   desktop it becomes an overhead sign at the top, where terminal signage belongs.
@@ -283,14 +306,27 @@ one-off literals:
 
 ## Elevation & Depth
 
-**There are no shadows in this system.** Not one `box-shadow`, no blur, no glow.
-Depth is signage depth:
+Depth is a real four-step hierarchy: **ground → panel → raised → floating**, built
+from a hairline ring plus warm-tinted, low-alpha, tight-then-diffuse layers. Two
+rules keep it from reading cheap:
 
-- `ground` → `panel` → `panel-raised` value steps.
-- **1px hairline rules** as the only separator.
-- Pictograms in solid black inset squares — the sign is *cut into* the panel.
-- The only "lit" surface is the yellow itself, and it is lit by being pure, not by
-  being glowed.
+- **Shadow colour is warm ink `rgba(26,25,23,…)`, never `rgba(0,0,0,…)`.** Pure
+  black single-layer shadows are the 2015 Material look and read cheap instantly.
+- **Only things that float get `--sh-3`.** On this page that is exactly one
+  element: the fixed status bar. Cards rest on `--sh-1`; `--sh-2` is a hover or
+  open state. Static content separates by surface value and hairline, not shadow.
+
+```css
+--sh-1: 0 0 0 1px rgba(26,25,23,.06), 0 1px 2px rgba(26,25,23,.05);
+--sh-2: 0 0 0 1px rgba(26,25,23,.06), 0 1px 2px rgba(26,25,23,.04),
+        0 6px 16px -6px rgba(26,25,23,.10);
+--sh-3: 0 0 0 1px rgba(26,25,23,.06), 0 8px 24px -8px rgba(26,25,23,.12),
+        0 18px 48px -24px rgba(26,25,23,.10);
+```
+
+In dark mode the drop layers mostly disappear and the work is done by a top inset
+highlight plus a black ring, which is how a raised surface actually reads on a dark
+ground. Print drops shadows entirely and falls back to 1px rules.
 
 Motion is equally restricted: one **split-flap** animation on the gantry's
 destination readout (0.26s, staggered per character), which is how a real
@@ -299,11 +335,18 @@ under `prefers-reduced-motion`.
 
 ## Shapes
 
-- **`border-radius: 0` everywhere.** No exceptions, including buttons, inputs,
-  checkboxes and the keycaps.
-- Arrows are locked to the edge they point past, never centered as ornament.
-- Pictograms are 38px black squares (30px inside notices); the glyph is white,
-  drawn on a 24px grid, single-color, no strokes.
+- **One radius scale, used everywhere including controls.** `--r-xs 6px` (keycaps,
+  chips, small badges) · `--r-sm 8px` (buttons, checkbox, icon tiles) · `--r-md
+  12px` (rows, notices, diagram frames) · `--r-lg 16px` (the index card, the bar).
+  Zero radius is not an option in this system: it was the previous system's
+  signature and it is what read as brutalist rather than built.
+- **Concentric nesting:** a control inside a padded card takes `outer − padding`.
+  A 16px card with 4px padding holds 12px children. This is the detail that
+  separates "rounded corners" from "designed".
+- SVG rects carry matching `rx` so the drawn schematics share the shape language.
+- Arrows are locked to the edge they point past, and translate 3px on hover.
+- Pictograms are 36px `panel-raised` tiles at `--r-sm` with an `ink-muted` glyph on
+  a 24px grid, single-colour, no strokes.
 - Diagrams are hand-authored inline SVG using the same token variables, so they
   re-color with the mode. They must read as *drawn schematics* — a line with
   stations, a room with nodes, a console seen from above — not as boxes with

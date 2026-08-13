@@ -11,37 +11,37 @@
      system preference is deliberately not followed — a phone set to dark
      would otherwise hand the volunteer the harder screen to read. -->
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#E6E6E6">
+<meta name="theme-color" content="#F5F4F1">
 
 <!--
   DIRECTION CONTRACT
 
-  THESIS: A sound volunteer at the desk is not reading a manual, they are lost in a
-  building with minutes to spare. This surface is wayfinding, not documentation. It
-  refuses the category default: the sidebar docs site with cards and a hero.
+  THESIS: A sound volunteer at the desk is not reading a manual, they are working a
+  live show with minutes to spare. This surface is an instrument, not documentation.
+  It refuses two defaults: the sidebar docs site with a hero, and the loud signage
+  poster it replaced — full-bleed yellow slabs that shouted the same note seven times.
 
-  OWN-WORLD: International airport sign system, daylight concourse. Internally-lit
-  Schiphol-yellow sign panels with pure black type, white pictograms in black inset
-  squares, arrows locked to the panel edge they point past, monumental numerals.
-  Yellow is reserved for wayfinding and nothing else; red is prohibition; green is
-  safe. Hard rectangular panels, hairline frames, zero decorative radius. One
-  humanist family (Fira Sans) carries every voice through weight. A night rendition
-  exists as a secondary mode, but the desk is in a lit room, so light leads.
+  OWN-WORLD: The production gallery in daylight. Warm sand ground (#F5F4F1) with white
+  cards on soft radii (6/8/12/16), depth from a hairline ring plus one warm-tinted
+  multi-layer shadow, never pure black and never on static content. Colour obeys the
+  tally law and never exceeds ~10% of the screen: yellow marks where you are, red is
+  stop, green is clear. Mona Sans carries every voice through weight and optical size,
+  with tabular numerals, because the whole IA is numbered.
 
-  STORY: The reader arrives at a junction board, picks a destination, and every screen
-  after that re-signs itself so they always know where they are and what is next.
-  They learn the signal path as a route map, then act.
+  STORY: The reader lands on a numbered index, picks a destination, and a persistent
+  status bar keeps naming where they are. They learn the signal path as a drawn route,
+  then act.
 
-  FIRST VIEWPORT: A lit yellow departures board. Product mark small at top-left, then
-  seven destination rows, each a monumental number, a destination name and an edge
-  arrow, with the emergency route marked in red. No hero, no headline, no badges.
+  FIRST VIEWPORT: One quiet card. Product mark and console name across its head, then
+  seven numbered rows, each a tabular numeral, a destination and an edge arrow, the
+  emergency route carrying a red numeral. Yellow appears twice: the mark tile and the
+  status chip. No hero, no headline, no badges.
 
-  FORM: Grounded candidate 5 of 7 (terminal wayfinding), staged as a chain of decision
-  points; seed key 876b203f, mode read.
+  FORM: Grounded candidate 3 of 7 (production gallery), rendered light because the
+  room always is; seed key 773a6542, mode read.
 -->
 
-<link rel="preload" href="fonts/fira-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/fira-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/mona-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23FFCC00'/%3E%3Cpath d='M5 21h9v3H5zM5 8h5v3H5zM18 8h9v3h-9zM18 17h9v3h-9z' fill='%230B0B0B'/%3E%3C/svg%3E">
 
 <style>
@@ -49,75 +49,91 @@
    TYPEFACE — self-hosted. The sign face must never fall back
    to a system sans on a slow hall connection.
    ============================================================ */
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fira-400-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fira-400-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/fira-700-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/fira-700-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/fira-800-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/fira-800-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-/* ============================================================
+@font-face{
+  font-family:"Mona Sans";
+  src:url(fonts/mona-sans-var.woff2) format("woff2");
+  font-weight:400 800;
+  font-stretch:normal;
+  font-style:normal;
+  font-display:swap;
+}/* ============================================================
    SIGN SYSTEM — tokens
    ============================================================ */
 :root{
-  --yellow:#FFCC00;
-  --sign-black:#0B0B0B;
-  --red:#D93A25;
+  /* ---- brand + semantics: full chroma in BOTH modes, ~10% of surface ---- */
+  --accent:#FFCC00;
+  --on-accent:#1A1917;
+  --red:#D93A25;      /* fills: white sits on this */
+  --red-ink:#C0301C;  /* red as TEXT on a light panel */
   --green:#17A05B;
 
-  --gantry-h:60px;
-  --maxw:1160px;
+  --gantry-h:64px;
+  --maxw:1100px;
   --read:66ch;
 
-  /* materials: a lit polycarbonate sign face, and perforated metal */
-  --lit-face:linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,0) 38%,rgba(11,11,11,.05) 100%);
-  --perf:radial-gradient(rgba(255,255,255,.11) .8px,transparent .9px);
+  --f:"Mona Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 
-  --f:"Fira Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  /* ---- radius: the register change. 0 reads brutalist; this reads built. ---- */
+  --r-xs:6px;    /* keycaps, chips */
+  --r-sm:8px;    /* buttons, checkbox */
+  --r-md:12px;   /* rows, notices, diagram frames */
+  --r-lg:16px;   /* cards, the board, the bar */
 
-  --t-label:clamp(.68rem,.65rem + .12vw,.75rem);
-  --t-micro:.68rem;
-  --t-mini:.76rem;
+  /* ---- spacing: one 8-grid, no off-grid values ---- */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px; --s-8:32px; --s-12:48px;
+
+  /* ---- type ---- */
+  --t-micro:.70rem;
+  --t-mini:.78rem;
   --t-xs:.86rem;
   --t-sm:.93rem;
   --t-md:.99rem;
-  --t-lg:1.08rem;
-  --t-xl:1.45rem;
-  --t-body:clamp(1.02rem,.97rem + .28vw,1.12rem);
-  --t-lead:clamp(1.1rem,1rem + .5vw,1.3rem);
-  --t-dest:clamp(1.35rem,1.05rem + 1.5vw,2.05rem);
-  --t-sec:clamp(1.9rem,1.3rem + 3vw,3.1rem);
-  --t-num:clamp(2.6rem,1.6rem + 5vw,4.6rem);
-  --t-num-sm:clamp(2.2rem,9vw,3rem);
-  --t-band:clamp(1.9rem,6vw,2.6rem);
+  --t-lg:1.06rem;
+  --t-xl:1.35rem;
+  --t-body:clamp(1rem,.96rem + .2vw,1.08rem);
+  --t-lead:clamp(1.08rem,1rem + .45vw,1.26rem);
+  --t-dest:clamp(1.2rem,1.02rem + .9vw,1.6rem);
+  --t-num:clamp(1.9rem,1.4rem + 2.4vw,2.9rem);
+  --t-band:clamp(1.5rem,1.2rem + 1.6vw,2.1rem);
 
   /* diagram lettering, in SVG user units */
   --t-dia-n:18px;  --t-dia-t:15px;  --t-dia-i:13px;  --t-dia-s:11.5px;  --t-dia-k:11px;
 
   --scrim:rgba(0,0,0,.3);
 }
-html[data-mode="night"]{
-  /* The night sign is dimmed, not faded. Hue and chroma are untouched — only
-     lightness drops (#FFCC00 hsl(48,100%,50%) -> hsl(47,100%,45%)). Lowering
-     saturation instead is what turns signage yellow into mustard.
-     Red is left alone: it was never the glare source, and one red in both
-     modes keeps it unambiguously "stop". */
-  --yellow:#E3B300;
-  --ground:#1A1917;
-  --panel:#232220;
-  --panel-2:#2A2925;
-  --rule:#3D3C36;
-  --ink:#E9E7DE;
-  --ink-2:#9E9D95;
-  --ink-3:#96948B;
-}
 html[data-mode="day"]{
-  --ground:#E6E6E6;
+  /* Warm sand neutrals: the natural pairing for a yellow accent, and the
+     reason the old flat #E6E6E6 read cheap. */
+  --ground:#F5F4F1;
   --panel:#FFFFFF;
-  --panel-2:#F4F4F2;
-  --rule:#C6C6C1;
-  --ink:#0B0B0B;
+  --panel-2:#EFEDE8;
+  --rule-soft:#E7E4DD;
+  --rule:#D8D5CC;
+  --ink:#1A1917;
   --ink-2:#55544F;
   --ink-3:#63625C;
+
+  /* Depth: hairline ring + warm-tinted low-alpha layers. Never pure black. */
+  --sh-1:0 0 0 1px rgba(26,25,23,.06), 0 1px 2px rgba(26,25,23,.05);
+  --sh-2:0 0 0 1px rgba(26,25,23,.06), 0 1px 2px rgba(26,25,23,.04), 0 6px 16px -6px rgba(26,25,23,.10);
+  --sh-3:0 0 0 1px rgba(26,25,23,.06), 0 8px 24px -8px rgba(26,25,23,.12), 0 18px 48px -24px rgba(26,25,23,.10);
+}
+html[data-mode="night"]{
+  /* Yellow keeps full chroma here too. It stopped glaring because it stopped
+     being a field, not because it was dimmed. */
+  --ground:#151412;
+  --panel:#1D1C1A;
+  --panel-2:#252420;
+  --rule-soft:#2C2B27;
+  --rule:#393831;
+  --ink:#EDEBE4;
+  --ink-2:#A3A199;
+  --ink-3:#8B8981;
+
+  --red-ink:#FF8A75;  /* red as TEXT on a dark panel — lightened to clear AA */
+  --sh-1:inset 0 1px 0 0 rgba(255,255,255,.04), 0 0 0 1px rgba(0,0,0,.5);
+  --sh-2:inset 0 1px 0 0 rgba(255,255,255,.05), 0 0 0 1px rgba(0,0,0,.55), 0 6px 18px -8px rgba(0,0,0,.6);
+  --sh-3:inset 0 1px 0 0 rgba(255,255,255,.05), 0 0 0 1px rgba(0,0,0,.6), 0 16px 48px -16px rgba(0,0,0,.65);
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -135,35 +151,28 @@ body{
 }
 img,svg{display:block;max-width:100%}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-html[data-mode="day"] :focus-visible{outline-color:#0B0B0B}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:var(--r-xs)}
 
 .shell{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 .read{max-width:var(--read)}
 
 /* ---------- signage primitives ---------- */
 .label{
-  font-size:var(--t-label);
-  font-weight:700;
-  letter-spacing:.14em;
+  font-size:var(--t-micro);
+  font-weight:600;
+  letter-spacing:.05em;
   text-transform:uppercase;
   color:var(--ink-2);
 }
-/* ---------- materials ----------
-   Two real signage materials, both low-contrast so nothing competes
-   with the type: perforated metal behind the pictograms, and the
-   faint sheen of a lit polycarbonate face on yellow panels. */
+/* ---------- pictogram tile ---------- */
 .pict{
   display:grid;place-items:center;
-  width:38px;height:38px;flex:0 0 38px;
-  background-color:var(--sign-black);
-  background-image:var(--perf);
-  background-size:4px 4px;
-  background-position:1px 1px;
-  color:#fff;
+  width:36px;height:36px;flex:0 0 36px;
+  background:var(--panel-2);
+  border-radius:var(--r-sm);
+  color:var(--ink-2);
 }
-.pict svg{width:24px;height:24px;fill:currentColor}
-.on-yellow .pict{background:var(--sign-black);color:#fff}
+.pict svg{width:20px;height:20px;fill:currentColor}
 
 /* arrow locked to the edge it points past */
 .arrow{flex:0 0 auto;width:26px;height:26px;fill:currentColor}
@@ -176,133 +185,153 @@ kbd{
   letter-spacing:.06em;
   text-transform:uppercase;
   border:1px solid var(--rule);
+  border-radius:var(--r-xs);
   background:var(--panel-2);
   color:var(--ink);
-  padding:.08em .42em;
+  padding:.12em .45em;
   white-space:nowrap;
 }
-html[data-mode="day"] kbd{background:#fff}
+
 
 /* ============================================================
-   GANTRY — the sign that always hangs above (below, on phones)
+   BAR — the fixed "where am I" bar. Floats; the only shadow-3 on screen.
    ============================================================ */
 .gantry{
   position:fixed;left:0;right:0;bottom:0;z-index:60;
   background:var(--panel);
-  border-top:1px solid var(--rule);
+  box-shadow:var(--sh-3);
   padding-bottom:env(safe-area-inset-bottom);
 }
 .gantry-inner{
   max-width:var(--maxw);margin:0 auto;
   height:var(--gantry-h);
-  display:flex;align-items:stretch;gap:1px;
+  display:flex;align-items:center;gap:var(--s-2);
+  padding:0 var(--s-3);
 }
 .gantry-now{
   flex:1 1 auto;min-width:0;
-  display:flex;align-items:center;gap:12px;
-  padding:0 4px 0 16px;
-  background:none;border:0;color:var(--ink);
+  display:flex;align-items:center;gap:var(--s-3);
+  padding:var(--s-2) var(--s-2);
+  background:none;border:0;border-radius:var(--r-sm);color:var(--ink);
   font:inherit;text-align:left;cursor:pointer;
 }
 .gantry-now .g-num{
-  font-weight:800;font-size:var(--t-xl);line-height:1;
-  color:var(--yellow);letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;
+  flex:0 0 auto;
+  display:grid;place-items:center;
+  min-width:2.3em;padding:.3em .45em;
+  background:var(--accent);color:var(--on-accent);
+  border-radius:var(--r-xs);
+  font-weight:700;font-size:var(--t-mini);line-height:1.2;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em;
 }
-html[data-mode="day"] .gantry-now .g-num{color:#0B0B0B}
 .gantry-now .g-txt{min-width:0}
-.gantry-now .g-k{display:block;font-size:var(--t-micro);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);line-height:1}
-.gantry-now .g-v{display:block;font-weight:700;font-size:var(--t-lg);line-height:1.25;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gantry-now .g-k{display:block;font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);line-height:1}
+.gantry-now .g-v{display:block;font-weight:650;font-size:var(--t-sm);line-height:1.25;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
 .gantry-all{
   flex:0 0 auto;
-  display:flex;align-items:center;gap:10px;
-  padding:0 16px;
-  background-color:var(--yellow);
-  background-image:var(--lit-face);
-  color:var(--sign-black);
-  border:0;font:inherit;font-weight:800;
-  letter-spacing:.04em;text-transform:uppercase;font-size:var(--t-mini);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:0 var(--s-3);min-height:44px;
+  background:var(--panel-2);
+  color:var(--ink);
+  border:1px solid var(--rule);border-radius:var(--r-sm);
+  font:inherit;font-weight:600;
+  letter-spacing:.03em;text-transform:uppercase;font-size:var(--t-mini);
   cursor:pointer;
 }
-.gantry-all svg{width:20px;height:20px;fill:currentColor}
+.gantry-all svg{width:16px;height:16px;fill:currentColor}
+.gantry-all .ga-txt{display:none}
+@media (min-width:430px){.gantry-all .ga-txt{display:inline}}
 .gantry-help{
-  flex:0 0 auto;display:flex;align-items:center;gap:8px;
-  padding:0 14px;background:var(--red);color:#fff;border:0;
-  font:inherit;font-weight:800;font-size:var(--t-mini);letter-spacing:.04em;text-transform:uppercase;
+  flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:0 var(--s-3);min-height:44px;min-width:44px;
+  background:none;color:var(--red-ink);
+  border:1px solid var(--rule);border-radius:var(--r-sm);
+  font:inherit;font-weight:600;font-size:var(--t-mini);letter-spacing:.03em;text-transform:uppercase;
   text-decoration:none;cursor:pointer;
 }
-.gantry-help svg{width:18px;height:18px;fill:currentColor}
+.gantry-help svg{width:16px;height:16px;fill:currentColor}
 .gantry-help .gh-txt{display:none}
 
-/* desktop: the gantry becomes a real overhead multi-band sign */
 @media (min-width:900px){
   body{padding-bottom:0;padding-top:calc(var(--gantry-h) + 1px)}
-  .gantry{top:0;bottom:auto;border-top:0;border-bottom:1px solid var(--rule)}
+  .gantry{top:0;bottom:auto;box-shadow:var(--sh-1)}
   .gantry-help .gh-txt{display:inline}
 }
 
 /* ============================================================
-   BOARD — the junction / departures board
+   BOARD — the index. A card of numbered rows, not a yellow wall.
    ============================================================ */
 .board{
-  background-color:var(--yellow);
-  background-image:var(--lit-face);
-  color:var(--sign-black);
-  border-top:1px solid rgba(255,255,255,.5);
+  background:var(--panel);
+  color:var(--ink);
+  border-radius:var(--r-lg);
+  box-shadow:var(--sh-1);
+  overflow:hidden;
 }
 .board-head{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
-  padding:22px 16px 14px;
-  border-bottom:3px solid var(--sign-black);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);
+  padding:var(--s-4) var(--s-4) var(--s-3);
+  border-bottom:1px solid var(--rule-soft);
 }
-.mark{display:flex;align-items:center;gap:11px}
+.mark{display:flex;align-items:center;gap:10px}
 .mark-glyph{
-  width:34px;height:34px;display:grid;place-items:center;
-  background-color:var(--sign-black);
-  background-image:var(--perf);
-  background-size:4px 4px;background-position:1px 1px;
+  width:32px;height:32px;display:grid;place-items:center;
+  background:var(--accent);
+  border-radius:var(--r-sm);
 }
-.mark-glyph svg{width:24px;height:24px;fill:var(--yellow)}
-.mark-txt b,.mark-txt h1{display:block;font-weight:800;font-size:var(--t-lg);letter-spacing:-.01em;line-height:1.1;margin:0}
-.mark-txt span{display:block;font-size:var(--t-micro);font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.72;margin-top:2px}
-.board-meta{text-align:right;font-size:var(--t-micro);font-weight:700;letter-spacing:.13em;text-transform:uppercase;opacity:.72;line-height:1.5}
+.mark-glyph svg{width:19px;height:19px;fill:var(--on-accent)}
+.mark-txt b,.mark-txt h1{display:block;font-weight:700;font-size:var(--t-lg);letter-spacing:-.015em;line-height:1.15;margin:0}
+.mark-txt span{display:block;font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin-top:1px}
+.board-meta{text-align:right;font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);line-height:1.5}
 
 .dest{
-  display:flex;align-items:center;gap:14px;width:100%;
-  padding:14px 16px;
-  background:none;border:0;border-bottom:1px solid rgba(11,11,11,.22);
+  position:relative;
+  display:flex;align-items:center;gap:var(--s-4);width:100%;
+  padding:var(--s-3) var(--s-4);
+  background:none;border:0;border-top:1px solid var(--rule-soft);
   color:inherit;font:inherit;text-align:left;text-decoration:none;
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
+  transition:background .15s ease;
 }
-.dest:last-child{border-bottom:0}
+.dest:first-of-type{border-top:0}
+/* the accent rail: yellow appears on the row you are pointing at, not on all seven */
+.dest::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent);opacity:0;transition:opacity .15s ease;
+}
+.dest:hover,.dest:focus-visible{background:var(--panel-2)}
+.dest:hover::before,.dest:focus-visible::before{opacity:1}
 .dest-num{
-  flex:0 0 auto;min-width:1.45em;
-  font-weight:800;font-size:var(--t-num);line-height:.9;
-  letter-spacing:-.045em;font-variant-numeric:tabular-nums;
+  flex:0 0 auto;min-width:1.7em;
+  font-weight:700;font-size:var(--t-num);line-height:1;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+  color:var(--ink);
+  font-variation-settings:"opsz" 40;
 }
 .dest-txt{flex:1 1 auto;min-width:0}
-.dest-name{display:block;font-weight:700;font-size:var(--t-dest);line-height:1.1;letter-spacing:-.015em}
-.dest-sub{display:block;font-size:var(--t-xs);font-weight:400;opacity:.78;margin-top:3px;line-height:1.35}
-.dest:hover .dest-name,.dest:focus-visible .dest-name{text-decoration:underline;text-underline-offset:3px}
-.dest.is-alarm{background:var(--red);color:#fff;border-bottom-color:rgba(255,255,255,.25)}
-.dest.is-alarm .dest-sub{opacity:1}
+.dest-name{display:block;font-weight:650;font-size:var(--t-dest);line-height:1.2;letter-spacing:-.02em}
+.dest-sub{display:block;font-size:var(--t-xs);font-weight:400;color:var(--ink-2);margin-top:2px;line-height:1.35}
+.dest .arrow{flex:0 0 auto;width:18px;height:18px;fill:var(--ink-3);transition:transform .15s ease}
+.dest:hover .arrow{transform:translateX(3px)}
+/* 07 is the only row that keeps a colour field — it is the emergency route */
+.dest.is-alarm .dest-num{color:var(--red-ink)}
+.dest.is-alarm::before{background:var(--red)}
 
-/* the board as landing block */
 .board-landing{margin:0 0 clamp(28px,6vw,56px)}
 @media (min-width:900px){
   .board-landing{margin-top:clamp(20px,3vw,40px)}
   .board-grid{display:grid;grid-template-columns:1fr 1fr}
-  .board-grid .dest:nth-child(odd){border-right:1px solid rgba(11,11,11,.22)}
+  .board-grid .dest:nth-child(2){border-top:0}
+  .board-grid .dest:nth-child(odd){border-right:1px solid var(--rule-soft)}
   .board-grid .dest.is-alarm{grid-column:1 / -1;border-right:0}
 }
 
 /* ---------- board overlay (all destinations, one tap away) ---------- */
 .overlay{
   position:fixed;inset:0;z-index:80;
-  background-color:var(--yellow);
-  background-image:var(--lit-face);
-  color:var(--sign-black);
+  background:var(--ground);
+  color:var(--ink);
   display:flex;flex-direction:column;
   overflow-y:auto;overscroll-behavior:contain;
   padding-bottom:env(safe-area-inset-bottom);
@@ -310,18 +339,21 @@ html[data-mode="day"] .gantry-now .g-num{color:#0B0B0B}
 .overlay[hidden]{display:none}
 .overlay-head{
   position:sticky;top:0;z-index:2;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:16px;background:var(--yellow);
-  border-bottom:3px solid var(--sign-black);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);
+  padding:var(--s-3) var(--s-4);
+  background:var(--panel);
+  border-bottom:1px solid var(--rule-soft);
 }
 .overlay-close{
-  display:flex;align-items:center;gap:9px;
-  background:var(--sign-black);color:var(--yellow);border:0;
-  padding:9px 14px;font:inherit;font-weight:800;font-size:var(--t-mini);
-  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  background:var(--panel-2);color:var(--ink);border:1px solid var(--rule);
+  border-radius:var(--r-sm);
+  padding:9px 14px;font:inherit;font-weight:600;font-size:var(--t-mini);
+  letter-spacing:.03em;text-transform:uppercase;cursor:pointer;
 }
-.overlay-close svg{width:16px;height:16px;fill:currentColor}
-.overlay .dest-num{font-size:var(--t-num-sm)}
+.overlay-close svg{width:15px;height:15px;fill:currentColor}
+.overlay .dest-num{font-size:var(--t-xl)}
+.overlay .board{border-radius:0;box-shadow:none;background:none}
 
 /* ============================================================
    SECTIONS — each is a signed area of the concourse
@@ -329,35 +361,26 @@ html[data-mode="day"] .gantry-now .g-num{color:#0B0B0B}
 .area{scroll-margin-top:calc(var(--gantry-h) + 14px);padding:0 0 clamp(30px,6vw,60px)}
 @media (max-width:899px){.area{scroll-margin-top:14px}}
 
-/* Daylight is the default: the sign face is fully lit, which is what survives
-   a bright room on a small screen. At night only its edge and numeral are lit,
-   so seven sections do not become seven glowing walls. */
+/* The section header is a small accent chip + a title over one hairline.
+   Identical in both modes — the chip is small enough that full-chroma
+   yellow never glares. */
 .area-band{
-  display:flex;align-items:center;gap:14px;
-  background-color:var(--yellow);
-  background-image:var(--lit-face);
-  color:var(--sign-black);
-  border-top:1px solid rgba(255,255,255,.5);
-  padding:12px 16px;
-  margin:0 0 clamp(18px,3.5vw,30px);
+  display:flex;align-items:center;gap:var(--s-3);
+  padding:0 0 var(--s-3);
+  margin:0 0 var(--s-6);
+  border-bottom:1px solid var(--rule);
 }
 .area-band .b-num{
-  font-weight:800;font-size:var(--t-band);line-height:.9;
-  letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+  flex:0 0 auto;
+  display:grid;place-items:center;
+  min-width:2.4em;padding:.28em .5em;
+  background:var(--accent);color:var(--on-accent);
+  border-radius:var(--r-xs);
+  font-weight:700;font-size:var(--t-mini);line-height:1.2;
+  letter-spacing:.02em;font-variant-numeric:tabular-nums;
 }
-.area-band h2{margin:0;font-size:var(--t-dest);font-weight:700;letter-spacing:-.015em;line-height:1.1}
-.area-band.is-alarm{background-color:var(--red);color:#fff}
-
-html[data-mode="night"] .area-band{
-  align-items:baseline;
-  background-color:transparent;background-image:none;
-  color:var(--ink);
-  border-top:0;border-bottom:2px solid var(--yellow);
-  padding:2px 0 10px;
-}
-html[data-mode="night"] .area-band .b-num{color:var(--yellow)}
-html[data-mode="night"] .area-band.is-alarm{background-color:transparent;border-bottom-color:var(--red)}
-html[data-mode="night"] .area-band.is-alarm .b-num{color:var(--red)}
+.area-band h2{margin:0;font-size:var(--t-band);font-weight:650;letter-spacing:-.025em;line-height:1.15}
+.area-band.is-alarm .b-num{background:var(--red);color:#fff}
 
 .lead{font-size:var(--t-lead);line-height:1.5;color:var(--ink);margin:0 0 22px;font-weight:400}
 .lead b{font-weight:700}
@@ -383,57 +406,66 @@ ol.steps li::before{
 ul.plain{margin:0 0 14px;padding:0 0 0 20px}
 ul.plain li{margin:0 0 8px}
 
-/* ---------- notice panels: signage, not cards ---------- */
+/* ---------- notice panels: a card with an intent stripe, not a flood ---------- */
 .notice{
-  display:flex;gap:13px;align-items:flex-start;
-  padding:13px 15px;margin:16px 0 0;
+  position:relative;
+  display:flex;gap:var(--s-3);align-items:flex-start;
+  padding:var(--s-3) var(--s-4) var(--s-3) var(--s-4);
+  margin:var(--s-4) 0 0;
   background:var(--panel);
-  border:1px solid var(--rule);
+  border-radius:var(--r-md);
+  box-shadow:var(--sh-1);
   font-size:var(--t-md);line-height:1.55;
+  overflow:hidden;
+}
+.notice::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rule);
 }
 .notice>p{margin:0}
 .n-ico{
-  flex:0 0 30px;width:30px;height:30px;
+  flex:0 0 26px;width:26px;height:26px;
   display:grid;place-items:center;
-  background-color:var(--sign-black);
-  background-image:var(--perf);
-  background-size:4px 4px;background-position:1px 1px;
+  background:var(--panel-2);
+  border-radius:var(--r-xs);
+  margin-top:1px;
 }
-.n-ico svg{width:19px;height:19px;fill:#fff}
-.notice.stop{background:var(--red);border-color:var(--red);color:#fff}
-.notice.stop .n-ico{background-color:var(--scrim)}
-.notice.stop kbd{background:var(--scrim);border-color:rgba(255,255,255,.45);color:#fff}
-.notice.stop b{color:#fff}
-.notice.go .n-ico{background-color:var(--green)}
-html[data-mode="day"] .notice:not(.stop){background:#fff}
+.n-ico svg{width:16px;height:16px;fill:var(--ink-2)}
+.notice.stop::before{background:var(--red)}
+.notice.stop .n-ico{background:var(--red)}
+.notice.stop .n-ico svg{fill:#fff}
+.notice.stop b{color:var(--red-ink)}
+.notice.go::before{background:var(--green)}
+.notice.go .n-ico{background:var(--green)}
+.notice.go .n-ico svg{fill:#fff}
 
-/* ---------- next destination: the sign at the end of an area ---------- */
+/* ---------- next destination ---------- */
 .next{
-  display:flex;align-items:center;gap:14px;
-  margin:clamp(24px,4vw,38px) 0 0;
-  padding:14px 16px;
+  display:flex;align-items:center;gap:var(--s-3);
+  margin:var(--s-8) 0 0;
+  padding:var(--s-3) var(--s-4);
   background:var(--panel);
-  border:1px solid var(--rule);
+  border-radius:var(--r-md);
+  box-shadow:var(--sh-1);
   color:inherit;text-decoration:none;
+  transition:box-shadow .15s ease,transform .15s ease;
 }
-.next:hover{border-color:var(--ink-2)}
+.next:hover{box-shadow:var(--sh-2)}
 .next-k{
   flex:0 0 auto;
-  font-size:var(--t-micro);font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;
   color:var(--ink-3);
 }
 .next-n{
   flex:0 0 auto;
-  font-weight:800;font-size:var(--t-xl);line-height:1;
-  color:var(--yellow);font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  font-weight:700;font-size:var(--t-lg);line-height:1;
+  color:var(--ink-2);font-variant-numeric:tabular-nums;letter-spacing:-.02em;
 }
-html[data-mode="day"] .next-n{color:#0B0B0B}
-.next-t{flex:1 1 auto;min-width:0;font-weight:700;font-size:var(--t-lg);letter-spacing:-.01em}
-.next:hover .next-t{text-decoration:underline;text-underline-offset:3px}
-.next .arrow{width:22px;height:22px;fill:var(--ink-2)}
-.next.is-alarm .next-n{color:var(--red)}
+.next-t{flex:1 1 auto;min-width:0;font-weight:650;font-size:var(--t-lg);letter-spacing:-.015em}
+.next .arrow{width:18px;height:18px;fill:var(--ink-3);transition:transform .15s ease}
+.next:hover .arrow{transform:translateX(3px)}
+.next.is-alarm .next-n{color:var(--red-ink)}
 @media (max-width:520px){
-  .next{flex-wrap:wrap;gap:10px 12px}
+  .next{flex-wrap:wrap;gap:var(--s-2) var(--s-3)}
   .next-k{order:1;flex:1 0 100%}
   .next-n{order:2}
   .next-t{order:3}
@@ -441,84 +473,96 @@ html[data-mode="day"] .next-n{color:#0B0B0B}
 }
 
 /* ============================================================
-   ENTRY ROWS — details/summary as sign rows
+   ENTRY ROWS — a stack of cards, one open at a time
    ============================================================ */
-.rows{border-top:1px solid var(--rule)}
-.row{border-bottom:1px solid var(--rule)}
+.rows{display:flex;flex-direction:column;gap:var(--s-2)}
+.row{
+  position:relative;
+  background:var(--panel);
+  border-radius:var(--r-md);
+  box-shadow:var(--sh-1);
+  overflow:hidden;
+  transition:box-shadow .15s ease;
+}
+.row::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent);opacity:0;transition:opacity .15s ease;
+}
+.row[open]{box-shadow:var(--sh-2)}
+.row[open]::before{opacity:1}
 .row>summary{
-  display:flex;align-items:center;gap:14px;
-  padding:15px 4px;
+  display:flex;align-items:center;gap:var(--s-3);
+  padding:var(--s-3) var(--s-4);
   cursor:pointer;list-style:none;
   -webkit-tap-highlight-color:transparent;
 }
 .row>summary::-webkit-details-marker{display:none}
 .row-num{
   flex:0 0 auto;
-  min-width:2ch;
-  font-weight:800;font-size:var(--t-xl);line-height:1;
-  color:var(--ink-3);font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  min-width:1.8ch;
+  font-weight:700;font-size:var(--t-lg);line-height:1;
+  color:var(--ink-3);font-variant-numeric:tabular-nums;letter-spacing:-.01em;
 }
 .row-txt{flex:1 1 auto;min-width:0}
-.row-t{display:block;font-weight:700;font-size:var(--t-lg);line-height:1.3;letter-spacing:-.01em}
-.row-s{display:block;font-size:var(--t-xs);color:var(--ink-2);margin-top:2px;line-height:1.35}
-.row-chev{flex:0 0 auto;width:22px;height:22px;fill:var(--ink-3);transition:transform .18s ease}
+.row-t{display:block;font-weight:650;font-size:var(--t-lg);line-height:1.3;letter-spacing:-.015em}
+.row-s{display:block;font-size:var(--t-xs);color:var(--ink-2);margin-top:1px;line-height:1.35}
+.row-chev{flex:0 0 auto;width:18px;height:18px;fill:var(--ink-3);transition:transform .18s ease}
 .row[open] .row-chev{transform:rotate(180deg)}
-.row[open] .row-num{color:var(--yellow)}
-html[data-mode="day"] .row[open] .row-num{color:#0B0B0B}
-.row[open]>summary{padding-bottom:6px}
-.row:hover .row-t{text-decoration:underline;text-underline-offset:3px}
-.row-body{padding:0 4px 22px;max-width:var(--read)}
+.row[open] .row-num{color:var(--ink)}
+.row[open]>summary{padding-bottom:var(--s-2)}
+.row-body{padding:0 var(--s-4) var(--s-4);max-width:var(--read)}
 .row-body>*:first-child{margin-top:0}
+.rows.is-alarm .row::before{background:var(--red)}
 
 /* ============================================================
    ROUTE — the channel signal path as a transit line
    ============================================================ */
 .route{margin:0 0 20px}
 .route-svg{width:100%;height:auto;overflow:visible}
-.route-svg .ln{fill:none;stroke:var(--yellow);stroke-width:9;stroke-linecap:butt;stroke-linejoin:round}
-.route-svg .ln-b{fill:none;stroke:var(--ink-2);stroke-width:6;stroke-linejoin:round;stroke-dasharray:1 0}
+.route-svg .ln{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.route-svg .ln-b{fill:none;stroke:var(--ink-3);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .route-svg .stn-hit{fill:transparent;cursor:pointer}
 .route-svg .stn-ring{fill:var(--ground);stroke:var(--ink);stroke-width:3}
 .route-svg .stn-core{fill:var(--ink)}
-.route-svg .stn-tap{fill:var(--sign-black)}
+.route-svg .stn-tap{fill:var(--on-accent)}
 .route-svg .stn-lab{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t);letter-spacing:.01em}
 .route-svg .stn-idx{fill:var(--ink-3);font-family:var(--f);font-weight:800;font-size:var(--t-dia-i)}
-.route-svg .end-box{fill:var(--yellow)}
-.route-svg .end-txt{fill:var(--sign-black);font-family:var(--f);font-weight:800;font-size:var(--t-dia-t);letter-spacing:.02em}
-.route-svg .term-box{fill:var(--panel);stroke:var(--rule);stroke-width:1.5}
+.route-svg .end-box{fill:var(--accent);rx:8}
+.route-svg .end-txt{fill:var(--on-accent);font-family:var(--f);font-weight:800;font-size:var(--t-dia-t);letter-spacing:.02em}
+.route-svg .term-box{fill:var(--panel);stroke:var(--rule);stroke-width:1;rx:8}
 .route-svg .term-txt{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-i)}
 .route-svg .g-stn{outline:none}
-.route-svg .g-stn:focus-visible .stn-ring{stroke:var(--yellow);stroke-width:5}
-.route-svg .g-stn.on .stn-ring{fill:var(--yellow);stroke:var(--yellow)}
-.route-svg .g-stn.on .stn-core{fill:var(--sign-black)}
-.route-svg .g-stn.on .stn-lab{fill:var(--yellow)}
-html[data-mode="day"] .route-svg .g-stn.on .stn-lab{fill:#0B0B0B;text-decoration:underline}
+.route-svg .g-stn:focus-visible .stn-ring{stroke:var(--ink);stroke-width:4}
+.route-svg .g-stn.on .stn-ring{fill:var(--accent);stroke:var(--accent)}
+.route-svg .g-stn.on .stn-core{fill:var(--on-accent)}
+.route-svg .g-stn.on .stn-lab{fill:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
 
 /* ---------- legend: the route, explained ---------- */
-.legend{list-style:none;margin:0 0 4px;padding:0;border-top:1px solid var(--rule)}
-.lg{display:flex;gap:14px;align-items:flex-start;padding:13px 12px;border-bottom:1px solid var(--rule);transition:background .15s ease,color .15s ease}
-.lg-n{flex:0 0 auto;min-width:1.4ch;font-weight:800;font-size:var(--t-lg);line-height:1.4;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.legend{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:2px}
+.lg{display:flex;gap:var(--s-3);align-items:flex-start;padding:var(--s-3);border-radius:var(--r-sm);transition:background .15s ease,color .15s ease}
+.lg-n{flex:0 0 auto;min-width:1.4ch;font-weight:700;font-size:var(--t-md);line-height:1.5;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .lg b{display:block;font-weight:700;font-size:var(--t-lg);letter-spacing:-.01em}
 .lg p{margin:3px 0 0;font-size:var(--t-sm);line-height:1.55;color:var(--ink-2)}
-.lg.on{background-color:var(--yellow);background-image:var(--lit-face);color:var(--sign-black)}
-.lg.on .lg-n{color:rgba(11,11,11,.78)}
-.lg.on p{color:rgba(11,11,11,.85)}
-.lg.on kbd{background:rgba(11,11,11,.09);border-color:rgba(11,11,11,.32);color:var(--sign-black)}
+.lg.on{background:var(--accent);color:var(--on-accent);border-radius:var(--r-sm)}
+.lg.on .lg-n{color:rgba(26,25,23,.72)}
+.lg.on p{color:rgba(26,25,23,.82)}
+.lg.on kbd{background:rgba(26,25,23,.10);border-color:rgba(26,25,23,.28);color:var(--on-accent)}
 
 /* ---------- console plan view ---------- */
 .plan{margin:0 0 10px}
 .plan svg{width:100%;height:auto}
-.plan .p-body{fill:none;stroke:var(--ink-3);stroke-width:2}
-.plan .p-zone{fill:var(--panel);stroke:var(--rule);stroke-width:1.5}
-.plan .p-badge{fill:var(--sign-black)}
-.plan .p-bn{fill:var(--yellow);font-family:var(--f);font-weight:800;font-size:var(--t-dia-n);text-anchor:middle}
+.plan .p-body{fill:none;stroke:var(--rule);stroke-width:1.5;rx:12}
+.plan .p-zone{fill:var(--panel);stroke:var(--rule);stroke-width:1;rx:9}
+.plan .p-badge{fill:var(--ink);rx:6}
+.plan .p-bn{fill:var(--ground);font-family:var(--f);font-weight:800;font-size:var(--t-dia-n);text-anchor:middle}
 .plan .p-t{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t)}
 .plan .p-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:var(--t-dia-s)}
 .plan .p-ct{fill:var(--ink-3)}
 .plan .p-knob{fill:none;stroke:var(--ink-3);stroke-width:2}
-.plan .p-scr{fill:var(--sign-black);stroke:var(--rule);stroke-width:1.5}
-.plan .p-main{fill:var(--yellow)}
-html[data-mode="day"] .plan .p-zone{fill:#fff}
+.plan .p-scr{fill:var(--ink-2);stroke:none;rx:5}
+.plan .p-main{fill:var(--accent);rx:3}
+
 
 /* ---------- body copy inside rows ---------- */
 .row-body p{margin:0 0 12px;font-size:var(--t-md);line-height:1.6}
@@ -527,15 +571,16 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
 .steps li{counter-increment:s;position:relative;padding-left:34px;margin:0 0 11px;font-size:var(--t-md);line-height:1.55}
 .steps li:last-child{margin-bottom:0}
 .steps li::before{
-  content:counter(s);position:absolute;left:0;top:2px;
-  width:22px;height:22px;background:var(--sign-black);color:var(--yellow);
-  border:1px solid var(--rule);
-  font-weight:800;font-size:var(--t-mini);display:grid;place-items:center;
+  content:counter(s);position:absolute;left:0;top:1px;
+  width:22px;height:22px;background:var(--panel-2);color:var(--ink);
+  border-radius:var(--r-xs);
+  font-weight:700;font-size:var(--t-micro);display:grid;place-items:center;
+  font-variant-numeric:tabular-nums;
 }
 .tight{list-style:none;margin:0;padding:0}
-.tight li{position:relative;padding-left:22px;margin:0 0 9px;font-size:var(--t-md);line-height:1.55}
+.tight li{position:relative;padding-left:20px;margin:0 0 9px;font-size:var(--t-md);line-height:1.55}
 .tight li:last-child{margin-bottom:0}
-.tight li::before{content:"";position:absolute;left:0;top:.68em;width:11px;height:3px;background:var(--yellow)}
+.tight li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 
 /* ============================================================
    MAP — the room network diagram
@@ -543,19 +588,21 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
 .sprite{position:absolute}
 .map{margin:0 0 8px}
 .map svg{width:100%;height:auto}
-.map .m-node{fill:var(--panel);stroke:var(--rule);stroke-width:1.5}
-.map .m-hub{fill:var(--yellow);stroke:none}
-.map .m-hub-t{fill:var(--sign-black);font-family:var(--f);font-weight:800;letter-spacing:.01em}
+.map .m-node{fill:var(--panel);stroke:var(--rule);stroke-width:1;rx:10}
+.map .m-hub{fill:var(--ink);stroke:none;rx:12}
+.map .m-hub-ico{fill:rgba(255,255,255,.10)}
+.map .m-hub-glyph{fill:var(--accent)}
+.map .m-hub-t{fill:var(--ground);font-family:var(--f);font-weight:800;letter-spacing:.01em}
 .map .m-hub-s{font-weight:700;letter-spacing:.06em}
 .map .m-t{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t)}
 .map .m-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:var(--t-dia-s)}
-.map .m-ln{fill:none;stroke:var(--yellow);stroke-width:6}
-.map .m-ln-2{fill:none;stroke:var(--ink-3);stroke-width:4}
-.map .m-lab{fill:var(--ink-3);font-family:var(--f);font-weight:700;font-size:var(--t-dia-k);letter-spacing:.1em;text-transform:uppercase}
-.map .m-ico{fill:#fff}
-.map .m-ico-bg{fill:var(--sign-black)}
+.map .m-ln{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.map .m-ln-2{fill:none;stroke:var(--ink-3);stroke-width:3;stroke-linecap:round}
+.map .m-lab{fill:var(--ink-3);font-family:var(--f);font-weight:600;font-size:var(--t-dia-k);letter-spacing:.05em;text-transform:uppercase}
+.map .m-ico{fill:var(--ink-2)}
+.map .m-ico-bg{fill:var(--panel-2);rx:7}
 .map .m-zone{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:4 5}
-.map .m-zt{fill:var(--ink-3);font-family:var(--f);font-weight:800;font-size:var(--t-dia-k);letter-spacing:.18em}
+.map .m-zt{fill:var(--ink-3);font-family:var(--f);font-weight:600;font-size:var(--t-dia-k);letter-spacing:.06em}
 .only-wide{display:none}
 @media (min-width:760px){
   .only-wide{display:block}
@@ -565,56 +612,63 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
 /* ============================================================
    CHECKLIST
    ============================================================ */
-.check{border-top:1px solid var(--rule);margin:0 0 6px;list-style:none;padding:0}
-.check-item{
-  display:flex;align-items:flex-start;gap:14px;
-  border-bottom:1px solid var(--rule);
-  padding:13px 4px;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
+.check{
+  list-style:none;padding:var(--s-1) 0;margin:0 0 var(--s-2);
+  background:var(--panel);border-radius:var(--r-md);box-shadow:var(--sh-1);
 }
+.check-item{
+  display:flex;align-items:flex-start;gap:var(--s-3);
+  padding:var(--s-3) var(--s-4);cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  border-radius:var(--r-sm);
+}
+.check-item + .check-item{box-shadow:inset 0 1px 0 0 var(--rule-soft)}
 .check-item input{position:absolute;opacity:0;width:0;height:0}
 .check-box{
-  flex:0 0 26px;width:26px;height:26px;margin-top:1px;
-  border:2px solid var(--ink-3);
+  flex:0 0 24px;width:24px;height:24px;margin-top:1px;
+  border:1.5px solid var(--rule);
+  border-radius:var(--r-xs);
+  background:var(--panel);
   display:grid;place-items:center;
+  transition:background .12s ease,border-color .12s ease;
 }
-.check-box svg{width:18px;height:18px;fill:var(--sign-black);opacity:0}
+.check-box svg{width:15px;height:15px;fill:#fff;opacity:0}
 .check-item input:checked~.check-box{background:var(--green);border-color:var(--green)}
-.check-item input:checked~.check-box svg{opacity:1;fill:#fff}
-.check-item input:focus-visible~.check-box{outline:3px solid var(--yellow);outline-offset:2px}
-.check-t{flex:1 1 auto;line-height:1.45}
+.check-item input:checked~.check-box svg{opacity:1}
+.check-item input:focus-visible~.check-box{outline:2px solid var(--ink);outline-offset:2px}
+.check-t{flex:1 1 auto;line-height:1.45;font-size:var(--t-md)}
 .check-item input:checked~.check-t{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
-.check-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0 0}
-.check-count{font-weight:800;font-size:var(--t-sm);letter-spacing:.04em}
+.check-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);padding:var(--s-3) 0 0}
+.check-count{font-weight:650;font-size:var(--t-sm);color:var(--ink-2);font-variant-numeric:tabular-nums}
 .btn-plain{
-  background:none;border:1px solid var(--rule);color:var(--ink-2);
-  font:inherit;font-weight:700;font-size:var(--t-mini);letter-spacing:.1em;text-transform:uppercase;
-  padding:8px 13px;min-height:44px;cursor:pointer;
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-sm);color:var(--ink-2);
+  font:inherit;font-weight:600;font-size:var(--t-mini);letter-spacing:.03em;text-transform:uppercase;
+  padding:8px 14px;min-height:44px;cursor:pointer;
 }
-.btn-plain:hover{border-color:var(--ink-2);color:var(--ink)}
+.btn-plain:hover{border-color:var(--ink-3);color:var(--ink)}
 
 /* ============================================================
    FOOTER
    ============================================================ */
-.foot{border-top:1px solid var(--rule);margin-top:10px;padding:26px 0 40px}
-.foot-grid{display:grid;gap:22px}
+.foot{border-top:1px solid var(--rule-soft);margin-top:var(--s-6);padding:var(--s-8) 0 var(--s-12)}
+.foot-grid{display:grid;gap:var(--s-6)}
 @media (min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr}}
-.foot p{font-size:var(--t-sm);color:var(--ink-2);margin:0 0 8px;max-width:52ch}
+.foot p{font-size:var(--t-sm);color:var(--ink-2);margin:0 0 var(--s-2);max-width:52ch}
 .foot a.dl{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--panel);border:1px solid var(--rule);
-  padding:11px 14px;text-decoration:none;font-weight:700;font-size:var(--t-sm);
+  background:var(--panel);border-radius:var(--r-sm);box-shadow:var(--sh-1);
+  padding:11px 14px;text-decoration:none;font-weight:650;font-size:var(--t-sm);
 }
-.foot a.dl:hover{border-color:var(--ink-2)}
-.foot a.dl .dl-meta{font-weight:700;font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-.foot a.dl svg{width:20px;height:20px;fill:var(--ink-2)}
-.foot-mode{display:flex;gap:1px;margin-top:14px;width:max-content}
+.foot a.dl:hover{box-shadow:var(--sh-2)}
+.foot a.dl .dl-meta{font-weight:600;font-size:var(--t-micro);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.foot a.dl svg{width:18px;height:18px;fill:var(--ink-3)}
+.foot-mode{display:flex;gap:var(--s-1);margin-top:var(--s-3);width:max-content}
 .foot-mode button{
-  background:var(--panel);border:1px solid var(--rule);color:var(--ink-2);
-  font:inherit;font-weight:700;font-size:var(--t-mini);letter-spacing:.1em;text-transform:uppercase;
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-sm);color:var(--ink-2);
+  font:inherit;font-weight:600;font-size:var(--t-mini);letter-spacing:.03em;text-transform:uppercase;
   padding:9px 15px;min-height:44px;cursor:pointer;
 }
-.foot-mode button[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:var(--sign-black)}
+.foot-mode button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
 
 /* ============================================================
    MOTION — split-flap, the sign's native update
@@ -641,8 +695,8 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   /* html[data-mode] outranks :root, so match it or these never apply */
   html,html[data-mode="night"],html[data-mode="day"]{
     --ground:#fff;--ink:#0B0B0B;--panel:#fff;--panel-2:#fff;
-    --rule:#999;--ink-2:#333;--ink-3:#555;
-    --lit-face:none;--perf:none;
+    --rule:#999999;--ink-2:#333;--ink-3:#555;
+    
   }
   body{padding:0;background:#fff;color:#0B0B0B;font-size:11pt}
   .gantry,.overlay,.board-landing,.foot-mode,.check-bar,.next{display:none!important}
@@ -652,9 +706,17 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   .map svg,.route-svg,.plan svg{max-width:100%;height:auto}
   .route,.map,.plan,.legend{page-break-inside:avoid}
   .area{page-break-inside:avoid}
-  .area-band{background:none!important;color:#0B0B0B!important;border-top:0!important;border-bottom:2px solid #0B0B0B;padding:2px 0 10px!important}
-  .area-band .b-num,.area-band.is-alarm .b-num{color:#0B0B0B!important}
-  .row{border-color:#999}
+  /* the chip is a colour fill, which browsers drop when printing: outline it */
+  .area-band{border-bottom:2px solid #0B0B0B;padding:2px 0 10px!important;margin-bottom:18px!important}
+  .area-band .b-num,.area-band.is-alarm .b-num{
+    background:none!important;color:#0B0B0B!important;
+    border:1.5px solid #0B0B0B;border-radius:6px;
+  }
+  /* depth is a screen device; paper gets hairlines */
+  .row,.check,.notice,.foot a.dl,.board{box-shadow:none!important;border:1px solid #999999}
+  .rows{gap:0}
+  .row + .row{border-top:0}
+  .row::before,.dest::before,.notice::before{display:none}
   .row>summary{padding-left:0}
   .row-body{display:block!important}
   .row-chev{display:none}
@@ -666,6 +728,10 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   .map .m-ln,.map .m-ln-2{stroke:#0B0B0B}
   .map .m-hub{fill:#0B0B0B}
   .map .m-hub-t,.map .m-hub-s{fill:#fff}
+  .map .m-hub-ico{fill:rgba(255,255,255,.18)}
+  .map .m-hub-glyph{fill:#fff}
+  .map .m-ico-bg{fill:#fff;stroke:#999999;stroke-width:1}
+  .map .m-ico{fill:#0B0B0B}
   .plan .p-bn{fill:#fff}
   .route-svg .g-stn.on .stn-ring{fill:#0B0B0B;stroke:#0B0B0B}
   .route-svg .g-stn.on .stn-core{fill:#fff}
@@ -674,7 +740,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
   .lg.on .lg-n,.lg.on p{color:var(--ink-2)!important}
   /* browsers drop backgrounds when printing, which would turn a white-on-red
      safety warning into white on white: re-ink notices as bordered boxes */
-  .notice{border:1px solid #0B0B0B!important;background:none!important}
+  .notice{background:none!important}
   .notice.stop{border-width:3px!important;color:#0B0B0B!important}
   .notice.stop b,.notice.stop kbd{color:#0B0B0B!important;border-color:#0B0B0B!important}
   .notice .n-ico{background:#0B0B0B!important;print-color-adjust:exact}
@@ -765,7 +831,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
         <text class="m-t" x="86" y="346">Calculator</text><text class="m-s" x="86" y="365">Negative și playback</text>
 
         <rect class="m-hub" x="395" y="136" width="210" height="160"/>
-        <rect x="425" y="158" width="46" height="46" fill="#0B0B0B"/><svg x="433" y="166" width="30" height="30" viewBox="0 0 24 24" fill="#FFCC00" aria-hidden="true"><use href="#i-desk"/></svg>
+        <rect class="m-hub-ico" x="425" y="158" width="46" height="46" rx="9"/><svg x="433" y="166" width="30" height="30" viewBox="0 0 24 24" class="m-hub-glyph" aria-hidden="true"><use href="#i-desk"/></svg>
         <text class="m-hub-t" x="425" y="240" font-size="26">Mixer X32</text>
         <text class="m-hub-t m-hub-s" x="425" y="266" font-size="14" opacity=".75">Aici ești tu</text>
 
@@ -803,7 +869,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
 
         <text class="m-lab" x="86" y="258">Mixare</text>
         <rect class="m-hub" x="20" y="268" width="320" height="110"/>
-        <rect x="40" y="288" width="44" height="44" fill="#0B0B0B"/><svg x="47" y="295" width="30" height="30" viewBox="0 0 24 24" fill="#FFCC00" aria-hidden="true"><use href="#i-desk"/></svg>
+        <rect class="m-hub-ico" x="40" y="288" width="44" height="44" rx="9"/><svg x="47" y="295" width="30" height="30" viewBox="0 0 24 24" class="m-hub-glyph" aria-hidden="true"><use href="#i-desk"/></svg>
         <text class="m-hub-t" x="98" y="312" font-size="23">Mixer X32</text>
         <text class="m-hub-t m-hub-s" x="98" y="334" font-size="13" opacity=".75">Aici ești tu</text>
 
@@ -1539,8 +1605,8 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
         <span class="g-v flap" id="gVal">Sistemul</span>
       </span>
     </button>
-    <button class="gantry-all" type="button" data-open-board aria-haspopup="dialog" aria-controls="board-overlay">
-      <svg aria-hidden="true"><use href="#i-board"/></svg>Cuprins
+    <button class="gantry-all" type="button" data-open-board aria-haspopup="dialog" aria-controls="board-overlay" aria-label="Cuprins">
+      <svg aria-hidden="true"><use href="#i-board"/></svg><span class="ga-txt">Cuprins</span>
     </button>
     <a class="gantry-help" href="#a7" aria-label="Ceva nu merge"><svg aria-hidden="true"><use href="#i-warn"/></svg><span class="gh-txt">Ceva nu merge</span></a>
   </div>
@@ -1576,7 +1642,7 @@ html[data-mode="day"] .plan .p-zone{fill:#fff}
     document.documentElement.setAttribute("data-mode", m);
     try { localStorage.setItem("x32.mode", m); } catch(e){}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute("content", m === "night" ? "#1A1917" : "#E6E6E6");
+    if (tc) tc.setAttribute("content", m === "night" ? "#151412" : "#F5F4F1");
     for (var i=0;i<modeBtns.length;i++){
       modeBtns[i].setAttribute("aria-pressed", String(modeBtns[i].getAttribute("data-set-mode") === m));
     }

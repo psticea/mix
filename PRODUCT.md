@@ -38,16 +38,23 @@ Consequences:
 
 ## Constraints
 
-- Romanian, with correct diacritics (ă â î ș ț). Any typeface must render them properly.
+- Romanian, with correct diacritics (ă â î ș ț). Any typeface must render them properly — specifically the **comma-below** forms ș/ț (U+0219/U+021B), not cedilla substitutes. Verify at the glyph level, not by codepoint coverage: the render test is that `ș Ș ț Ț` show a detached floating comma, never a joined hook.
 - Single self-contained `index.html`, deployable to GitHub Pages as-is (`.nojekyll` present).
 - Must work on an old Android phone over church Wi-Fi. No heavy assets, no framework.
 - Accessible: real headings, real buttons, keyboard reachable, WCAG AA contrast.
+- **Zero third-party requests.** Fonts are self-hosted; nothing is fetched from a CDN.
 
 ## Explicitly not wanted
 
 - The look of a generic AI-generated marketing site: gradient blobs, gradient headlines, pill badges, glassmorphism, decorative "tags" that carry no information.
 - Gamification. Progress bars and "mark as learned" badges were tried and judged noise for a reference document.
 - Anything that reads as unprofessional or padded. Content should be trimmed, not expanded.
+- **Loud, poster-like design.** A full-bleed saturated-yellow signage treatment was built and rejected across three rounds. The register wanted is modern, minimal, streamlined, expensive-looking — restraint, not volume. Saturated colour is an accent, never a field.
+
+## Brand commitments
+
+- **Typeface: Mona Sans** (OFL, self-hosted, one variable woff2). Chosen after verifying Romanian comma-below support at the glyph level and comparing against Hanken Grotesk. The impeccable detector flags it under `overused-font`; this is a knowing, recorded exception, not drift. Revisit only if the client wants a less widely-used face.
+- **Accent: `#FFCC00`**, at full chroma in both light and dark, confined to roughly a tenth of the screen.
 
 ## Voice
 
