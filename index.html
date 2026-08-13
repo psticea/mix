@@ -97,6 +97,8 @@
   --t-band:clamp(1.5rem,1.2rem + 1.6vw,2.1rem);
 
   /* diagram lettering, in SVG user units */
+  --t-dia-z:38px;  /* zone marker on the console plan */
+  --t-dia-zl:19px; /* zone label */
   --t-dia-n:18px;  --t-dia-t:15px;  --t-dia-i:13px;  --t-dia-s:11.5px;  --t-dia-k:11px;
 
   --scrim:rgba(0,0,0,.3);
@@ -515,6 +517,62 @@ ul.plain li{margin:0 0 8px}
 .rows.is-alarm .row::before{background:var(--red)}
 
 /* ============================================================
+   DIAGRAMS — a drawing plus a detail panel that updates in place.
+   On a phone the drawing is a picker; the panel is what you read.
+   Nothing ever selects something off-screen.
+   ============================================================ */
+.dia{
+  background:var(--panel);
+  border-radius:var(--r-md);
+  box-shadow:var(--sh-1);
+  padding:var(--s-3);
+  margin:0 0 var(--s-4);
+}
+.dia > svg{width:100%;height:auto}
+.dia-hint{
+  display:flex;align-items:center;gap:var(--s-2);
+  margin:var(--s-3) 0 0;padding:0 var(--s-1);
+  font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.dia-hint svg{width:14px;height:14px;fill:currentColor;flex:0 0 auto}
+
+/* the panel: one entry visible at a time, swapped by tap */
+.dia-detail{margin:var(--s-3) 0 0;border-top:1px solid var(--rule-soft);padding-top:var(--s-3)}
+.dia-panel{display:none}
+.dia-panel.on{display:block}
+.dia-panel h4{
+  margin:0 0 var(--s-1);
+  display:flex;align-items:center;gap:var(--s-2);
+  font-size:var(--t-lg);font-weight:650;letter-spacing:-.015em;line-height:1.25;
+}
+.dia-panel h4 .dp-n{
+  flex:0 0 auto;display:grid;place-items:center;
+  min-width:1.9em;padding:.2em .4em;
+  background:var(--accent);color:var(--on-accent);
+  border-radius:var(--r-xs);
+  font-size:var(--t-micro);font-weight:700;font-variant-numeric:tabular-nums;
+}
+.dia-panel p{margin:0;font-size:var(--t-md);line-height:1.6;color:var(--ink-2);max-width:var(--read)}
+.dia-panel p + p{margin-top:var(--s-2)}
+.dia-panel p b{color:var(--ink)}
+
+/* the number strip: a second way in, and the full list on paper */
+.dia-strip{display:flex;flex-wrap:wrap;gap:var(--s-1);margin:var(--s-3) 0 0;padding:0;list-style:none}
+.dia-strip button{
+  display:inline-flex;align-items:center;gap:6px;
+  min-height:36px;padding:0 10px;
+  background:var(--panel);color:var(--ink-2);
+  border:1px solid var(--rule);border-radius:var(--r-sm);
+  font:inherit;font-weight:600;font-size:var(--t-mini);
+  cursor:pointer;transition:background .12s ease,color .12s ease,border-color .12s ease;
+}
+.dia-strip button .ds-n{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.dia-strip button:hover{border-color:var(--ink-3);color:var(--ink)}
+.dia-strip button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.dia-strip button[aria-pressed="true"] .ds-n{color:var(--ground);opacity:.7}
+
+/* ============================================================
    ROUTE — the channel signal path as a transit line
    ============================================================ */
 .route{margin:0 0 20px}
@@ -522,46 +580,45 @@ ul.plain li{margin:0 0 8px}
 .route-svg .ln{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
 .route-svg .ln-b{fill:none;stroke:var(--ink-3);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .route-svg .stn-hit{fill:transparent;cursor:pointer}
-.route-svg .stn-ring{fill:var(--ground);stroke:var(--ink);stroke-width:3}
-.route-svg .stn-core{fill:var(--ink)}
+.route-svg .stn-ring{fill:var(--panel);stroke:var(--ink-3);stroke-width:2.5}
+.route-svg .stn-core{fill:var(--ink-3)}
 .route-svg .stn-tap{fill:var(--on-accent)}
-.route-svg .stn-lab{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t);letter-spacing:.01em}
-.route-svg .stn-idx{fill:var(--ink-3);font-family:var(--f);font-weight:800;font-size:var(--t-dia-i)}
+.route-svg .stn-lab{fill:var(--ink-2);font-family:var(--f);font-weight:600;font-size:var(--t-dia-t);letter-spacing:.01em}
+.route-svg .stn-idx{fill:var(--ink-3);font-family:var(--f);font-weight:700;font-size:var(--t-dia-i)}
 .route-svg .end-box{fill:var(--accent);rx:8}
-.route-svg .end-txt{fill:var(--on-accent);font-family:var(--f);font-weight:800;font-size:var(--t-dia-t);letter-spacing:.02em}
-.route-svg .term-box{fill:var(--panel);stroke:var(--rule);stroke-width:1;rx:8}
-.route-svg .term-txt{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-i)}
-.route-svg .g-stn{outline:none}
+.route-svg .end-txt{fill:var(--on-accent);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t);letter-spacing:.02em}
+.route-svg .term-box{fill:var(--panel-2);stroke:var(--rule);stroke-width:1;rx:8}
+.route-svg .term-txt{fill:var(--ink-2);font-family:var(--f);font-weight:600;font-size:var(--t-dia-i)}
+.route-svg .g-stn{outline:none;cursor:pointer}
 .route-svg .g-stn:focus-visible .stn-ring{stroke:var(--ink);stroke-width:4}
-.route-svg .g-stn.on .stn-ring{fill:var(--accent);stroke:var(--accent)}
-.route-svg .g-stn.on .stn-core{fill:var(--on-accent)}
-.route-svg .g-stn.on .stn-lab{fill:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.route-svg .g-stn.on .stn-ring{fill:var(--ink);stroke:var(--ink);r:13}
+.route-svg .g-stn.on .stn-core{fill:var(--accent)}
+.route-svg .g-stn.on .stn-lab{fill:var(--ink);font-weight:700}
+.route-svg .g-stn.on .stn-idx{fill:var(--ink)}
 
 
-/* ---------- legend: the route, explained ---------- */
-.legend{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:2px}
-.lg{display:flex;gap:var(--s-3);align-items:flex-start;padding:var(--s-3);border-radius:var(--r-sm);transition:background .15s ease,color .15s ease}
-.lg-n{flex:0 0 auto;min-width:1.4ch;font-weight:700;font-size:var(--t-md);line-height:1.5;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.lg b{display:block;font-weight:700;font-size:var(--t-lg);letter-spacing:-.01em}
-.lg p{margin:3px 0 0;font-size:var(--t-sm);line-height:1.55;color:var(--ink-2)}
-.lg.on{background:var(--accent);color:var(--on-accent);border-radius:var(--r-sm)}
-.lg.on .lg-n{color:rgba(26,25,23,.72)}
-.lg.on p{color:rgba(26,25,23,.82)}
-.lg.on kbd{background:rgba(26,25,23,.10);border-color:rgba(26,25,23,.28);color:var(--on-accent)}
 
-/* ---------- console plan view ---------- */
+/* ---------- console plan: a top-down map you tap ---------- */
 .plan{margin:0 0 10px}
-.plan svg{width:100%;height:auto}
-.plan .p-body{fill:none;stroke:var(--rule);stroke-width:1.5;rx:12}
-.plan .p-zone{fill:var(--panel);stroke:var(--rule);stroke-width:1;rx:9}
-.plan .p-badge{fill:var(--ink);rx:6}
-.plan .p-bn{fill:var(--ground);font-family:var(--f);font-weight:800;font-size:var(--t-dia-n);text-anchor:middle}
-.plan .p-t{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t)}
-.plan .p-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:var(--t-dia-s)}
-.plan .p-ct{fill:var(--ink-3)}
-.plan .p-knob{fill:none;stroke:var(--ink-3);stroke-width:2}
-.plan .p-scr{fill:var(--ink-2);stroke:none;rx:5}
-.plan .p-main{fill:var(--accent);rx:3}
+.plan .p-body{fill:var(--panel-2);stroke:var(--rule);stroke-width:1.5;rx:14}
+.plan .p-zone{fill:var(--panel);stroke:var(--rule);stroke-width:1.25;rx:10;transition:fill .15s ease,stroke .15s ease}
+.plan .p-hit{fill:transparent;cursor:pointer}
+.plan .p-badge{fill:var(--ink-3);rx:6;transition:fill .15s ease}
+.plan .p-bn{fill:var(--panel);font-family:var(--f);font-weight:700;font-size:var(--t-dia-z);text-anchor:middle;font-variant-numeric:tabular-nums}
+.plan .p-ct{fill:var(--rule)}
+.plan .p-knob{fill:none;stroke:var(--rule);stroke-width:2}
+.plan .p-scr{fill:var(--ink-3);stroke:none;rx:4}
+.plan .p-main{fill:var(--ink-3);rx:3}
+.plan .p-lab{fill:var(--ink-2);font-family:var(--f);font-weight:600;font-size:var(--t-dia-zl);letter-spacing:.01em}
+@media (max-width:759px){.plan .p-lab{display:none}}
+/* selected zone: the drawing answers the tap immediately */
+.plan .p-g{outline:none}
+.plan .p-g.on .p-zone{fill:var(--panel-2);stroke:var(--ink);stroke-width:2}
+.plan .p-g.on .p-badge{fill:var(--accent)}
+.plan .p-g.on .p-bn{fill:var(--on-accent)}
+.plan .p-g.on .p-ct,.plan .p-g.on .p-main{fill:var(--ink-3)}
+.plan .p-g.on .p-knob{stroke:var(--ink-3)}
+.plan .p-g:focus-visible .p-zone{stroke:var(--ink);stroke-width:2}
 
 
 /* ---------- body copy inside rows ---------- */
@@ -587,18 +644,20 @@ ul.plain li{margin:0 0 8px}
    ============================================================ */
 .sprite{position:absolute}
 .map{margin:0 0 8px}
-.map svg{width:100%;height:auto}
+.map > svg{width:100%;height:auto}
 .map .m-node{fill:var(--panel);stroke:var(--rule);stroke-width:1;rx:10}
 .map .m-hub{fill:var(--ink);stroke:none;rx:12}
 .map .m-hub-ico{fill:rgba(255,255,255,.10)}
 .map .m-hub-glyph{fill:var(--accent)}
 .map .m-hub-t{fill:var(--ground);font-family:var(--f);font-weight:800;letter-spacing:.01em}
 .map .m-hub-s{font-weight:700;letter-spacing:.06em}
-.map .m-t{fill:var(--ink);font-family:var(--f);font-weight:700;font-size:var(--t-dia-t)}
-.map .m-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:var(--t-dia-s)}
+.map .m-t{fill:var(--ink);font-family:var(--f);font-weight:650;font-size:17px;letter-spacing:-.015em}
+.map .m-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:12px}
 .map .m-ln{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .map .m-ln-2{fill:none;stroke:var(--ink-3);stroke-width:3;stroke-linecap:round}
-.map .m-lab{fill:var(--ink-3);font-family:var(--f);font-weight:600;font-size:var(--t-dia-k);letter-spacing:.05em;text-transform:uppercase}
+.map .m-flow{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round}
+.map .m-arrow{fill:var(--accent)}
+.map .m-lab{fill:var(--ink-3);font-family:var(--f);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .map .m-ico{fill:var(--ink-2)}
 .map .m-ico-bg{fill:var(--panel-2);rx:7}
 .map .m-zone{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:4 5}
@@ -704,7 +763,12 @@ ul.plain li{margin:0 0 8px}
   .only-wide{display:block!important}
   .only-narrow{display:none!important}
   .map svg,.route-svg,.plan svg{max-width:100%;height:auto}
-  .route,.map,.plan,.legend{page-break-inside:avoid}
+  .route,.map,.plan{page-break-inside:avoid}
+  /* on paper every panel prints, since there is nothing to tap */
+  .dia-panel{display:block!important;margin:0 0 10px}
+  .dia-strip,.dia-hint{display:none!important}
+  .dia{box-shadow:none!important;border:1px solid #999999;padding:12px}
+  .dia-panel h4 .dp-n{background:none!important;color:#0B0B0B!important;border:1.5px solid #0B0B0B;border-radius:6px}
   .area{page-break-inside:avoid}
   /* the chip is a colour fill, which browsers drop when printing: outline it */
   .area-band{border-bottom:2px solid #0B0B0B;padding:2px 0 10px!important;margin-bottom:18px!important}
@@ -736,8 +800,7 @@ ul.plain li{margin:0 0 8px}
   .route-svg .g-stn.on .stn-ring{fill:#0B0B0B;stroke:#0B0B0B}
   .route-svg .g-stn.on .stn-core{fill:#fff}
   .route-svg .g-stn.on .stn-lab{fill:#0B0B0B}
-  .lg.on{background:none!important;color:#0B0B0B!important}
-  .lg.on .lg-n,.lg.on p{color:var(--ink-2)!important}
+
   /* browsers drop backgrounds when printing, which would turn a white-on-red
      safety warning into white on white: re-ink notices as bordered boxes */
   .notice{background:none!important}
@@ -848,100 +911,142 @@ ul.plain li{margin:0 0 8px}
         <text class="m-t" x="836" y="346">Transmisia live</text><text class="m-s" x="836" y="365">Mix separat — BUS/USB</text>
       </svg>
 
-      <svg class="only-narrow" viewBox="0 0 360 640" role="img" aria-label="Microfoanele, instrumentele și calculatorul intră în mixerul X32; din mixer pleacă mixul principal spre boxele din sală, trimiteri spre monitoarele de scenă și spre transmisia live.">
-        <path class="m-ln" d="M44 44 V268"/>
-        <path class="m-ln" d="M44 378 V585"/>
-        <path class="m-ln" d="M44 71 H86"/><path class="m-ln" d="M44 143 H86"/><path class="m-ln" d="M44 211 H86"/>
-        <path class="m-ln" d="M44 441 H86"/><path class="m-ln" d="M44 513 H86"/><path class="m-ln" d="M44 585 H86"/>
-
-        <text class="m-lab" x="86" y="24">Intrări</text>
-        <rect class="m-node" x="86" y="40" width="254" height="62"/>
-        <rect class="m-ico-bg" x="98" y="51" width="40" height="40"/><svg x="106" y="59" width="24" height="24" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-mic"/></svg>
-        <text class="m-t" x="150" y="68">Microfoane</text><text class="m-s" x="150" y="86">Predicator, soliști, cor</text>
-
-        <rect class="m-node" x="86" y="112" width="254" height="62"/>
-        <rect class="m-ico-bg" x="98" y="123" width="40" height="40"/><svg x="106" y="131" width="24" height="24" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-instr"/></svg>
-        <text class="m-t" x="150" y="140">Instrumente</text><text class="m-s" x="150" y="158">Tobe, chitară, clape</text>
-
-        <rect class="m-node" x="86" y="180" width="254" height="62"/>
-        <rect class="m-ico-bg" x="98" y="191" width="40" height="40"/><svg x="106" y="199" width="24" height="24" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-pc"/></svg>
-        <text class="m-t" x="150" y="208">Calculator</text><text class="m-s" x="150" y="226">Negative, video, playback</text>
-
-        <text class="m-lab" x="86" y="258">Mixare</text>
-        <rect class="m-hub" x="20" y="268" width="320" height="110"/>
-        <rect class="m-hub-ico" x="40" y="288" width="44" height="44" rx="9"/><svg x="47" y="295" width="30" height="30" viewBox="0 0 24 24" class="m-hub-glyph" aria-hidden="true"><use href="#i-desk"/></svg>
-        <text class="m-hub-t" x="98" y="312" font-size="23">Mixer X32</text>
-        <text class="m-hub-t m-hub-s" x="98" y="334" font-size="13" opacity=".75">Aici ești tu</text>
-
-        <text class="m-lab" x="86" y="400">Ieșiri</text>
-        <rect class="m-node" x="86" y="410" width="254" height="62"/>
-        <rect class="m-ico-bg" x="98" y="421" width="40" height="40"/><svg x="106" y="429" width="24" height="24" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-pa"/></svg>
-        <text class="m-t" x="150" y="438">Boxe sală</text><text class="m-s" x="150" y="456">Ce aude sala — MAIN L/R</text>
-
-        <rect class="m-node" x="86" y="482" width="254" height="62"/>
-        <rect class="m-ico-bg" x="98" y="493" width="40" height="40"/><svg x="106" y="501" width="24" height="24" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-wedge"/></svg>
-        <text class="m-t" x="150" y="510">Monitoare scenă</text><text class="m-s" x="150" y="528">Ce aude scena — BUS</text>
-
-        <rect class="m-node" x="86" y="554" width="254" height="62"/>
-        <rect class="m-ico-bg" x="98" y="565" width="40" height="40"/><svg x="106" y="573" width="24" height="24" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-live"/></svg>
-        <text class="m-t" x="150" y="582">Transmisia live</text><text class="m-s" x="150" y="600">Mix separat — BUS/USB</text>
+      <svg class="only-narrow" viewBox="0 0 360 634" role="img" aria-label="Microfoanele, instrumentele și calculatorul intră în mixerul X32; din mixer pleacă mixul principal spre boxele din sală, trimiteri spre monitoarele de scenă și spre transmisia live.">
+        <text class="m-lab" x="8" y="18">Intrări</text>
+        <rect class="m-node" x="6" y="26" width="348" height="62"/>
+        <rect class="m-ico-bg" x="18" y="40" width="34" height="34"/>
+        <svg x="25" y="47" width="20" height="20" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-mic"/></svg>
+        <text class="m-t" x="64" y="54">Microfoane</text>
+        <text class="m-s" x="64" y="72">Predicator, soliști, cor</text>
+        <rect class="m-node" x="6" y="96" width="348" height="62"/>
+        <rect class="m-ico-bg" x="18" y="110" width="34" height="34"/>
+        <svg x="25" y="117" width="20" height="20" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-instr"/></svg>
+        <text class="m-t" x="64" y="124">Instrumente</text>
+        <text class="m-s" x="64" y="142">Tobe, chitară, clape</text>
+        <rect class="m-node" x="6" y="166" width="348" height="62"/>
+        <rect class="m-ico-bg" x="18" y="180" width="34" height="34"/>
+        <svg x="25" y="187" width="20" height="20" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-pc"/></svg>
+        <text class="m-t" x="64" y="194">Calculator</text>
+        <text class="m-s" x="64" y="212">Negative, video, playback</text>
+        <path class="m-flow" d="M180 238 V260"/>
+        <path class="m-arrow" d="M173 258 L180 268 L187 258 Z"/>
+        <rect class="m-hub" x="6" y="276" width="348" height="84"/>
+        <rect class="m-hub-ico" x="20" y="298" width="40" height="40" rx="9"/>
+        <svg x="28" y="306" width="24" height="24" viewBox="0 0 24 24" class="m-hub-glyph" aria-hidden="true"><use href="#i-desk"/></svg>
+        <text class="m-hub-t" x="72" y="316" font-size="21">Mixer X32</text>
+        <text class="m-hub-t m-hub-s" x="72" y="338" font-size="13" opacity=".8">Aici ești tu</text>
+        <path class="m-flow" d="M180 370 V392"/>
+        <path class="m-arrow" d="M173 390 L180 400 L187 390 Z"/>
+        <text class="m-lab" x="8" y="418">Ieșiri</text>
+        <rect class="m-node" x="6" y="426" width="348" height="62"/>
+        <rect class="m-ico-bg" x="18" y="440" width="34" height="34"/>
+        <svg x="25" y="447" width="20" height="20" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-pa"/></svg>
+        <text class="m-t" x="64" y="454">Boxe sală</text>
+        <text class="m-s" x="64" y="472">Ce aude sala — MAIN L/R</text>
+        <rect class="m-node" x="6" y="496" width="348" height="62"/>
+        <rect class="m-ico-bg" x="18" y="510" width="34" height="34"/>
+        <svg x="25" y="517" width="20" height="20" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-wedge"/></svg>
+        <text class="m-t" x="64" y="524">Monitoare scenă</text>
+        <text class="m-s" x="64" y="542">Ce aude scena — BUS</text>
+        <rect class="m-node" x="6" y="566" width="348" height="62"/>
+        <rect class="m-ico-bg" x="18" y="580" width="34" height="34"/>
+        <svg x="25" y="587" width="20" height="20" viewBox="0 0 24 24" class="m-ico" aria-hidden="true"><use href="#i-live"/></svg>
+        <text class="m-t" x="64" y="594">Transmisia live</text>
+        <text class="m-s" x="64" y="612">Mix separat — BUS / USB</text>
       </svg>
     </div>
 
     <h3>Traseul unui canal</h3>
     <p class="read">Fiecare canal trece prin aceleași etape, în ordinea de mai jos. Când ceva nu sună bine, verifică-le de la început spre sfârșit. <b>Atinge o stație</b> ca să vezi ce se întâmplă acolo.</p>
 
-    <div class="route">
+    <div class="route dia">
       <svg class="route-svg only-wide" viewBox="0 0 1000 215" role="group" aria-label="Traseul semnalului pe un canal">
-        <path class="ln" d="M40 72 H846"/>
+        <path class="ln" d="M70 72 H846"/>
         <path class="ln-b" d="M707 72 V150 H784"/>
-        <rect class="stn-tap" x="702" y="66" width="11" height="12"/>
-        <rect class="term-box" x="784" y="128" width="208" height="46"/>
-        <text class="term-txt" x="798" y="149">Trimiteri BUS 1–16</text>
-        <text class="term-txt" x="798" y="166" font-size="11.5" font-weight="400" opacity=".75">monitoare · efecte · live</text>
+        <rect class="stn-tap" x="702" y="66" width="10" height="12" rx="2"/>
+        <rect class="term-box" x="784" y="128" width="216" height="46"/>
+        <text class="term-txt" x="800" y="149">Trimiteri BUS 1–16</text>
+        <text class="term-txt" x="800" y="166" font-size="11.5" font-weight="400" opacity=".8">monitoare · efecte · live</text>
         <text class="stn-idx" x="694" y="132" text-anchor="end">PRE / POST</text>
-        <rect class="end-box" x="846" y="50" width="146" height="44"/>
-        <text class="end-txt" x="919" y="78" text-anchor="middle">MAIN L/R</text>
-        <g class="g-stn on" data-i="1" tabindex="0" role="button" aria-label="Stația 1, Intrare"><rect class="stn-hit" x="34" y="30" width="72" height="90"/><circle class="stn-ring" cx="70" cy="72" r="12"/><circle class="stn-core" cx="70" cy="72" r="5"/><text class="stn-idx" x="70" y="42" text-anchor="middle">1</text><text class="stn-lab" x="70" y="106" text-anchor="middle">INTRARE</text></g>
-        <g class="g-stn" data-i="2" tabindex="0" role="button" aria-label="Stația 2, Gain"><rect class="stn-hit" x="132" y="30" width="72" height="90"/><circle class="stn-ring" cx="168" cy="72" r="12"/><circle class="stn-core" cx="168" cy="72" r="5"/><text class="stn-idx" x="168" y="42" text-anchor="middle">2</text><text class="stn-lab" x="168" y="106" text-anchor="middle">GAIN</text></g>
-        <g class="g-stn" data-i="3" tabindex="0" role="button" aria-label="Stația 3, Low Cut"><rect class="stn-hit" x="230" y="30" width="72" height="90"/><circle class="stn-ring" cx="266" cy="72" r="12"/><circle class="stn-core" cx="266" cy="72" r="5"/><text class="stn-idx" x="266" y="42" text-anchor="middle">3</text><text class="stn-lab" x="266" y="106" text-anchor="middle">LOW CUT</text></g>
-        <g class="g-stn" data-i="4" tabindex="0" role="button" aria-label="Stația 4, Gate"><rect class="stn-hit" x="328" y="30" width="72" height="90"/><circle class="stn-ring" cx="364" cy="72" r="12"/><circle class="stn-core" cx="364" cy="72" r="5"/><text class="stn-idx" x="364" y="42" text-anchor="middle">4</text><text class="stn-lab" x="364" y="106" text-anchor="middle">GATE</text></g>
-        <g class="g-stn" data-i="5" tabindex="0" role="button" aria-label="Stația 5, EQ"><rect class="stn-hit" x="426" y="30" width="72" height="90"/><circle class="stn-ring" cx="462" cy="72" r="12"/><circle class="stn-core" cx="462" cy="72" r="5"/><text class="stn-idx" x="462" y="42" text-anchor="middle">5</text><text class="stn-lab" x="462" y="106" text-anchor="middle">EQ</text></g>
-        <g class="g-stn" data-i="6" tabindex="0" role="button" aria-label="Stația 6, Compresor"><rect class="stn-hit" x="524" y="30" width="72" height="90"/><circle class="stn-ring" cx="560" cy="72" r="12"/><circle class="stn-core" cx="560" cy="72" r="5"/><text class="stn-idx" x="560" y="42" text-anchor="middle">6</text><text class="stn-lab" x="560" y="106" text-anchor="middle">COMP</text></g>
-        <g class="g-stn" data-i="7" tabindex="0" role="button" aria-label="Stația 7, Fader"><rect class="stn-hit" x="622" y="30" width="72" height="90"/><circle class="stn-ring" cx="658" cy="72" r="12"/><circle class="stn-core" cx="658" cy="72" r="5"/><text class="stn-idx" x="658" y="42" text-anchor="middle">7</text><text class="stn-lab" x="658" y="106" text-anchor="middle">FADER</text></g>
-        <g class="g-stn" data-i="8" tabindex="0" role="button" aria-label="Stația 8, Mute"><rect class="stn-hit" x="720" y="30" width="72" height="90"/><circle class="stn-ring" cx="756" cy="72" r="12"/><circle class="stn-core" cx="756" cy="72" r="5"/><text class="stn-idx" x="756" y="42" text-anchor="middle">8</text><text class="stn-lab" x="756" y="106" text-anchor="middle">MUTE</text></g>
+        <rect class="end-box" x="790" y="50" width="150" height="44"/>
+        <text class="end-txt" x="865" y="78" text-anchor="middle">MAIN L/R</text>
+        <g class="g-stn on" data-i="1" tabindex="0" role="button" aria-label="Stația 1, INTRARE"><rect class="stn-hit" x="34" y="30" width="72" height="92"/><circle class="stn-ring" cx="70" cy="72" r="11"/><circle class="stn-core" cx="70" cy="72" r="4.5"/><text class="stn-idx" x="70" y="44" text-anchor="middle">1</text><text class="stn-lab" x="70" y="108" text-anchor="middle">INTRARE</text></g>
+        <g class="g-stn" data-i="2" tabindex="0" role="button" aria-label="Stația 2, GAIN"><rect class="stn-hit" x="132" y="30" width="72" height="92"/><circle class="stn-ring" cx="168" cy="72" r="11"/><circle class="stn-core" cx="168" cy="72" r="4.5"/><text class="stn-idx" x="168" y="44" text-anchor="middle">2</text><text class="stn-lab" x="168" y="108" text-anchor="middle">GAIN</text></g>
+        <g class="g-stn" data-i="3" tabindex="0" role="button" aria-label="Stația 3, LOW CUT"><rect class="stn-hit" x="230" y="30" width="72" height="92"/><circle class="stn-ring" cx="266" cy="72" r="11"/><circle class="stn-core" cx="266" cy="72" r="4.5"/><text class="stn-idx" x="266" y="44" text-anchor="middle">3</text><text class="stn-lab" x="266" y="108" text-anchor="middle">LOW CUT</text></g>
+        <g class="g-stn" data-i="4" tabindex="0" role="button" aria-label="Stația 4, GATE"><rect class="stn-hit" x="328" y="30" width="72" height="92"/><circle class="stn-ring" cx="364" cy="72" r="11"/><circle class="stn-core" cx="364" cy="72" r="4.5"/><text class="stn-idx" x="364" y="44" text-anchor="middle">4</text><text class="stn-lab" x="364" y="108" text-anchor="middle">GATE</text></g>
+        <g class="g-stn" data-i="5" tabindex="0" role="button" aria-label="Stația 5, EQ"><rect class="stn-hit" x="426" y="30" width="72" height="92"/><circle class="stn-ring" cx="462" cy="72" r="11"/><circle class="stn-core" cx="462" cy="72" r="4.5"/><text class="stn-idx" x="462" y="44" text-anchor="middle">5</text><text class="stn-lab" x="462" y="108" text-anchor="middle">EQ</text></g>
+        <g class="g-stn" data-i="6" tabindex="0" role="button" aria-label="Stația 6, COMP"><rect class="stn-hit" x="524" y="30" width="72" height="92"/><circle class="stn-ring" cx="560" cy="72" r="11"/><circle class="stn-core" cx="560" cy="72" r="4.5"/><text class="stn-idx" x="560" y="44" text-anchor="middle">6</text><text class="stn-lab" x="560" y="108" text-anchor="middle">COMP</text></g>
+        <g class="g-stn" data-i="7" tabindex="0" role="button" aria-label="Stația 7, FADER"><rect class="stn-hit" x="622" y="30" width="72" height="92"/><circle class="stn-ring" cx="658" cy="72" r="11"/><circle class="stn-core" cx="658" cy="72" r="4.5"/><text class="stn-idx" x="658" y="44" text-anchor="middle">7</text><text class="stn-lab" x="658" y="108" text-anchor="middle">FADER</text></g>
+        <g class="g-stn" data-i="8" tabindex="0" role="button" aria-label="Stația 8, MUTE"><rect class="stn-hit" x="720" y="30" width="72" height="92"/><circle class="stn-ring" cx="756" cy="72" r="11"/><circle class="stn-core" cx="756" cy="72" r="4.5"/><text class="stn-idx" x="756" y="44" text-anchor="middle">8</text><text class="stn-lab" x="756" y="108" text-anchor="middle">MUTE</text></g>
       </svg>
 
-      <svg class="route-svg only-narrow" viewBox="0 0 360 790" role="group" aria-label="Traseul semnalului pe un canal">
-        <path class="ln" d="M52 44 V706"/>
-        <path class="ln-b" d="M52 505 H200 V545"/>
-        <rect class="term-box" x="140" y="545" width="206" height="52"/>
-        <text class="term-txt" x="152" y="568">Trimiteri BUS 1–16</text>
-        <text class="term-txt" x="152" y="586" font-size="11.5" font-weight="400" opacity=".75">monitoare · efecte · live</text>
-        <text class="stn-idx" x="62" y="492">PRE / POST</text>
-        <rect class="end-box" x="20" y="706" width="326" height="46"/>
-        <text class="end-txt" x="183" y="734" text-anchor="middle">MAIN L/R</text>
-        <g class="g-stn on" data-i="1" tabindex="0" role="button" aria-label="Stația 1, Intrare"><rect class="stn-hit" x="20" y="45" width="326" height="50"/><circle class="stn-ring" cx="52" cy="70" r="12"/><circle class="stn-core" cx="52" cy="70" r="5"/><text class="stn-lab" x="80" y="76">1 · INTRARE</text></g>
-        <g class="g-stn" data-i="2" tabindex="0" role="button" aria-label="Stația 2, Gain"><rect class="stn-hit" x="20" y="110" width="326" height="50"/><circle class="stn-ring" cx="52" cy="135" r="12"/><circle class="stn-core" cx="52" cy="135" r="5"/><text class="stn-lab" x="80" y="141">2 · GAIN</text></g>
-        <g class="g-stn" data-i="3" tabindex="0" role="button" aria-label="Stația 3, Low Cut"><rect class="stn-hit" x="20" y="175" width="326" height="50"/><circle class="stn-ring" cx="52" cy="200" r="12"/><circle class="stn-core" cx="52" cy="200" r="5"/><text class="stn-lab" x="80" y="206">3 · LOW CUT</text></g>
-        <g class="g-stn" data-i="4" tabindex="0" role="button" aria-label="Stația 4, Gate"><rect class="stn-hit" x="20" y="240" width="326" height="50"/><circle class="stn-ring" cx="52" cy="265" r="12"/><circle class="stn-core" cx="52" cy="265" r="5"/><text class="stn-lab" x="80" y="271">4 · GATE</text></g>
-        <g class="g-stn" data-i="5" tabindex="0" role="button" aria-label="Stația 5, EQ"><rect class="stn-hit" x="20" y="305" width="326" height="50"/><circle class="stn-ring" cx="52" cy="330" r="12"/><circle class="stn-core" cx="52" cy="330" r="5"/><text class="stn-lab" x="80" y="336">5 · EQ</text></g>
-        <g class="g-stn" data-i="6" tabindex="0" role="button" aria-label="Stația 6, Compresor"><rect class="stn-hit" x="20" y="370" width="326" height="50"/><circle class="stn-ring" cx="52" cy="395" r="12"/><circle class="stn-core" cx="52" cy="395" r="5"/><text class="stn-lab" x="80" y="401">6 · COMP</text></g>
-        <g class="g-stn" data-i="7" tabindex="0" role="button" aria-label="Stația 7, Fader"><rect class="stn-hit" x="20" y="435" width="326" height="50"/><circle class="stn-ring" cx="52" cy="460" r="12"/><circle class="stn-core" cx="52" cy="460" r="5"/><text class="stn-lab" x="80" y="466">7 · FADER</text></g>
-        <g class="g-stn" data-i="8" tabindex="0" role="button" aria-label="Stația 8, Mute"><rect class="stn-hit" x="20" y="605" width="326" height="50"/><circle class="stn-ring" cx="52" cy="630" r="12"/><circle class="stn-core" cx="52" cy="630" r="5"/><text class="stn-lab" x="80" y="636">8 · MUTE</text></g>
+      <svg class="route-svg only-narrow" viewBox="0 0 360 612" role="group" aria-label="Traseul semnalului pe un canal">
+        <path class="ln" d="M40 40 V546"/>
+        <path class="ln-b" d="M40 422 H150 V438"/>
+        <rect class="stn-tap" x="35" y="417" width="10" height="10" rx="2"/>
+        <text class="stn-idx" x="58" y="444">PRE / POST</text>
+        <rect class="term-box" x="150" y="438" width="202" height="50"/>
+        <text class="term-txt" x="164" y="460">Trimiteri BUS 1–16</text>
+        <text class="term-txt" x="164" y="477" font-size="11" font-weight="400" opacity=".8">monitoare · efecte · live</text>
+        <rect class="end-box" x="8" y="546" width="344" height="46"/>
+        <text class="end-txt" x="180" y="575" text-anchor="middle">MAIN L/R</text>
+        <g class="g-stn on" data-i="1" tabindex="0" role="button" aria-label="Stația 1, INTRARE"><rect class="stn-hit" x="8" y="15" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="40" r="12"/><circle class="stn-core" cx="40" cy="40" r="5"/><text class="stn-lab" x="72" y="45">1 · INTRARE</text></g>
+        <g class="g-stn" data-i="2" tabindex="0" role="button" aria-label="Stația 2, GAIN"><rect class="stn-hit" x="8" y="73" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="98" r="12"/><circle class="stn-core" cx="40" cy="98" r="5"/><text class="stn-lab" x="72" y="103">2 · GAIN</text></g>
+        <g class="g-stn" data-i="3" tabindex="0" role="button" aria-label="Stația 3, LOW CUT"><rect class="stn-hit" x="8" y="131" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="156" r="12"/><circle class="stn-core" cx="40" cy="156" r="5"/><text class="stn-lab" x="72" y="161">3 · LOW CUT</text></g>
+        <g class="g-stn" data-i="4" tabindex="0" role="button" aria-label="Stația 4, GATE"><rect class="stn-hit" x="8" y="189" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="214" r="12"/><circle class="stn-core" cx="40" cy="214" r="5"/><text class="stn-lab" x="72" y="219">4 · GATE</text></g>
+        <g class="g-stn" data-i="5" tabindex="0" role="button" aria-label="Stația 5, EQ"><rect class="stn-hit" x="8" y="247" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="272" r="12"/><circle class="stn-core" cx="40" cy="272" r="5"/><text class="stn-lab" x="72" y="277">5 · EQ</text></g>
+        <g class="g-stn" data-i="6" tabindex="0" role="button" aria-label="Stația 6, COMP"><rect class="stn-hit" x="8" y="305" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="330" r="12"/><circle class="stn-core" cx="40" cy="330" r="5"/><text class="stn-lab" x="72" y="335">6 · COMP</text></g>
+        <g class="g-stn" data-i="7" tabindex="0" role="button" aria-label="Stația 7, FADER"><rect class="stn-hit" x="8" y="363" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="388" r="12"/><circle class="stn-core" cx="40" cy="388" r="5"/><text class="stn-lab" x="72" y="393">7 · FADER</text></g>
+        <g class="g-stn" data-i="8" tabindex="0" role="button" aria-label="Stația 8, MUTE"><rect class="stn-hit" x="8" y="491" width="344" height="50" rx="8"/><circle class="stn-ring" cx="40" cy="516" r="12"/><circle class="stn-core" cx="40" cy="516" r="5"/><text class="stn-lab" x="72" y="521">8 · MUTE</text></g>
       </svg>
+      <p class="dia-hint"><svg aria-hidden="true"><use href="#i-right"/></svg>Atinge o stație din traseu</p>
+
+      <div class="dia-detail" id="routeDetail">
+      <div class="dia-panel on" data-i="1">
+        <h4><span class="dp-n">1</span>Intrare</h4>
+        <p>Mufa XLR din spatele mixerului sau din cutia de scenă. <b>Dacă aici nu ajunge semnal, nimic din ce urmează nu contează.</b> Verifică întâi cablul și mufa.</p>
+      </div>
+      <div class="dia-panel" data-i="2">
+        <h4><span class="dp-n">2</span>Gain (preamplificator)</h4>
+        <p>Cât de tare intră semnalul în mixer. Se reglează <b>o singură dată, la probă</b>, nu în timpul programului. Tot din această zonă pornești <kbd>48 V</kbd> pentru microfoanele cu condensator.</p>
+      </div>
+      <div class="dia-panel" data-i="3">
+        <h4><span class="dp-n">3</span>Low cut</h4>
+        <p>Taie frecvențele joase inutile: vuiet, vibrații din podea, zgomot de manipulare. Aproape mereu pornit pe voce.</p>
+      </div>
+      <div class="dia-panel" data-i="4">
+        <h4><span class="dp-n">4</span>Gate</h4>
+        <p>Închide canalul când nu se cântă sau nu se vorbește, ca microfonul să nu adune zgomot din sală. Util pe tobe. Pe vocea de predicare, mai bine oprit.</p>
+      </div>
+      <div class="dia-panel" data-i="5">
+        <h4><span class="dp-n">5</span>EQ (egalizator)</h4>
+        <p>Patru benzi pe canalele de intrare. Corectezi <b>tonul</b>, nu volumul: mai puțin gros, mai puțin ascuțit, mai clar.</p>
+      </div>
+      <div class="dia-panel" data-i="6">
+        <h4><span class="dp-n">6</span>Compresor</h4>
+        <p>Aplatizează vârfurile de volum, ca vocea să rămână constantă și când se șoptește, și când se strigă.</p>
+      </div>
+      <div class="dia-panel" data-i="7">
+        <h4><span class="dp-n">7</span>Fader</h4>
+        <p>Volumul canalului în mixul principal. <b>Acesta este reglajul pe care îl folosești tot programul.</b></p>
+      </div>
+      <div class="dia-panel" data-i="8">
+        <h4><span class="dp-n">8</span>Mute</h4>
+        <p>Întrerupătorul canalului. Oprește ce pleacă spre sală și spre trimiterile luate după fader. O trimitere setată <kbd>PRE</kbd> pleacă dinaintea faderului, deci poate rămâne activă în monitor.</p>
+      </div>
+      </div>
+
+      <ul class="dia-strip" id="routeStrip" aria-label="Alege o etapă">
+        <li><button type="button" data-i="1" aria-pressed="true"><span class="ds-n">1</span>Intrare</button></li>
+        <li><button type="button" data-i="2" aria-pressed="false"><span class="ds-n">2</span>Gain</button></li>
+        <li><button type="button" data-i="3" aria-pressed="false"><span class="ds-n">3</span>Low cut</button></li>
+        <li><button type="button" data-i="4" aria-pressed="false"><span class="ds-n">4</span>Gate</button></li>
+        <li><button type="button" data-i="5" aria-pressed="false"><span class="ds-n">5</span>Eq</button></li>
+        <li><button type="button" data-i="6" aria-pressed="false"><span class="ds-n">6</span>Comp</button></li>
+        <li><button type="button" data-i="7" aria-pressed="false"><span class="ds-n">7</span>Fader</button></li>
+        <li><button type="button" data-i="8" aria-pressed="false"><span class="ds-n">8</span>Mute</button></li>
+      </ul>
     </div>
-
-    <ol class="legend read" id="legend">
-      <li class="lg on" data-i="1"><span class="lg-n">1</span><div><b>Intrare</b><p>Mufa XLR din spatele mixerului sau din cutia de scenă. Dacă aici nu ajunge semnal, nimic din ce urmează nu contează.</p></div></li>
-      <li class="lg" data-i="2"><span class="lg-n">2</span><div><b>Gain (preamplificator)</b><p>Cât de tare intră semnalul în mixer. Se reglează o singură dată, la probă. Tot din această zonă pornești <kbd>48 V</kbd> pentru microfoanele cu condensator.</p></div></li>
-      <li class="lg" data-i="3"><span class="lg-n">3</span><div><b>Low cut</b><p>Taie frecvențele joase inutile: vuiet, vibrații din podea, zgomot de manipulare. Aproape mereu pornit pe voce.</p></div></li>
-      <li class="lg" data-i="4"><span class="lg-n">4</span><div><b>Gate</b><p>Închide canalul când nu se cântă sau nu se vorbește, ca microfonul să nu adune zgomot. Util pe tobe. Pe vocea de predicare, mai bine oprit.</p></div></li>
-      <li class="lg" data-i="5"><span class="lg-n">5</span><div><b>EQ</b><p>Egalizator cu 4 benzi pe canalele de intrare. Corectezi tonul: mai puțin gros, mai puțin ascuțit, mai clar.</p></div></li>
-      <li class="lg" data-i="6"><span class="lg-n">6</span><div><b>Compresor</b><p>Aplatizează vârfurile de volum, ca vocea să rămână constantă și când se șoptește, și când se strigă.</p></div></li>
-      <li class="lg" data-i="7"><span class="lg-n">7</span><div><b>Fader</b><p>Volumul canalului în mixul principal. Acesta este reglajul pe care îl folosești tot programul.</p></div></li>
-      <li class="lg" data-i="8"><span class="lg-n">8</span><div><b>Mute</b><p>Întrerupătorul canalului, aflat la ieșirea lui. Pe X32, <kbd>MUTE</kbd> este <b>după</b> fader: oprește tot ce pleacă din canal.</p></div></li>
-    </ol>
 
     <div class="notice info read">
       <span class="n-ico"><svg aria-hidden="true"><use href="#i-info"/></svg></span>
@@ -961,71 +1066,87 @@ ul.plain li{margin:0 0 8px}
     <div class="area-band"><span class="b-num">02</span><h2 id="h2t">Consola</h2></div>
     <p class="lead read">Masa pare complicată pentru că are multe butoane. De fapt are doar cinci zone, iar fiecare face un singur lucru. Găsește zona, apoi butonul.</p>
 
-    <div class="plan">
-      <svg class="only-wide" viewBox="0 0 1000 420" role="img" aria-label="Plan de sus al mesei X32, cu cele cinci zone: reglajele canalului stânga sus, cele 16 fadere de intrare pe stânga, ecranul și monitorizarea în centru, scenele și grupurile dreapta sus, faderele de grup și masterul pe dreapta.">
-        <rect class="p-body" x="20" y="40" width="960" height="340"/>
+    <div class="plan dia">
+      <svg viewBox="0 0 1000 400" role="group" class="plan-svg"
+           aria-label="Plan de sus al mesei X32, cu cele cinci zone. Atinge o zonă ca să vezi ce face.">
+        <rect class="p-body" x="8" y="20" width="984" height="368"/>
 
-        <rect class="p-zone" x="40" y="60" width="400" height="120"/>
-        <rect class="p-badge" x="54" y="74" width="30" height="30"/><text class="p-bn" x="69" y="96">1</text>
-        <text class="p-t" x="94" y="88">Reglajele canalului</text><text class="p-s" x="94" y="106">Gain · filtre · dinamică · EQ · trimiteri</text>
-        <circle class="p-knob" cx="62" cy="152" r="8"/><circle class="p-knob" cx="92" cy="152" r="8"/><circle class="p-knob" cx="122" cy="152" r="8"/><circle class="p-knob" cx="152" cy="152" r="8"/><circle class="p-knob" cx="182" cy="152" r="8"/><circle class="p-knob" cx="212" cy="152" r="8"/><circle class="p-knob" cx="242" cy="152" r="8"/><circle class="p-knob" cx="272" cy="152" r="8"/><circle class="p-knob" cx="302" cy="152" r="8"/><circle class="p-knob" cx="332" cy="152" r="8"/><circle class="p-knob" cx="362" cy="152" r="8"/><circle class="p-knob" cx="392" cy="152" r="8"/>
+        <g class="p-g on" data-z="1" tabindex="0" role="button" aria-label="Zona 1, reglajele canalului selectat">
+          <rect class="p-zone" x="22" y="34" width="330" height="172"/>
+          <circle class="p-knob" cx="120" cy="128" r="9"/><circle class="p-knob" cx="154" cy="128" r="9"/><circle class="p-knob" cx="188" cy="128" r="9"/><circle class="p-knob" cx="222" cy="128" r="9"/><circle class="p-knob" cx="256" cy="128" r="9"/><circle class="p-knob" cx="290" cy="128" r="9"/><circle class="p-knob" cx="120" cy="164" r="9"/><circle class="p-knob" cx="154" cy="164" r="9"/><circle class="p-knob" cx="188" cy="164" r="9"/><circle class="p-knob" cx="222" cy="164" r="9"/><circle class="p-knob" cx="256" cy="164" r="9"/><circle class="p-knob" cx="290" cy="164" r="9"/><rect class="p-ct" x="111" y="182" width="18" height="10" rx="2.5"/><rect class="p-ct" x="145" y="182" width="18" height="10" rx="2.5"/><rect class="p-ct" x="179" y="182" width="18" height="10" rx="2.5"/><rect class="p-ct" x="213" y="182" width="18" height="10" rx="2.5"/><rect class="p-ct" x="247" y="182" width="18" height="10" rx="2.5"/><rect class="p-ct" x="281" y="182" width="18" height="10" rx="2.5"/>
+          <rect class="p-badge" x="36" y="48" width="58" height="58"/><text class="p-bn" x="65" y="92">1</text>
+          <text class="p-lab" x="108" y="84">Reglaje canal</text>
+          <rect class="p-hit" x="22" y="34" width="330" height="172"/>
+        </g>
 
-        <rect class="p-zone" x="40" y="196" width="400" height="164"/>
-        <rect class="p-badge" x="54" y="210" width="30" height="30"/><text class="p-bn" x="69" y="232">2</text>
-        <text class="p-t" x="94" y="224">Canale de intrare</text><text class="p-s" x="94" y="242">16 fadere · straturi de canale</text>
-        <g class="p-ct"><rect x="56" y="268" width="9" height="76"/><rect x="79" y="268" width="9" height="76"/><rect x="102" y="268" width="9" height="76"/><rect x="125" y="268" width="9" height="76"/><rect x="148" y="268" width="9" height="76"/><rect x="171" y="268" width="9" height="76"/><rect x="194" y="268" width="9" height="76"/><rect x="217" y="268" width="9" height="76"/><rect x="240" y="268" width="9" height="76"/><rect x="263" y="268" width="9" height="76"/><rect x="286" y="268" width="9" height="76"/><rect x="309" y="268" width="9" height="76"/><rect x="332" y="268" width="9" height="76"/><rect x="355" y="268" width="9" height="76"/><rect x="378" y="268" width="9" height="76"/><rect x="401" y="268" width="9" height="76"/></g>
+        <g class="p-g" data-z="2" tabindex="0" role="button" aria-label="Zona 2, cele 16 fadere de intrare">
+          <rect class="p-zone" x="22" y="220" width="392" height="156"/>
+          <rect class="p-ct" x="112" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="130" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="148" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="166" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="184" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="202" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="220" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="238" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="256" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="274" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="292" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="310" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="328" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="346" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="364" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="382" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="40" y="288" width="22" height="13" rx="2.5"/><rect class="p-ct" x="40" y="307" width="22" height="13" rx="2.5"/><rect class="p-ct" x="40" y="326" width="22" height="13" rx="2.5"/><rect class="p-ct" x="40" y="345" width="22" height="13" rx="2.5"/>
+          <rect class="p-badge" x="36" y="234" width="58" height="58"/><text class="p-bn" x="65" y="278">2</text>
+          <text class="p-lab" x="108" y="270">16 fadere</text>
+          <rect class="p-hit" x="22" y="220" width="392" height="156"/>
+        </g>
 
-        <rect class="p-zone" x="456" y="60" width="290" height="300"/>
-        <rect class="p-badge" x="470" y="74" width="30" height="30"/><text class="p-bn" x="485" y="96">3</text>
-        <text class="p-t" x="510" y="88">Ecran și monitorizare</text><text class="p-s" x="510" y="106">Meniuri · ascultare · talkback</text>
-        <rect class="p-scr" x="476" y="126" width="210" height="126"/>
-        <circle class="p-knob" cx="496" cy="282" r="11"/><circle class="p-knob" cx="534" cy="282" r="11"/><circle class="p-knob" cx="572" cy="282" r="11"/><circle class="p-knob" cx="610" cy="282" r="11"/><circle class="p-knob" cx="648" cy="282" r="11"/><circle class="p-knob" cx="686" cy="282" r="11"/>
-        <g class="p-ct"><rect x="700" y="126" width="32" height="18"/><rect x="700" y="154" width="32" height="18"/><rect x="700" y="182" width="32" height="18"/><rect x="700" y="210" width="32" height="18"/><rect x="700" y="238" width="32" height="18"/><rect x="700" y="266" width="32" height="18"/><rect x="700" y="294" width="32" height="18"/><rect x="700" y="322" width="32" height="18"/></g>
+        <g class="p-g" data-z="3" tabindex="0" role="button" aria-label="Zona 3, ecranul și monitorizarea">
+          <rect class="p-zone" x="430" y="34" width="232" height="240"/>
+          <rect class="p-scr" x="450" y="118" width="164" height="94"/>
+          <circle class="p-knob" cx="456" cy="232" r="10"/><circle class="p-knob" cx="487" cy="232" r="10"/><circle class="p-knob" cx="518" cy="232" r="10"/><circle class="p-knob" cx="549" cy="232" r="10"/><circle class="p-knob" cx="580" cy="232" r="10"/><circle class="p-knob" cx="611" cy="232" r="10"/><rect class="p-ct" x="634" y="118" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="135" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="152" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="169" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="186" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="203" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="220" width="18" height="12" rx="2.5"/><rect class="p-ct" x="634" y="237" width="18" height="12" rx="2.5"/>
+          <rect class="p-badge" x="444" y="48" width="58" height="58"/><text class="p-bn" x="473" y="92">3</text>
+          <text class="p-lab" x="516" y="84">Ecran</text>
+          <rect class="p-hit" x="430" y="34" width="232" height="240"/>
+        </g>
 
-        <rect class="p-zone" x="762" y="60" width="218" height="120"/>
-        <rect class="p-badge" x="776" y="74" width="30" height="30"/><text class="p-bn" x="791" y="96">4</text>
-        <text class="p-t" x="816" y="88">Scene și grupuri</text><text class="p-s" x="816" y="106">Scene · custom · mute</text>
-        <g class="p-ct"><rect x="776" y="130" width="12" height="12"/><rect x="796" y="130" width="12" height="12"/><rect x="816" y="130" width="12" height="12"/><rect x="836" y="130" width="12" height="12"/><rect x="856" y="130" width="12" height="12"/><rect x="876" y="130" width="12" height="12"/><rect x="896" y="130" width="12" height="12"/><rect x="916" y="130" width="12" height="12"/><rect x="776" y="152" width="12" height="12"/><rect x="796" y="152" width="12" height="12"/><rect x="816" y="152" width="12" height="12"/><rect x="836" y="152" width="12" height="12"/><rect x="856" y="152" width="12" height="12"/><rect x="876" y="152" width="12" height="12"/></g>
+        <g class="p-g" data-z="4" tabindex="0" role="button" aria-label="Zona 4, scene și butoane personalizate">
+          <rect class="p-zone" x="678" y="34" width="300" height="140"/>
+          <circle class="p-knob" cx="716" cy="128" r="9"/><circle class="p-knob" cx="750" cy="128" r="9"/><circle class="p-knob" cx="784" cy="128" r="9"/><circle class="p-knob" cx="818" cy="128" r="9"/><rect class="p-ct" x="707" y="152" width="18" height="12" rx="2.5"/><rect class="p-ct" x="741" y="152" width="18" height="12" rx="2.5"/><rect class="p-ct" x="775" y="152" width="18" height="12" rx="2.5"/><rect class="p-ct" x="809" y="152" width="18" height="12" rx="2.5"/><rect class="p-ct" x="707" y="169" width="18" height="12" rx="2.5"/><rect class="p-ct" x="741" y="169" width="18" height="12" rx="2.5"/><rect class="p-ct" x="775" y="169" width="18" height="12" rx="2.5"/><rect class="p-ct" x="809" y="169" width="18" height="12" rx="2.5"/><rect class="p-ct" x="878" y="128" width="26" height="14" rx="2.5"/><rect class="p-ct" x="910" y="128" width="26" height="14" rx="2.5"/><rect class="p-ct" x="942" y="128" width="26" height="14" rx="2.5"/><rect class="p-ct" x="878" y="152" width="26" height="14" rx="2.5"/><rect class="p-ct" x="910" y="152" width="26" height="14" rx="2.5"/><rect class="p-ct" x="942" y="152" width="26" height="14" rx="2.5"/>
+          <rect class="p-badge" x="692" y="48" width="58" height="58"/><text class="p-bn" x="721" y="92">4</text>
+          <text class="p-lab" x="764" y="84">Scene · Assign</text>
+          <rect class="p-hit" x="678" y="34" width="300" height="140"/>
+        </g>
 
-        <rect class="p-zone" x="762" y="196" width="218" height="164"/>
-        <rect class="p-badge" x="776" y="210" width="30" height="30"/><text class="p-bn" x="791" y="232">5</text>
-        <text class="p-t" x="816" y="224">Grupuri și master</text><text class="p-s" x="816" y="242">8 fadere + Main L/R</text>
-        <g class="p-ct"><rect x="776" y="268" width="9" height="76"/><rect x="793" y="268" width="9" height="76"/><rect x="810" y="268" width="9" height="76"/><rect x="827" y="268" width="9" height="76"/><rect x="844" y="268" width="9" height="76"/><rect x="861" y="268" width="9" height="76"/><rect x="878" y="268" width="9" height="76"/><rect x="895" y="268" width="9" height="76"/><rect x="914" y="290" width="18" height="11"/></g>
-        <rect class="p-main" x="940" y="263" width="13" height="86"/>
+        <g class="p-g" data-z="5" tabindex="0" role="button" aria-label="Zona 5, grupuri, master și grupuri de mute">
+          <rect class="p-zone" x="678" y="220" width="300" height="156"/>
+          <rect class="p-ct" x="716" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="734" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="752" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="770" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="788" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="806" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="824" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="842" y="288" width="6" height="74" rx="3"/><rect class="p-ct" x="902" y="288" width="20" height="13" rx="2.5"/><rect class="p-ct" x="927" y="288" width="20" height="13" rx="2.5"/><rect class="p-ct" x="952" y="288" width="20" height="13" rx="2.5"/><rect class="p-ct" x="902" y="307" width="20" height="13" rx="2.5"/><rect class="p-ct" x="927" y="307" width="20" height="13" rx="2.5"/><rect class="p-ct" x="952" y="307" width="20" height="13" rx="2.5"/>
+          <rect class="p-main" x="872" y="282" width="11" height="86"/>
+          <rect class="p-badge" x="692" y="234" width="58" height="58"/><text class="p-bn" x="721" y="278">5</text>
+          <text class="p-lab" x="764" y="270">Grupuri · Main</text>
+          <rect class="p-hit" x="678" y="220" width="300" height="156"/>
+        </g>
+
+        <rect class="p-ct" x="430" y="300" width="232" height="14" rx="4"/>
+        <text class="p-lab" x="546" y="338" text-anchor="middle" font-size="16">Sends on Faders</text>
       </svg>
+      <p class="dia-hint"><svg aria-hidden="true"><use href="#i-right"/></svg>Atinge o zonă din desen</p>
+      <div class="dia-detail" id="planDetail">
+      <div class="dia-panel on" data-z="1">
+        <h4><span class="dp-n">1</span>Reglajele canalului</h4>
+        <p>Stânga sus. Tot ce vezi aici se aplică <b>unui singur canal</b> — cel pe care ai apăsat <kbd>SELECT</kbd>. De sus în jos: preamplificare (<kbd>GAIN</kbd>, <kbd>48 V</kbd>, <kbd>LOW CUT</kbd>), apoi <kbd>GATE</kbd> și compresorul, apoi egalizatorul, apoi trimiterile spre busuri.</p>
+      </div>
+      <div class="dia-panel" data-z="2">
+        <h4><span class="dp-n">2</span>Cele 16 fadere de intrare</h4>
+        <p>Stânga jos. Sunt <b>16 fadere fizice</b>, dar consola are 32 de canale: butoanele de strat din marginea stângă schimbă ce controlează faderele — canalele 1–16, 17–32, intrările auxiliare cu USB și efectele, sau masterele de bus.</p>
+      </div>
+      <div class="dia-panel" data-z="3">
+        <h4><span class="dp-n">3</span>Ecranul</h4>
+        <p>Centru. Ecranul arată detaliile canalului selectat. Cele <b>6 butoane rotative de sub el</b> modifică exact ce scrie deasupra lor, iar cele <b>8 butoane din dreapta ecranului</b> sar direct la o categorie: acasă, măsurare, rutare, setări, biblioteci, efecte, grupuri de mute, monitorizare.</p>
+      </div>
+      <div class="dia-panel" data-z="4">
+        <h4><span class="dp-n">4</span>Scene și butoane personalizate</h4>
+        <p>Dreapta sus. De aici încarci scena salvată a bisericii. Tot aici sunt cele trei bănci de controale personalizabile (<kbd>A</kbd>, <kbd>B</kbd>, <kbd>C</kbd>), fiecare cu 4 butoane rotative și 8 butoane simple.</p>
+      </div>
+      <div class="dia-panel" data-z="5">
+        <h4><span class="dp-n">5</span>Grupuri, master și mute</h4>
+        <p>Dreapta jos. Opt fadere care controlează grupuri DCA sau busuri, în funcție de stratul ales. <b>Faderul principal Main L/R este separat</b> și rămâne mereu la locul lui. Lângă el sunt cele 6 butoane de grup de mute.</p>
+      </div>
+      </div>
 
-      <svg class="only-narrow" viewBox="0 0 360 430" role="img" aria-label="Plan de sus al mesei X32, cu cele cinci zone numerotate: 1 reglajele canalului stânga sus, 2 cele 16 fadere de intrare pe stânga, 3 ecranul în centru, 4 scenele dreapta sus, 5 faderele de grup și masterul dreapta jos.">
-        <rect class="p-body" x="4" y="4" width="352" height="422"/>
-
-        <rect class="p-zone" x="14" y="14" width="148" height="96"/>
-        <rect class="p-badge" x="22" y="22" width="30" height="30"/><text class="p-bn" x="37" y="44">1</text>
-        <text class="p-t" x="60" y="43" font-size="13">Reglaje canal</text>
-        <circle class="p-knob" cx="34" cy="84" r="7"/><circle class="p-knob" cx="60" cy="84" r="7"/><circle class="p-knob" cx="86" cy="84" r="7"/><circle class="p-knob" cx="112" cy="84" r="7"/><circle class="p-knob" cx="138" cy="84" r="7"/>
-
-        <rect class="p-zone" x="14" y="122" width="148" height="294"/>
-        <rect class="p-badge" x="22" y="130" width="30" height="30"/><text class="p-bn" x="37" y="152">2</text>
-        <text class="p-t" x="60" y="151" font-size="13">Canale 1–16</text>
-        <g class="p-ct"><rect x="26" y="196" width="5" height="204"/><rect x="43" y="196" width="5" height="204"/><rect x="60" y="196" width="5" height="204"/><rect x="77" y="196" width="5" height="204"/><rect x="94" y="196" width="5" height="204"/><rect x="111" y="196" width="5" height="204"/><rect x="128" y="196" width="5" height="204"/><rect x="145" y="196" width="5" height="204"/></g>
-
-        <rect class="p-zone" x="172" y="14" width="94" height="402"/>
-        <rect class="p-badge" x="180" y="22" width="30" height="30"/><text class="p-bn" x="195" y="44">3</text>
-        <text class="p-t" x="180" y="76" font-size="13">Ecran</text>
-        <rect class="p-scr" x="180" y="88" width="78" height="56"/>
-        <circle class="p-knob" cx="190" cy="168" r="6"/><circle class="p-knob" cx="212" cy="168" r="6"/><circle class="p-knob" cx="234" cy="168" r="6"/><circle class="p-knob" cx="256" cy="168" r="6"/>
-        <g class="p-ct"><rect x="182" y="200" width="30" height="14"/><rect x="182" y="222" width="30" height="14"/><rect x="182" y="244" width="30" height="14"/><rect x="182" y="266" width="30" height="14"/><rect x="226" y="200" width="30" height="14"/><rect x="226" y="222" width="30" height="14"/><rect x="226" y="244" width="30" height="14"/><rect x="226" y="266" width="30" height="14"/></g>
-
-        <rect class="p-zone" x="276" y="14" width="70" height="96"/>
-        <rect class="p-badge" x="284" y="22" width="30" height="30"/><text class="p-bn" x="299" y="44">4</text>
-        <text class="p-t" x="284" y="76" font-size="13">Scene</text>
-        <g class="p-ct"><rect x="284" y="86" width="11" height="11"/><rect x="300" y="86" width="11" height="11"/><rect x="316" y="86" width="11" height="11"/><rect x="332" y="86" width="11" height="11"/></g>
-
-        <rect class="p-zone" x="276" y="122" width="70" height="294"/>
-        <rect class="p-badge" x="284" y="130" width="30" height="30"/><text class="p-bn" x="299" y="152">5</text>
-        <text class="p-t" x="284" y="180" font-size="13">Grupuri</text>
-        <text class="p-t" x="284" y="196" font-size="13">+ Main</text>
-        <g class="p-ct"><rect x="286" y="230" width="5" height="170"/><rect x="298" y="230" width="5" height="170"/><rect x="310" y="230" width="5" height="170"/><rect x="322" y="230" width="5" height="170"/></g>
-        <rect class="p-main" x="336" y="222" width="8" height="186"/>
-      </svg>
+      <ul class="dia-strip" id="planStrip" aria-label="Alege o zonă">
+      <li><button type="button" data-z="1" aria-pressed="true"><span class="ds-n">1</span>Reglaje canal</button></li>
+      <li><button type="button" data-z="2" aria-pressed="false"><span class="ds-n">2</span>Fadere</button></li>
+      <li><button type="button" data-z="3" aria-pressed="false"><span class="ds-n">3</span>Ecran</button></li>
+      <li><button type="button" data-z="4" aria-pressed="false"><span class="ds-n">4</span>Scene</button></li>
+        <li><button type="button" data-z="5" aria-pressed="false"><span class="ds-n">5</span>Grupuri</button></li>
+      </ul>
     </div>
 
     <div class="rows">
@@ -1716,31 +1837,41 @@ ul.plain li{margin:0 0 8px}
   }, {passive:true});
   syncBand();
 
-  /* ---- route map: pick a station, light up its legend row --------------- */
-  var stations = document.querySelectorAll(".g-stn");
-  var legend = document.querySelectorAll("#legend .lg");
-  function pick(idx){
-    for (var k=0;k<stations.length;k++){
-      stations[k].classList.toggle("on", stations[k].getAttribute("data-i") === idx);
+  /* ---- diagrams: pick a part, the panel under the drawing answers ---------
+     The explanation is deliberately placed directly beneath the drawing so a
+     tap never selects something off-screen on a phone. */
+  function wireDiagram(nodeSel, attr, detailId, stripId){
+    var nodes = document.querySelectorAll(nodeSel);
+    var detail = document.getElementById(detailId);
+    var strip = document.getElementById(stripId);
+    if (!nodes.length || !detail) return;
+    var panels = detail.querySelectorAll(".dia-panel");
+    var chips = strip ? strip.querySelectorAll("button") : [];
+
+    function pick(idx){
+      var i;
+      for (i=0;i<nodes.length;i++) nodes[i].classList.toggle("on", nodes[i].getAttribute(attr) === idx);
+      for (i=0;i<panels.length;i++) panels[i].classList.toggle("on", panels[i].getAttribute(attr) === idx);
+      for (i=0;i<chips.length;i++) chips[i].setAttribute("aria-pressed", String(chips[i].getAttribute(attr) === idx));
     }
-    for (var m=0;m<legend.length;m++){
-      legend[m].classList.toggle("on", legend[m].getAttribute("data-i") === idx);
+
+    for (var s=0;s<nodes.length;s++){
+      (function(node){
+        var idx = node.getAttribute(attr);
+        node.addEventListener("click", function(){ pick(idx); });
+        node.addEventListener("keydown", function(e){
+          if (e.key === "Enter" || e.key === " "){ e.preventDefault(); pick(idx); }
+        });
+      })(nodes[s]);
+    }
+    for (var c=0;c<chips.length;c++){
+      (function(btn){
+        btn.addEventListener("click", function(){ pick(btn.getAttribute(attr)); });
+      })(chips[c]);
     }
   }
-  for (var s=0;s<stations.length;s++){
-    (function(node){
-      var idx = node.getAttribute("data-i");
-      node.addEventListener("click", function(){ pick(idx); });
-      node.addEventListener("keydown", function(e){
-        if (e.key === "Enter" || e.key === " "){ e.preventDefault(); pick(idx); }
-      });
-    })(stations[s]);
-  }
-  for (var L=0;L<legend.length;L++){
-    (function(node){
-      node.addEventListener("click", function(){ pick(node.getAttribute("data-i")); });
-    })(legend[L]);
-  }
+  wireDiagram(".g-stn", "data-i", "routeDetail", "routeStrip");
+  wireDiagram(".p-g", "data-z", "planDetail", "planStrip");
 
   /* ---- exclusive accordion fallback for browsers without [name] --------- */
   var supportsName = ("name" in document.createElement("details"));
