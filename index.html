@@ -64,7 +64,8 @@
   --accent:#FFCC00;
   --on-accent:#1A1917;
   --red:#D93A25;      /* fills: white sits on this */
-  --red-ink:#C0301C;  /* red as TEXT on a light panel */
+  --red-ink:#C0301C;    /* red as TEXT on a light panel */
+  --green-ink:#0E7A43;  /* green as TEXT on a light panel */
   --green:#17A05B;
 
   --gantry-h:64px;
@@ -132,7 +133,8 @@ html[data-mode="night"]{
   --ink-2:#A3A199;
   --ink-3:#8B8981;
 
-  --red-ink:#FF8A75;  /* red as TEXT on a dark panel — lightened to clear AA */
+  --red-ink:#FF8A75;    /* red as TEXT on a dark panel — lightened to clear AA */
+  --green-ink:#4FD08A;  /* green as TEXT on a dark panel */
   --sh-1:inset 0 1px 0 0 rgba(255,255,255,.04), 0 0 0 1px rgba(0,0,0,.5);
   --sh-2:inset 0 1px 0 0 rgba(255,255,255,.05), 0 0 0 1px rgba(0,0,0,.55), 0 6px 18px -8px rgba(0,0,0,.6);
   --sh-3:inset 0 1px 0 0 rgba(255,255,255,.05), 0 0 0 1px rgba(0,0,0,.6), 0 16px 48px -16px rgba(0,0,0,.65);
@@ -297,13 +299,17 @@ kbd{
   transition:background .15s ease;
 }
 .dest:first-of-type{border-top:0}
-/* the accent rail: yellow appears on the row you are pointing at, not on all seven */
+/* The accent rail is permanent, not hover-gated: a phone never hovers, and a
+   hover-only accent meant the whole first screen rendered neutral on the one
+   device this is built for. Seven 3px rails is a spine, not a wall. */
 .dest::before{
-  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--accent);opacity:0;transition:opacity .15s ease;
+  content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+  background:var(--accent);
+  transform:scaleX(.5);transform-origin:left center;
+  transition:transform .15s ease;
 }
-.dest:hover,.dest:focus-visible{background:var(--panel-2)}
-.dest:hover::before,.dest:focus-visible::before{opacity:1}
+.dest:hover,.dest:focus-visible,.dest:active{background:var(--panel-2)}
+.dest:hover::before,.dest:focus-visible::before,.dest:active::before{transform:scaleX(1)}
 .dest-num{
   flex:0 0 auto;min-width:1.7em;
   font-weight:700;font-size:var(--t-num);line-height:1;
@@ -315,10 +321,22 @@ kbd{
 .dest-name{display:block;font-weight:650;font-size:var(--t-dest);line-height:1.2;letter-spacing:-.02em}
 .dest-sub{display:block;font-size:var(--t-xs);font-weight:400;color:var(--ink-2);margin-top:2px;line-height:1.35}
 .dest .arrow{flex:0 0 auto;width:18px;height:18px;fill:var(--ink-3);transition:transform .15s ease}
-.dest:hover .arrow{transform:translateX(3px)}
-/* 07 is the only row that keeps a colour field — it is the emergency route */
+.dest:hover .arrow,.dest:active .arrow{transform:translateX(3px)}
+/* 07 is the emergency route: same device, different signal */
 .dest.is-alarm .dest-num{color:var(--red-ink)}
 .dest.is-alarm::before{background:var(--red)}
+
+/* The board arrives. A short rise, once, staggered down the list — the page
+   introducing its own index rather than appearing fully formed. */
+@keyframes riseIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.board-landing .dest{animation:riseIn .36s cubic-bezier(.2,.7,.3,1) both}
+.board-landing .dest:nth-child(1){animation-delay:30ms}
+.board-landing .dest:nth-child(2){animation-delay:70ms}
+.board-landing .dest:nth-child(3){animation-delay:110ms}
+.board-landing .dest:nth-child(4){animation-delay:150ms}
+.board-landing .dest:nth-child(5){animation-delay:190ms}
+.board-landing .dest:nth-child(6){animation-delay:230ms}
+.board-landing .dest:nth-child(7){animation-delay:270ms}
 
 .board-landing{margin:0 0 clamp(28px,6vw,56px)}
 @media (min-width:900px){
@@ -596,6 +614,22 @@ ul.plain li{margin:0 0 8px}
 .route-svg .g-stn.on .stn-lab{fill:var(--ink);font-weight:700}
 .route-svg .g-stn.on .stn-idx{fill:var(--ink)}
 
+/* Signal flow. The subject of this drawing is a signal moving through a chain,
+   so the line carries a pulse that runs it. Finite on purpose — three passes on
+   arrival and three more whenever a station is tapped, never perpetual motion
+   under someone trying to read. pathLength normalises the two drawings so one
+   keyframe drives both. */
+.route-svg .ln-flow{fill:none;stroke:var(--on-accent);stroke-width:4;stroke-linecap:round;opacity:0}
+.route.is-live .ln-flow{
+  opacity:.3;
+  stroke-dasharray:5 100;
+  animation:flow 1.6s cubic-bezier(.4,0,.5,1) 3;
+}
+@keyframes flow{
+  from{stroke-dashoffset:5}
+  to{stroke-dashoffset:-100}
+}
+
 
 
 /* ---------- console plan: a top-down map you tap ---------- */
@@ -701,6 +735,14 @@ ul.plain li{margin:0 0 8px}
 .check-item input:checked~.check-t{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
 .check-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);padding:var(--s-3) 0 0}
 .check-count{font-weight:650;font-size:var(--t-sm);color:var(--ink-2);font-variant-numeric:tabular-nums}
+/* the payoff: every check done means the desk is ready, so say that */
+.check-count.is-done{
+  display:inline-flex;align-items:center;gap:7px;
+  color:var(--green-ink);font-weight:700;
+}
+.check-count.is-done::before{
+  content:"";width:9px;height:9px;border-radius:50%;background:var(--green);
+}
 .btn-plain{
   background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-sm);color:var(--ink-2);
   font:inherit;font-weight:600;font-size:var(--t-mini);letter-spacing:.03em;text-transform:uppercase;
@@ -741,11 +783,14 @@ ul.plain li{margin:0 0 8px}
 }
 .flap>span{display:inline-block;animation:flap .26s var(--d,0ms) both cubic-bezier(.2,.7,.3,1);transform-origin:50% 0%}
 @media (prefers-reduced-motion:reduce){
-  /* The split-flap is the only real motion; replace it with an instant
-     state change rather than killing every transition. Short colour and
-     border transitions stay: they are feedback, not decoration. */
+  /* Replace the motion with instant state changes rather than killing every
+     transition. Short colour and border transitions stay: they are feedback,
+     not decoration. The board must remain visible, so the entrance is removed
+     rather than paused mid-fade. */
   .flap>span{animation:none}
-  .route-svg .g-stn,.lg{transition:none}
+  .board-landing .dest{animation:none}
+  .route.is-live .ln-flow{animation:none;opacity:0}
+  .route-svg .g-stn{transition:none}
   html{scroll-behavior:auto}
 }
 
@@ -766,6 +811,7 @@ ul.plain li{margin:0 0 8px}
   .only-narrow{display:none!important}
   .map svg,.route-svg,.plan svg{max-width:100%;height:auto}
   .route,.map,.plan{page-break-inside:avoid}
+  .ln-flow{display:none}
   /* on paper every panel prints, since there is nothing to tap */
   .dia-panel{display:block!important;margin:0 0 10px}
   .dia-strip,.dia-hint{display:none!important}
@@ -964,6 +1010,7 @@ ul.plain li{margin:0 0 8px}
     <div class="route dia">
       <svg class="route-svg only-wide" viewBox="0 0 1000 215" role="group" aria-label="Traseul semnalului pe un canal">
         <path class="ln" d="M70 72 H846"/>
+        <path class="ln-flow" pathLength="100" d="M70 72 H846"/>
         <path class="ln-b" d="M707 72 V150 H784"/>
         <rect class="stn-tap" x="702" y="66" width="10" height="12" rx="2"/>
         <rect class="term-box" x="784" y="128" width="216" height="46"/>
@@ -984,6 +1031,7 @@ ul.plain li{margin:0 0 8px}
 
       <svg class="route-svg only-narrow" viewBox="0 0 360 612" role="group" aria-label="Traseul semnalului pe un canal">
         <path class="ln" d="M40 40 V546"/>
+        <path class="ln-flow" pathLength="100" d="M40 40 V546"/>
         <path class="ln-b" d="M40 422 H150 V438"/>
         <rect class="stn-tap" x="35" y="417" width="10" height="10" rx="2"/>
         <text class="stn-idx" x="58" y="444">PRE / POST</text>
@@ -1961,6 +2009,17 @@ ul.plain li{margin:0 0 8px}
   /* ---- diagrams: pick a part, the panel under the drawing answers ---------
      The explanation is deliberately placed directly beneath the drawing so a
      tap never selects something off-screen on a phone. */
+
+  /* Replay the signal pulse. Restarting a finite CSS animation needs the class
+     removed, a reflow forced, then the class put back. */
+  var routeBox = document.querySelector(".route");
+  function pulse(){
+    if (!routeBox || reduce) return;
+    routeBox.classList.remove("is-live");
+    void routeBox.offsetWidth;
+    routeBox.classList.add("is-live");
+  }
+
   function wireDiagram(nodeSel, attr, detailId, stripId){
     var nodes = document.querySelectorAll(nodeSel);
     var detail = document.getElementById(detailId);
@@ -1994,6 +2053,21 @@ ul.plain li{margin:0 0 8px}
   wireDiagram(".g-stn", "data-i", "routeDetail", "routeStrip");
   wireDiagram(".p-g", "data-z", "planDetail", "planStrip");
 
+  /* run the pulse once the route scrolls into view, and again on every pick */
+  if (routeBox && !reduce){
+    var routeStrip = document.getElementById("routeStrip");
+    document.querySelectorAll(".g-stn").forEach(function(n){ n.addEventListener("click", pulse); });
+    if (routeStrip) routeStrip.addEventListener("click", pulse);
+    if ("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting){ pulse(); io.disconnect(); } });
+      }, {threshold:.35});
+      io.observe(routeBox);
+    } else {
+      pulse();
+    }
+  }
+
   /* ---- exclusive accordion fallback for browsers without [name] --------- */
   var supportsName = ("name" in document.createElement("details"));
   if (!supportsName){
@@ -2014,7 +2088,9 @@ ul.plain li{margin:0 0 8px}
   function paint(){
     var n = 0;
     for (var k=0;k<boxes.length;k++) if (boxes[k].checked) n++;
-    count.textContent = n + " din " + boxes.length;
+    var done = n === boxes.length;
+    count.textContent = done ? "Gata de program" : (n + " din " + boxes.length);
+    count.classList.toggle("is-done", done);
   }
   function save(){
     var out = [];
