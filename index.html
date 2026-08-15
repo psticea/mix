@@ -84,11 +84,11 @@
   --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px; --s-8:32px; --s-12:48px;
 
   /* ---- type ---- */
-  --t-micro:.79rem;   /* floor: nothing smaller than this on screen */
-  --t-mini:.84rem;
-  --t-xs:.90rem;
-  --t-sm:.96rem;
-  --t-md:1.01rem;
+  --t-micro:.85rem;   /* floor: nothing smaller than this on screen */
+  --t-mini:.90rem;
+  --t-xs:.95rem;
+  --t-sm:.99rem;
+  --t-md:1.02rem;
   --t-lg:1.06rem;
   --t-xl:1.35rem;
   --t-body:clamp(1rem,.96rem + .2vw,1.08rem);
@@ -100,7 +100,7 @@
   /* diagram lettering, in SVG user units */
   --t-dia-z:38px;  /* zone marker on the console plan */
   --t-dia-zl:19px; /* zone label */
-  --t-dia-n:19px;  --t-dia-t:16px;  --t-dia-i:14px;  --t-dia-s:13px;  --t-dia-k:13px;
+  --t-dia-n:20px;  --t-dia-t:17px;  --t-dia-i:15px;  --t-dia-s:14px;  --t-dia-k:14px;
 
   --scrim:rgba(0,0,0,.3);
 }
@@ -184,7 +184,7 @@ a{color:inherit}
 /* console key legend — engraved panel chip, never yellow */
 kbd{
   font-family:var(--f);
-  font-size:.82em;
+  font-size:.86em;
   font-weight:700;
   letter-spacing:.06em;
   text-transform:uppercase;
@@ -688,12 +688,12 @@ ul.plain li{margin:0 0 8px}
 .map .m-hub-t{fill:var(--ground);font-family:var(--f);font-weight:800;letter-spacing:.01em}
 .map .m-hub-s{font-weight:700;letter-spacing:.06em}
 .map .m-t{fill:var(--ink);font-family:var(--f);font-weight:650;font-size:18px;letter-spacing:-.015em}
-.map .m-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:13.5px}
+.map .m-s{fill:var(--ink-2);font-family:var(--f);font-weight:400;font-size:14.5px}
 .map .m-ln{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .map .m-ln-2{fill:none;stroke:var(--ink-3);stroke-width:3;stroke-linecap:round}
 .map .m-flow{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round}
 .map .m-arrow{fill:var(--accent)}
-.map .m-lab{fill:var(--ink-3);font-family:var(--f);font-weight:600;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase}
+.map .m-lab{fill:var(--ink-3);font-family:var(--f);font-weight:600;font-size:14.5px;letter-spacing:.06em;text-transform:uppercase}
 .map .m-ico{fill:var(--ink-2)}
 .map .m-ico-bg{fill:var(--panel-2);rx:7}
 .map .m-zone{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:4 5}
@@ -982,7 +982,7 @@ ul.plain li{margin:0 0 8px}
         <rect class="m-hub-ico" x="20" y="298" width="40" height="40" rx="9"/>
         <svg x="28" y="306" width="24" height="24" viewBox="0 0 24 24" class="m-hub-glyph" aria-hidden="true"><use href="#i-desk"/></svg>
         <text class="m-hub-t" x="72" y="316" font-size="21">Mixer X32</text>
-        <text class="m-hub-t m-hub-s" x="72" y="338" font-size="13" opacity=".8">Aici ești tu</text>
+        <text class="m-hub-t m-hub-s" x="72" y="338" font-size="14.5" opacity=".8">Aici ești tu</text>
         <path class="m-flow" d="M180 370 V392"/>
         <path class="m-arrow" d="M173 390 L180 400 L187 390 Z"/>
         <text class="m-lab" x="8" y="418">Ieșiri</text>
@@ -1415,11 +1415,10 @@ ul.plain li{margin:0 0 8px}
       <li><label class="check-item"><input type="checkbox"><span class="check-box"><svg aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-t">Ascultă fiecare canal în căști cu <kbd>SOLO</kbd> înainte să-l urci în sală.</span></label></li>
       <li><label class="check-item"><input type="checkbox"><span class="check-box"><svg aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-t">Verifică monitoarele de scenă și întreabă echipa dacă se aud bine.</span></label></li>
       <li><label class="check-item"><input type="checkbox"><span class="check-box"><svg aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-t">Verifică transmisia live: are sunet, la nivel corect.</span></label></li>
-      <li><label class="check-item"><input type="checkbox"><span class="check-box"><svg aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-t">Dacă înregistrezi, pune stickul în mufa USB de lângă ecran și testează 30 de secunde.</span></label></li>
       <li><label class="check-item"><input type="checkbox"><span class="check-box"><svg aria-hidden="true"><use href="#i-check"/></svg></span><span class="check-t">Apasă <kbd>CLEAR SOLO</kbd> și pune-ți telefonul pe silențios.</span></label></li>
     </ul>
     <div class="check-bar">
-      <span class="check-count" id="checkCount">0 din 11</span>
+      <span class="check-count" id="checkCount">0 din 10</span>
       <button class="btn-plain" type="button" id="checkReset">Șterge bifele</button>
     </div>
 
@@ -1657,22 +1656,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">2</span><span class="row-txt"><span class="row-t">Protejarea reglajelor</span><span class="row-s">Ca o scenă veche să nu strice ce ai reglat azi</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="row-body">
-          <ol class="steps">
-            <li>Din setările de scene deschide zona de protecție.</li>
-            <li>Marchează ce nu vrei să se schimbe la încărcarea unei scene: preamplificarea canalelor, anumite canale întregi sau anumiți parametri.</li>
-            <li>Activează protecția nivelului principal, ca o scenă să nu poată urca brusc volumul sălii.</li>
-          </ol>
-          <div class="notice go">
-            <span class="n-ico"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
-            <p>Protejează cel puțin preamplificarea. Gain-urile se reglează pentru oamenii de azi, nu pentru cei de acum trei luni.</p>
-          </div>
-        </div>
-      </details>
-
-      <details class="row" name="g6">
-        <summary><span class="row-num">3</span><span class="row-txt"><span class="row-t">Grupuri DCA</span><span class="row-s">Un fader care mișcă mai multe canale deodată</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><span class="row-num">2</span><span class="row-txt"><span class="row-t">Grupuri DCA</span><span class="row-s">Un fader care mișcă mai multe canale deodată</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Treci faderele din dreapta pe stratul <kbd>DCA 1-8</kbd>.</li>
@@ -1688,7 +1672,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">4</span><span class="row-txt"><span class="row-t">Efecte</span><span class="row-s">Reverb pe voce, fără să încarci mixul</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><span class="row-num">3</span><span class="row-txt"><span class="row-t">Efecte</span><span class="row-s">Reverb pe voce, fără să încarci mixul</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Consola are 8 motoare de efecte. Implicit, busurile 13–16 alimentează primele patru.</li>
@@ -1700,7 +1684,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">5</span><span class="row-txt"><span class="row-t">Copiere între canale</span><span class="row-s">Aceleași reglaje pe microfoane identice</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><span class="row-num">4</span><span class="row-txt"><span class="row-t">Copiere între canale</span><span class="row-s">Aceleași reglaje pe microfoane identice</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li><kbd>SELECT</kbd> pe canalul sursă.</li>
@@ -1717,7 +1701,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">6</span><span class="row-txt"><span class="row-t">Înregistrare pe stick USB</span><span class="row-s">Rămâne o copie a predicii</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><span class="row-num">5</span><span class="row-txt"><span class="row-t">Înregistrare pe stick USB</span><span class="row-s">Rămâne o copie a predicii</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Folosește un stick formatat FAT: FAT12, FAT16 sau FAT32.</li>
@@ -1735,7 +1719,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">7</span><span class="row-txt"><span class="row-t">Control de pe tabletă sau laptop</span><span class="row-s">Reglezi din sală, unde chiar se aude</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><span class="row-num">6</span><span class="row-txt"><span class="row-t">Control de pe tabletă sau laptop</span><span class="row-s">Reglezi din sală, unde chiar se aude</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Aplicațiile se numesc <b>X32-Mix</b> pentru tabletă și <b>X32-Edit</b> pentru calculator.</li>
@@ -2084,7 +2068,8 @@ ul.plain li{margin:0 0 8px}
   /* ---- checklist, remembered on this device ---------------------------- */
   var boxes = document.querySelectorAll("#check input[type=checkbox]");
   var count = document.getElementById("checkCount");
-  var KEY = "x32.check.v2";
+  var KEY = "x32.check.v3";  /* v3: the list changed length, so old saved
+                                positions would map onto the wrong steps */
   function paint(){
     var n = 0;
     for (var k=0;k<boxes.length;k++) if (boxes[k].checked) n++;
