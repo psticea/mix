@@ -531,6 +531,15 @@ ul.plain li{margin:0 0 8px}
   font-weight:700;font-size:var(--t-lg);line-height:1;
   color:var(--ink-3);font-variant-numeric:tabular-nums;letter-spacing:-.01em;
 }
+/* Rows in 02/04/05/06 are console controls, so they carry the control's own
+   shape instead of a counter. 07 keeps numbers: there the order is the method. */
+.row-ico{
+  flex:0 0 auto;width:22px;height:22px;
+  fill:var(--ink-3);
+  transition:fill .18s ease,transform .18s ease;
+}
+.row[open] .row-ico{fill:var(--ink)}
+.row summary:active .row-ico{transform:scale(.92)}
 .row-txt{flex:1 1 auto;min-width:0}
 .row-t{display:block;font-weight:650;font-size:var(--t-lg);line-height:1.3;letter-spacing:-.015em}
 .row-s{display:block;font-size:var(--t-xs);color:var(--ink-2);margin-top:1px;line-height:1.35}
@@ -889,6 +898,28 @@ ul.plain li{margin:0 0 8px}
 <symbol id="i-doc" viewBox="0 0 24 24"><path d="M10.8 1.6h2.4v9.9l3.9-3.9 1.7 1.7-6.8 6.8-6.8-6.8L6.9 7.6l3.9 3.9V1.6Z"/><path d="M2.6 18.4h18.8v4H2.6z"/></symbol>
 <symbol id="i-lock" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.3a4.8 4.8 0 0 0-4.8 4.8v3.2H5.4v13.4h13.2V9.3h-1.8V6.1A4.8 4.8 0 0 0 12 1.3Zm2.7 8H9.3V6.1a2.7 2.7 0 0 1 5.4 0v3.2Z"/></symbol>
 <symbol id="i-power" viewBox="0 0 24 24"><path d="M10.4 1.5h3.2v10.6h-3.2z"/><path fill-rule="evenodd" d="M7.2 4.3 5 6.6a9.9 9.9 0 1 0 14 0l-2.2-2.3a6.7 6.7 0 1 1-9.6 0Z"/></symbol>
+
+<!-- Console controls: drawn from the X32 front panel, not a generic icon set.
+     Each one is the shape of a thing the volunteer puts a hand on. -->
+<symbol id="i-knob" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8Zm0 2.6a6.8 6.8 0 1 1 0 13.6 6.8 6.8 0 0 1 0-13.6Z"/><path d="M10.8 5.6h2.4v6.8h-2.4z"/></symbol>
+<symbol id="i-fader" viewBox="0 0 24 24"><path d="M10.9 2.4h2.2v6.1h-2.2zM10.9 15.5h2.2v6.1h-2.2z"/><path fill-rule="evenodd" d="M3.9 8.2h16.2v7.6H3.9V8.2Zm2.3 2.9v1.8h11.6v-1.8H6.2Z"/></symbol>
+<symbol id="i-strip" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.8a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm-1.1 1.9h2.2v3.2h-2.2V3.7Z"/><path d="M10.9 12.5h2.2v3h-2.2zM10.9 19.5h2.2v3h-2.2z"/><path fill-rule="evenodd" d="M4.6 15.2h14.8v4.6H4.6v-4.6Zm2.2 1.7v1.2h10.4v-1.2H6.8Z"/></symbol>
+<symbol id="i-xlr" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.7a10.3 10.3 0 1 0 0 20.6 10.3 10.3 0 0 0 0-20.6Zm0 2.3a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm-3.1 5.2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5Zm6.2 0a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5ZM12 14.3a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5Z"/></symbol>
+<symbol id="i-48v" viewBox="0 0 24 24"><path d="M13.6 1.5 5.2 13.1h5L9.3 22.5l9.5-12.2h-5.7z"/></symbol>
+<symbol id="i-lowcut" viewBox="0 0 24 24"><path d="M1.8 19.2C6.4 19.2 6.8 7.4 12.4 7.4H22.2v3H12.4C6.8 10.4 6.4 22.2 1.8 22.2Z"/></symbol>
+<symbol id="i-eq" viewBox="0 0 24 24"><path d="M1.8 14.2C6.2 14.2 6.6 6 12 6C17.4 6 17.8 14.2 22.2 14.2V17.2C17.8 17.2 17.4 9 12 9C6.6 9 6.2 17.2 1.8 17.2Z"/></symbol>
+<symbol id="i-comp" viewBox="0 0 24 24"><path d="M2.6 3h18.8v2.4H2.6zM2.6 18.6h18.8V21H2.6z"/><path d="M10.8 6.6h2.4v2.9h-2.4z"/><path d="M12 11.6 8.3 8.2h7.4z"/><path d="M10.8 14.5h2.4v2.9h-2.4z"/><path d="M12 12.4 15.7 15.8H8.3z"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24"><path d="M1.6 10.9h10.6v2.2H1.6z"/><path d="M10 4.5h2.2v15H10z"/><path d="M12.2 4.5h5.2v2.2h-5.2zM12.2 17.3h5.2v2.2h-5.2z"/><path d="M22.4 5.6 17 8.7V2.5zM22.4 18.4 17 21.5v-6.2z"/></symbol>
+<symbol id="i-mute" viewBox="0 0 24 24"><path d="M2.6 8.9h3.9l4.9-4.4v15l-4.9-4.4H2.6z"/><path d="M15.1 10 16.7 8.4l5.4 5.4-1.6 1.6z"/><path d="M20.5 8.4 22.1 10l-5.4 5.4-1.6-1.6z"/></symbol>
+<symbol id="i-mutegrp" viewBox="0 0 24 24"><path d="M1.8 4h11v2.6h-11zM1.8 10.7h11v2.6h-11zM1.8 17.4h11v2.6h-11z"/><path d="M15.4 9.9 17 8.3l5.4 5.4-1.6 1.6z"/><path d="M20.8 8.3 22.4 9.9 17 15.3l-1.6-1.6z"/></symbol>
+<symbol id="i-feedback" viewBox="0 0 24 24"><path d="M12 3.6a8.4 8.4 0 1 1-8.4 8.4h3.2a5.2 5.2 0 1 0 5.2-5.2z"/><path d="M12 1 16.8 4.9 12 8.8z"/></symbol>
+<symbol id="i-dca" viewBox="0 0 24 24"><path d="M3.4 2.2h2v13h-2zM11 2.2h2v13h-2zM18.6 2.2h2v13h-2z"/><path d="M1.4 5.6h6v3h-6zM9 8.6h6v3H9zM16.6 4.1h6v3h-6z"/><path d="M3.4 15.2h2v3.2h-2zM11 15.2h2v3.2h-2zM18.6 15.2h2v3.2h-2z"/><path d="M2.4 18.2h19.2v2.2H2.4z"/></symbol>
+<symbol id="i-scene" viewBox="0 0 24 24"><path d="M5.6 1.8h12.8v2.6H5.6z"/><path d="M3.7 6h16.6v2.6H3.7z"/><path fill-rule="evenodd" d="M1.8 10.2h20.4v12H1.8v-12Zm2.4 2.4v7.2h15.6v-7.2H4.2Z"/></symbol>
+<symbol id="i-fx" viewBox="0 0 24 24"><path d="M1.6 3.4h3.2v17.2H1.6zM7.5 7.4h3.2v13.2H7.5zM13.4 11.4h3.2v9.2h-3.2zM19.3 15.4h3.2v5.2h-3.2z"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><path d="M2.6 2.2h13v2.4h-13zM2.6 2.2h2.4v13.2H2.6zM2.6 13h8v2.4h-8z"/><path fill-rule="evenodd" d="M7.6 6.6h13.8v15.6H7.6V6.6ZM10 9v10.8h9V9h-9Z"/></symbol>
+<symbol id="i-usb" viewBox="0 0 24 24"><path d="M9.4 1.6h5.2v3.4H9.4z"/><path fill-rule="evenodd" d="M6.8 6.2h10.4v16.2H6.8V6.2Zm2.4 2.4v4.2h5.6V8.6H9.2Z"/></symbol>
+<symbol id="i-tablet" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4.4 1.6h15.2v20.8H4.4V1.6Zm2.4 2.4v13.6h10.4V4H6.8Zm5.2 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></symbol>
+<symbol id="i-screen" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.8 3.4h20.4v17.2H1.8V3.4Zm2.4 2.4v12.4h15.6V5.8H4.2Z"/><path d="M6 13.2h1.8v3H6zM9 10h1.8v6.2H9zM12 7.4h1.8v8.8H12zM15 11.4h1.8v4.8H15z"/></symbol>
 </defs></svg>
 
 <!-- ============ LANDING BOARD ============ -->
@@ -1328,7 +1359,7 @@ ul.plain li{margin:0 0 8px}
 
     <div class="rows">
       <details class="row" name="g2">
-        <summary><span class="row-num">1</span><span class="row-txt"><span class="row-t">Reglajele canalului</span><span class="row-s">Stânga sus · tot ce faci unui singur canal</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-strip"/></svg><span class="row-txt"><span class="row-t">Reglajele canalului</span><span class="row-s">Stânga sus · tot ce faci unui singur canal</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Apeși <kbd>SELECT</kbd> pe un canal. Tot ce reglezi aici se aplică acelui canal.</li>
@@ -1344,7 +1375,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g2">
-        <summary><span class="row-num">2</span><span class="row-txt"><span class="row-t">Canale de intrare</span><span class="row-s">Stânga · 16 fadere care arată pe rând toate canalele</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-xlr"/></svg><span class="row-txt"><span class="row-t">Canale de intrare</span><span class="row-s">Stânga · 16 fadere care arată pe rând toate canalele</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Butoanele de strat de sub fadere schimbă ce afișează cele 16 fadere: canalele 1–16, canalele 17–32, intrările auxiliare împreună cu USB și retururile de efecte, respectiv masterele de bus.</li>
@@ -1356,7 +1387,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g2">
-        <summary><span class="row-num">3</span><span class="row-txt"><span class="row-t">Ecran și monitorizare</span><span class="row-s">Centru · meniurile și ce asculți în căști</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-screen"/></svg><span class="row-txt"><span class="row-t">Ecran și monitorizare</span><span class="row-s">Centru · meniurile și ce asculți în căști</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Cele 8 butoane de categorie din dreapta ecranului aleg pagina afișată: pornire, indicatoare de nivel, rutare, setări, biblioteci, efecte, grupuri de mute și monitorizare.</li>
@@ -1372,7 +1403,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g2">
-        <summary><span class="row-num">4</span><span class="row-txt"><span class="row-t">Grupuri și master</span><span class="row-s">Jos, lângă faderele de intrare · 8 fadere plus Main L/R</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-dca"/></svg><span class="row-txt"><span class="row-t">Grupuri și master</span><span class="row-s">Jos, lângă faderele de intrare · 8 fadere plus Main L/R</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Straturile acestor 8 fadere sunt: <kbd>DCA 1-8</kbd>, <kbd>BUS 1-8</kbd>, <kbd>BUS 9-16</kbd> și matrice împreună cu centrul.</li>
@@ -1388,7 +1419,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g2">
-        <summary><span class="row-num">5</span><span class="row-txt"><span class="row-t">Scene și grupuri de mute</span><span class="row-s">Coloana din dreapta · configurații salvate și tăieri rapide</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-scene"/></svg><span class="row-txt"><span class="row-t">Scene și grupuri de mute</span><span class="row-s">Coloana din dreapta · configurații salvate și tăieri rapide</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Butoanele de scene mută selecția înainte și înapoi prin lista de scene.</li>
@@ -1454,7 +1485,7 @@ ul.plain li{margin:0 0 8px}
 
     <div class="rows">
       <details class="row" name="g4">
-        <summary><span class="row-num">1</span><span class="row-txt"><span class="row-t">Faderele</span><span class="row-s">Volumul în sală se face de aici, nu din gain</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-fader"/></svg><span class="row-txt"><span class="row-t">Faderele</span><span class="row-s">Volumul în sală se face de aici, nu din gain</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Verifică întâi că ești pe stratul corect de fadere. Altfel miști alt canal decât crezi.</li>
@@ -1466,7 +1497,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g4">
-        <summary><span class="row-num">2</span><span class="row-txt"><span class="row-t">Mute</span><span class="row-s">Microfoanele nefolosite stau închise</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-mute"/></svg><span class="row-txt"><span class="row-t">Mute</span><span class="row-s">Microfoanele nefolosite stau închise</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Un microfon deschis degeaba aduce în sală zgomot, foșnete și risc de microfonie.</li>
@@ -1478,7 +1509,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g4">
-        <summary><span class="row-num">3</span><span class="row-txt"><span class="row-t">Solo</span><span class="row-s">Asculți un canal în căști, fără să audă nimeni</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-phones"/></svg><span class="row-txt"><span class="row-t">Solo</span><span class="row-s">Asculți un canal în căști, fără să audă nimeni</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Apeși <kbd>SOLO</kbd> pe canalul care te interesează.</li>
@@ -1494,7 +1525,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g4">
-        <summary><span class="row-num">4</span><span class="row-txt"><span class="row-t">Monitoarele de scenă</span><span class="row-s">Reglezi ce aude fiecare, cu faderele de canal</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-wedge"/></svg><span class="row-txt"><span class="row-t">Monitoarele de scenă</span><span class="row-s">Reglezi ce aude fiecare, cu faderele de canal</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Selectează busul monitorului pe care vrei să-l reglezi.</li>
@@ -1510,7 +1541,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g4">
-        <summary><span class="row-num">5</span><span class="row-txt"><span class="row-t">Grupuri de mute</span><span class="row-s">Tai dintr-o apăsare tot corul sau toată trupa</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-mutegrp"/></svg><span class="row-txt"><span class="row-t">Grupuri de mute</span><span class="row-s">Tai dintr-o apăsare tot corul sau toată trupa</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Apasă butonul <kbd>MUTE GRP</kbd> ca să intri în modul de configurare.</li>
@@ -1522,7 +1553,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g4">
-        <summary><span class="row-num">6</span><span class="row-txt"><span class="row-t">Microfonie</span><span class="row-s">Când începe fluieratul, ai câteva secunde</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-feedback"/></svg><span class="row-txt"><span class="row-t">Microfonie</span><span class="row-s">Când începe fluieratul, ai câteva secunde</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Coboară imediat faderul canalului vinovat.</li>
@@ -1549,7 +1580,7 @@ ul.plain li{margin:0 0 8px}
 
     <div class="rows">
       <details class="row" name="g5">
-        <summary><span class="row-num">1</span><span class="row-txt"><span class="row-t">Gain</span><span class="row-s">Primul reglaj și cel mai important</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-knob"/></svg><span class="row-txt"><span class="row-t">Gain</span><span class="row-s">Primul reglaj și cel mai important</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Apasă <kbd>SELECT</kbd> pe canal.</li>
@@ -1565,7 +1596,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g5">
-        <summary><span class="row-num">2</span><span class="row-txt"><span class="row-t">Alimentare fantomă 48 V</span><span class="row-s">Obligatorie pe microfoanele cu condensator</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-48v"/></svg><span class="row-txt"><span class="row-t">Alimentare fantomă 48 V</span><span class="row-s">Obligatorie pe microfoanele cu condensator</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Dă mute pe canal.</li>
@@ -1581,7 +1612,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g5">
-        <summary><span class="row-num">3</span><span class="row-txt"><span class="row-t">Low cut</span><span class="row-s">Scapi de vuietul de care nimeni nu are nevoie</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-lowcut"/></svg><span class="row-txt"><span class="row-t">Low cut</span><span class="row-s">Scapi de vuietul de care nimeni nu are nevoie</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Pornește-l pe toate canalele de voce.</li>
@@ -1592,7 +1623,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g5">
-        <summary><span class="row-num">4</span><span class="row-txt"><span class="row-t">Egalizator</span><span class="row-s">Corectezi tonul, nu volumul</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-eq"/></svg><span class="row-txt"><span class="row-t">Egalizator</span><span class="row-s">Corectezi tonul, nu volumul</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Ascultă întâi și spune-ți în cuvinte ce te deranjează: prea gros, prea nazal, prea ascuțit.</li>
@@ -1608,7 +1639,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g5">
-        <summary><span class="row-num">5</span><span class="row-txt"><span class="row-t">Compresor</span><span class="row-s">Ține vocea constantă între șoaptă și strigăt</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-comp"/></svg><span class="row-txt"><span class="row-t">Compresor</span><span class="row-s">Ține vocea constantă între șoaptă și strigăt</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Apasă <kbd>SELECT</kbd> pe canal, apoi deschide secțiunea de dinamică.</li>
@@ -1624,7 +1655,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g5">
-        <summary><span class="row-num">6</span><span class="row-txt"><span class="row-t">Trimiteri spre busuri</span><span class="row-s">Scena și transmisia live se reglează separat de sală</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-bus"/></svg><span class="row-txt"><span class="row-t">Trimiteri spre busuri</span><span class="row-s">Scena și transmisia live se reglează separat de sală</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Alege busul: unul pentru fiecare monitor de scenă, unul separat pentru transmisia live.</li>
@@ -1647,7 +1678,7 @@ ul.plain li{margin:0 0 8px}
 
     <div class="rows">
       <details class="row" name="g6">
-        <summary><span class="row-num">1</span><span class="row-txt"><span class="row-t">Scene</span><span class="row-s">Salvezi toată consola și o aduci înapoi data viitoare</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-scene"/></svg><span class="row-txt"><span class="row-t">Scene</span><span class="row-s">Salvezi toată consola și o aduci înapoi data viitoare</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Reglează totul cum trebuie, la probă.</li>
@@ -1664,7 +1695,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">2</span><span class="row-txt"><span class="row-t">Grupuri DCA</span><span class="row-s">Un fader care mișcă mai multe canale deodată</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-dca"/></svg><span class="row-txt"><span class="row-t">Grupuri DCA</span><span class="row-s">Un fader care mișcă mai multe canale deodată</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Treci faderele din dreapta pe stratul <kbd>DCA 1-8</kbd>.</li>
@@ -1680,7 +1711,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">3</span><span class="row-txt"><span class="row-t">Efecte</span><span class="row-s">Reverb pe voce, fără să încarci mixul</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-fx"/></svg><span class="row-txt"><span class="row-t">Efecte</span><span class="row-s">Reverb pe voce, fără să încarci mixul</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Consola are 8 motoare de efecte. Implicit, busurile 13–16 alimentează primele patru.</li>
@@ -1692,7 +1723,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">4</span><span class="row-txt"><span class="row-t">Copiere între canale</span><span class="row-s">Aceleași reglaje pe microfoane identice</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-copy"/></svg><span class="row-txt"><span class="row-t">Copiere între canale</span><span class="row-s">Aceleași reglaje pe microfoane identice</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li><kbd>SELECT</kbd> pe canalul sursă.</li>
@@ -1709,7 +1740,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">5</span><span class="row-txt"><span class="row-t">Înregistrare pe stick USB</span><span class="row-s">Rămâne o copie a predicii</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-usb"/></svg><span class="row-txt"><span class="row-t">Înregistrare pe stick USB</span><span class="row-s">Rămâne o copie a predicii</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Folosește un stick formatat FAT: FAT12, FAT16 sau FAT32.</li>
@@ -1727,7 +1758,7 @@ ul.plain li{margin:0 0 8px}
       </details>
 
       <details class="row" name="g6">
-        <summary><span class="row-num">6</span><span class="row-txt"><span class="row-t">Control de pe tabletă sau laptop</span><span class="row-s">Reglezi din sală, unde chiar se aude</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <summary><svg class="row-ico" aria-hidden="true"><use href="#i-tablet"/></svg><span class="row-txt"><span class="row-t">Control de pe tabletă sau laptop</span><span class="row-s">Reglezi din sală, unde chiar se aude</span></span><svg class="row-chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="row-body">
           <ol class="steps">
             <li>Aplicațiile se numesc <b>X32-Mix</b> pentru tabletă și <b>X32-Edit</b> pentru calculator.</li>

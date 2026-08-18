@@ -373,10 +373,17 @@ under `prefers-reduced-motion`.
 - **Route map** — the channel signal path drawn as a transit line with tappable
   stations; picking a station highlights the matching legend entry, and vice
   versa. Two hand-drawn SVGs (wide/narrow) rather than one that scales badly.
-- **Checklist** — persists to `localStorage` (`x32.check.v2`) with a visible
+- **Checklist** — persists to `localStorage` (`x32.check.v3`) with a visible
   count and a reset. Green when done.
 - **Keycap** — console buttons (`kbd`) as engraved chips. This is what keeps the
   yellow budget intact.
+- **Control glyph** (`.row-ico`) — rows in 02/04/05/06 name things that live on
+  the console, so each carries the shape of its own control (knob, fader, channel
+  strip, XLR, bolt for 48 V, low-cut and EQ curves, compressor, bus split, mute,
+  feedback loop, DCA, scene, FX tail, USB, tablet, screen) instead of a counter.
+  Section 07 keeps numerals: there the order *is* the method. Glyphs are
+  `aria-hidden` — the row title carries the meaning — and they take full ink when
+  the row is open, so the one open control reads as selected.
 
 ## Do's and Don'ts
 
@@ -398,7 +405,11 @@ under `prefers-reduced-motion`.
 - Don't add a hero, a headline block, badge pills, or tag chips. The client
   rejected them by name; the board is the entry point.
 - Don't introduce a second font family, a monospace, or italics.
-- Don't add rounded corners, shadows, gradients, or blur.
+- Don't import an icon library. Every pictogram is drawn here, 24×24, solid fill,
+  no strokes, weights optically matched across the set. Default icon sets are one
+  of the loudest tells of a generated site, and none of them draws a fader.
+- Don't add gradients, blur, or glass. Depth comes from the warm-tinted shadow
+  scale and hairline rings, and from nothing else.
 - Don't use color as the only carrier of meaning — every colored state also has a
   pictogram, a label, or a position.
 - Don't publish a fixed channel map. Channel assignment changes per service; the
