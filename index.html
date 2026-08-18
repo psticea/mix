@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ghid X32 — echipa de sunet</title>
+<title>Ghid X32 — echipa de sunet, Biserica Baptistă Sebeș</title>
 <script>try{var m=localStorage.getItem("x32.mode");if(m==="day"||m==="night")document.documentElement.setAttribute("data-mode",m);}catch(e){}</script>
-<meta name="description" content="Ghid de operare pentru mixerul Behringer X32: traseul semnalului, checklist înainte de program, reglaje și ce faci când ceva nu merge.">
+<meta name="description" content="Ghid intern pentru echipa de sunet a Bisericii Baptiste Sebeș: cum se operează mixerul Behringer X32 — traseul semnalului, checklist înainte de program, reglaje și ce faci când ceva nu merge.">
 <!-- Light by default on purpose: the desk sits in a bright room, and the
      phone is competing with daylight. Night mode stays available, but the
      system preference is deliberately not followed — a phone set to dark
@@ -286,7 +286,15 @@ kbd{
 .mark-glyph svg{width:19px;height:19px;fill:var(--on-accent)}
 .mark-txt b,.mark-txt h1{display:block;font-weight:700;font-size:var(--t-lg);letter-spacing:-.015em;line-height:1.15;margin:0}
 .mark-txt span{display:block;font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin-top:1px}
-.board-meta{text-align:right;font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);line-height:1.5}
+/* the church this belongs to: a proper name, so sentence case and a stronger
+   ink than the uppercase micro-labels around it */
+.mark-txt .mark-org{
+  font-size:var(--t-mini);font-weight:600;
+  letter-spacing:-.005em;text-transform:none;
+  color:var(--ink-2);margin-top:2px;line-height:1.3;
+}
+.board-meta{flex:0 0 auto;text-align:right;font-size:var(--t-micro);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);line-height:1.5;white-space:nowrap}
+@media (max-width:400px){.board-meta{display:none}}
 
 .dest{
   position:relative;
@@ -891,10 +899,10 @@ ul.plain li{margin:0 0 8px}
         <span class="mark-glyph"><svg aria-hidden="true"><use href="#i-desk"/></svg></span>
         <div class="mark-txt">
           <h1>Ghid X32</h1>
-          <span>Echipa de sunet</span>
+          <span class="mark-org">Biserica Baptistă Sebeș</span>
         </div>
       </div>
-      <div class="board-meta">Behringer X32<br>7 destinații</div>
+      <div class="board-meta">Echipa de sunet</div>
     </div>
     <div class="board-grid">
       <a class="dest" href="#a1"><span class="dest-num">01</span><span class="dest-txt"><span class="dest-name">Sistemul</span><span class="dest-sub">Pe unde trece sunetul, de la microfon la boxe</span></span><svg class="arrow" aria-hidden="true"><use href="#i-right"/></svg></a>
@@ -1856,7 +1864,7 @@ ul.plain li{margin:0 0 8px}
   <div class="shell">
     <div class="foot-grid">
       <div>
-        <p>Ghid intern pentru echipa de sunet. Procedurile urmează manualul oficial al consolei Behringer X32. Reglajele concrete — cine pe ce canal, ce nivel, ce scenă — se schimbă de la un program la altul și se învață la fața locului.</p>
+        <p>Ghid intern pentru <b>echipa de sunet a Bisericii Baptiste Sebeș</b>, scris pentru sistemul de sunet al bisericii. Procedurile urmează manualul oficial al consolei Behringer X32. Reglajele concrete — cine pe ce canal, ce nivel, ce scenă — se schimbă de la un program la altul și se învață la fața locului.</p>
         <a class="dl" href="Behringer_X32_User_Manual.pdf"><svg aria-hidden="true"><use href="#i-doc"/></svg>Manualul oficial X32 <span class="dl-meta">PDF · 19 MB</span></a>
       </div>
       <div>
